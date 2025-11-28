@@ -422,7 +422,8 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
                 </p>
                 
                 <ContactForm 
-                  propertyName={`${propertyName} - Habitación #${room.room_number}`}
+                  type="reservation"
+                  propertySlug={property?.slug}
                   roomId={room.id}
                 />
               </div>

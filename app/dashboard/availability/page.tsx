@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 interface Room {
   id: string;
+  property_id: string;
   room_number: string;
   type: 'private' | 'shared';
   bathroom_type: 'private' | 'shared';
@@ -29,6 +30,7 @@ interface Room {
 
 interface Booking {
   id: string;
+  room_id: string;
   check_in: string;
   check_out: string;
   status: string;
