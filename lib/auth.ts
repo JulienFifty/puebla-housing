@@ -1,7 +1,5 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-// import { prisma } from './prisma';
-import bcrypt from 'bcryptjs';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -12,40 +10,15 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        // Nota: Este código usa Prisma que solo funciona en desarrollo local.
-        // En producción, se usa Supabase Auth directamente.
+        // Este proyecto usa Supabase Auth directamente, no NextAuth
+        // Este provider está aquí para compatibilidad pero no se usa
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
 
-        // Deshabilitado para producción - usar Supabase Auth
+        // La autenticación se maneja en /dashboard/login y /student/login
+        // usando Supabase Auth directamente
         return null;
-
-        /* 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-        });
-
-        if (!user) {
-          return null;
-        }
-
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
-
-        if (!isPasswordValid) {
-          return null;
-        }
-
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
-        };
-        */
       },
     }),
   ],
