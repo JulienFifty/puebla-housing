@@ -1,0 +1,8 @@
+property_slug,room_number,type,bathroom_type,description_es,description_en,images,available,semester,amenities
+mariachi,101,private,private,Habitación privada con baño privado,Private room with private bathroom,"[""https://example.com/room1.jpg""]",true,enero-junio-2026,"[""WiFi"",""Closet"",""Ventana""]"
+mariachi,102,shared,shared,Habitación compartida con baño compartido,Shared room with shared bathroom,"[""https://example.com/room2.jpg""]",true,enero-junio-2026,"[""WiFi"",""Closet""]"
+centro,201,private,private,Habitación privada en el centro,Private room in the center,"[""https://example.com/room3.jpg""]",true,junio-diciembre-2026,"[""WiFi"",""Closet"",""Ventana"",""Escritorio""]"
+
+
+
+

@@ -1,0 +1,60 @@
+═══════════════════════════════════════════════════════════════
+  CONFIGURACIÓN DE SUPABASE - PASO A PASO
+═══════════════════════════════════════════════════════════════
+
+PASO 1: Crear Proyecto en Supabase
+────────────────────────────────────
+1. Ve a: https://app.supabase.com
+2. Click en "New Project"
+3. Completa:
+   - Name: puebla-housing
+   - Database Password: (crea una segura)
+   - Region: (elige la más cercana)
+4. Click "Create new project"
+5. Espera 2-3 minutos
+
+PASO 2: Obtener Credenciales
+──────────────────────────────
+1. En el dashboard → Settings (⚙️) → API
+2. Copia estos 3 valores:
+   ✓ Project URL
+   ✓ anon public key
+   ✓ service_role key
+
+PASO 3: Configurar Variables
+──────────────────────────────
+1. Crea el archivo .env.local en la raíz del proyecto
+2. Agrega estas líneas (reemplaza con tus valores):
+
+NEXT_PUBLIC_SUPABASE_URL=tu_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_anon_key
+SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key
+
+PASO 4: Crear Tablas
+─────────────────────
+1. En Supabase → SQL Editor
+2. Abre: scripts/supabase-schema.sql
+3. Copia TODO el contenido
+4. Pégalo en SQL Editor
+5. Click "Run"
+
+PASO 5: Crear Usuario Admin
+─────────────────────────
+Opción A (Dashboard):
+1. Authentication → Users → Add user
+2. Crea usuario con email y password
+3. Copia el User UID
+4. En SQL Editor ejecuta:
+   INSERT INTO public.profiles (id, email, role)
+   VALUES ('TU_UID', 'tu-email@ejemplo.com', 'owner');
+
+Opción B (Script):
+   npm run create-admin-supabase
+
+PASO 6: Probar
+──────────────
+1. npm run dev
+2. Ve a: http://localhost:3001/dashboard/login
+3. Inicia sesión
+
+═══════════════════════════════════════════════════════════════

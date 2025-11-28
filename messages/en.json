@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "home": "Home",
+    "welcomePack": "Welcome Pack",
+    "about": "About Us",
+    "mariachi": "Casa Mariachi",
+    "centro": "Casa Centro",
+    "piramide": "Casa Piramide",
+    "properties": "Properties",
+    "events": "Events",
+    "listProperty": "List Property",
+    "contact": "Contact",
+    "reserveRoom": "Reserve Room",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "studentPortal": "Student Portal"
+  },
+  "hero": {
+    "title": "Your home in Puebla starts here",
+    "subtitle": "Discover safe and comfortable spaces designed for international students. Live the experience of studying in Mexico with total tranquility.",
+    "cta": "Start my journey",
+    "verified": "Verified Properties",
+    "support": "24x7 Assistance",
+    "guarantee": "Lowest Price Guarantee",
+    "searchPlaceholder": "Search by city, university or property",
+    "search": "Search Room",
+    "zone": "Zone",
+    "university": "University",
+    "roomType": "Room type",
+    "bathroomType": "Bathroom",
+    "allZones": "All zones",
+    "allUniversities": "All universities",
+    "allRoomTypes": "All types",
+    "allBathroomTypes": "All types",
+    "private": "Private",
+    "shared": "Shared"
+  },
+  "properties": {
+    "title": "Our Houses",
+    "subtitle": "Discover our available houses",
+    "viewProperty": "View House",
+    "viewAll": "View all houses",
+    "rooms": "rooms",
+    "available": "Available",
+    "notAvailable": "Not available",
+    "private": "Private",
+    "shared": "Shared",
+    "privateBathroom": "Private bathroom",
+    "sharedBathroom": "Shared bathroom"
+  },
+  "events": {
+    "title": "Events",
+    "subtitle": "Join our community",
+    "viewMore": "View more"
+  },
+  "testimonials": {
+    "title": "What our students say",
+    "subtitle": "Real experiences from international students"
+  },
+  "about": {
+    "title": "About Puebla Housing",
+    "subtitle": "Your home away from home",
+    "family": "A family",
+    "awayFromHome": "away from home",
+    "description": "Puebla Housing is the number 1 organization in Puebla specialized in accompanying international students in their installation process, we offer an integral service that connects students with verified safe and comfortable accommodation options, as well as cultural activities that foster integration and enrich their experience in Mexico.",
+    "imageAlt": "Cultural experience in Puebla"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "message": "Message",
+    "send": "Send",
+    "whatsapp": "Contact via WhatsApp",
+    "addresses": "Addresses"
+  },
+  "listProperty": {
+    "title": "List Your Property",
+    "subtitle": "Join our accommodation network",
+    "description": "If you have a property you want to rent to international students, contact us."
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "properties": "Properties",
+    "events": "Events",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "universities": {
+    "title": "A step away from the best universities in Puebla"
+  },
+  "rooms": {
+    "title": "Available Rooms",
+    "subtitle": "Find the perfect room for your stay in Puebla",
+    "filterProperty": "Filter by property",
+    "filterSemester": "Filter by semester",
+    "available": "Available",
+    "notAvailable": "Not Available",
+    "availableFrom": "Available from",
+    "startingFrom": "Starting from",
+    "private": "Private",
+    "shared": "Shared",
+    "entirePlace": "Entire Place",
+    "privateKitchen": "Private Kitchen",
+    "bathroomPrivate": "Private bathroom",
+    "bathroomShared": "Shared bathroom",
+    "semester1": "January - June 2026",
+    "semester2": "June - December 2026",
+    "viewRoom": "View Room",
+    "viewDetails": "View Room",
+    "viewMoreDetails": "View More Details",
+    "book": "Book",
+    "resultsCount": "{count, plural, =0 {No rooms available} one {# room found} other {# rooms found}}",
+    "noResults": "No rooms found with the selected filters",
+    "loading": "Loading rooms...",
+    "roomNumber": "Room",
+    "description": "Description",
+    "amenities": "Room Amenities",
+    "aboutProperty": "About the Property",
+    "viewAllRooms": "View all rooms",
+    "bookThisRoom": "Book this room",
+    "fillFormContact": "Fill out the form and we will contact you.",
+    "whyChooseUs": "Why choose us?",
+    "noHiddenFees": "No hidden fees",
+    "support247": "24/7 Support",
+    "verifiedProperties": "Verified properties",
+    "secureBooking": "Secure booking process"
+  },
+  "reviews": {
+    "loading": "Loading reviews...",
+    "basedOn": "Based on Google My Business",
+    "viewOnGoogle": "View on Google",
+    "viewAllReviews": "View all reviews",
+    "noReviews": "No reviews found",
+    "viewOnGoogleMaps": "View on Google Maps",
+    "notConfigured": "Google My Business reviews are not configured for this property",
+    "reviews": "reviews",
+    "review": "review"
+  }
+}
+

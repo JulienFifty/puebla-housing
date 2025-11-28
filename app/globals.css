@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #592C82;
+  --primary-hover: #4A2569;
+  --secondary: #F2C100;
+  --text-main: #1A1A1A;
+  --text-secondary: #64748B;
+  --background: #FFFFFF;
+  --background-gray: #F8FAFC;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Manrope', sans-serif;
+}
+
+body {
+  color: var(--text-main);
+  background: var(--background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 15s linear infinite;
+  display: flex;
+  width: fit-content;
+}
+
+/* Estilos para popups de Mapbox */
+.mapboxgl-popup-content {
+  padding: 0 !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.mapboxgl-popup-close-button {
+  font-size: 20px;
+  padding: 4px 8px;
+  color: #6B7280;
+}
+
+.mapboxgl-popup-close-button:hover {
+  color: #1F2937;
+  background-color: #F3F4F6;
+}
+

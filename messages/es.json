@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "welcomePack": "Welcome Pack",
+    "about": "Quien somos",
+    "mariachi": "Casa Mariachi",
+    "centro": "Casa Centro",
+    "piramide": "Casa Piramide",
+    "properties": "Casas",
+    "events": "Eventos",
+    "listProperty": "Listar Propiedad",
+    "contact": "Contacto",
+    "reserveRoom": "Reservar Habitación",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "studentPortal": "Portal Estudiante"
+  },
+  "hero": {
+    "title": "Tu hogar en Puebla comienza aquí",
+    "subtitle": "Descubre espacios seguros y cómodos diseñados para estudiantes internacionales. Vive la experiencia de estudiar en México con total tranquilidad.",
+    "cta": "Empezar mi viaje",
+    "verified": "Propiedades Verificadas",
+    "support": "Asistencia 24/7",
+    "guarantee": "Mejor Precio Garantizado",
+    "searchPlaceholder": "Buscar por ciudad, universidad o propiedad",
+    "search": "Buscar Habitación",
+    "zone": "Zona",
+    "university": "Universidad",
+    "roomType": "Tipo de habitación",
+    "bathroomType": "Baño",
+    "allZones": "Todas las zonas",
+    "allUniversities": "Todas las universidades",
+    "allRoomTypes": "Todos los tipos",
+    "allBathroomTypes": "Todos los tipos",
+    "private": "Privada",
+    "shared": "Compartida"
+  },
+  "properties": {
+    "title": "Nuestras Casas",
+    "subtitle": "Descubre nuestras casas disponibles",
+    "viewProperty": "Ver Casa",
+    "viewAll": "Ver todas las casas",
+    "rooms": "habitaciones",
+    "available": "Disponible",
+    "notAvailable": "No disponible",
+    "private": "Privada",
+    "shared": "Compartida",
+    "privateBathroom": "Baño privado",
+    "sharedBathroom": "Baño compartido"
+  },
+  "events": {
+    "title": "Eventos",
+    "subtitle": "Únete a nuestra comunidad",
+    "viewMore": "Ver más"
+  },
+  "testimonials": {
+    "title": "Lo que dicen nuestros estudiantes",
+    "subtitle": "Experiencias reales de estudiantes internacionales"
+  },
+  "about": {
+    "title": "Sobre Puebla Housing",
+    "subtitle": "Tu hogar lejos de casa",
+    "family": "Una familia",
+    "awayFromHome": "lejos de tu casa",
+    "description": "Puebla Housing es la organización número 1 en Puebla especializada en acompañar a estudiantes internacionales en su proceso de instalación, ofrecemos un servicio integral que conecta a los estudiantes con opciones de alojamiento verificadas seguras y cómodas, así como actividades culturales que fomentan la integración y enriquecen su experiencia en México.",
+    "highlightedText": "servicio integral que conecta a los estudiantes con opciones de alojamiento verificadas seguras y cómodas",
+    "imageAlt": "Experiencia cultural en Puebla"
+  },
+  "contact": {
+    "phone": "Teléfono (opcional)",
+    "title": "Contáctanos",
+    "subtitle": "Estamos aquí para ayudarte",
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "send": "Enviar",
+    "whatsapp": "Contactar por WhatsApp",
+    "addresses": "Direcciones"
+  },
+  "listProperty": {
+    "title": "Lista tu Propiedad",
+    "subtitle": "Únete a nuestra red de alojamientos",
+    "description": "Si tienes una propiedad que quieres alquilar a estudiantes internacionales, contáctanos."
+  },
+  "footer": {
+    "quickLinks": "Enlaces Rápidos",
+    "properties": "Casas",
+    "events": "Eventos",
+    "contact": "Contacto",
+    "followUs": "Síguenos",
+    "legal": "Legal",
+    "privacy": "Privacidad",
+    "terms": "Términos"
+  },
+  "universities": {
+    "title": "A un paso de las mejores universidades de Puebla"
+  },
+  "rooms": {
+    "title": "Habitaciones Disponibles",
+    "subtitle": "Encuentra la habitación perfecta para tu estancia en Puebla",
+    "filterProperty": "Filtrar por casa",
+    "filterSemester": "Filtrar por semestre",
+    "available": "Disponible",
+    "notAvailable": "No Disponible",
+    "availableFrom": "Disponible desde",
+    "startingFrom": "Desde",
+    "private": "Privada",
+    "shared": "Compartida",
+    "entirePlace": "Lugar Completo",
+    "privateKitchen": "Cocina Privada",
+    "viewMoreDetails": "Ver Más Detalles",
+    "viewDetails": "Ver Habitación",
+    "book": "Reservar",
+    "viewRoom": "Ver Habitación",
+    "bathroomPrivate": "Baño privado",
+    "bathroomShared": "Baño compartido",
+    "semester1": "Enero - Junio 2026",
+    "semester2": "Junio - Diciembre 2026",
+    "resultsCount": "{count, plural, =0 {No hay habitaciones disponibles} one {# habitación encontrada} other {# habitaciones encontradas}}",
+    "noResults": "No se encontraron habitaciones con los filtros seleccionados",
+    "roomNumber": "Habitación",
+    "description": "Descripción",
+    "amenities": "Amenidades de la Habitación",
+    "aboutProperty": "Sobre la Casa",
+    "viewAllRooms": "Ver todas las habitaciones",
+    "bookThisRoom": "Reservar esta habitación",
+    "fillFormContact": "Completa el formulario y nos pondremos en contacto contigo.",
+    "whyChooseUs": "¿Por qué elegirnos?",
+    "noHiddenFees": "Sin comisiones ocultas",
+    "support247": "Asistencia 24/7",
+    "verifiedProperties": "Verificación de propiedades",
+    "secureBooking": "Proceso de reserva seguro"
+  },
+  "reviews": {
+    "loading": "Cargando reseñas...",
+    "basedOn": "Basado en Google My Business",
+    "viewOnGoogle": "Ver en Google",
+    "viewAllReviews": "Ver todas las reseñas",
+    "noReviews": "No se encontraron reseñas",
+    "viewOnGoogleMaps": "Ver en Google Maps",
+    "notConfigured": "Las reseñas de Google My Business no están configuradas para esta propiedad",
+    "reviews": "reseñas",
+    "review": "reseña"
+  }
+}
+
