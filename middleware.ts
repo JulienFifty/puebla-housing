@@ -14,28 +14,29 @@ export async function middleware(request: NextRequest) {
 
   // Excluir rutas del dashboard, student y API de la internacionalización
   if (pathname.startsWith('/dashboard') || pathname.startsWith('/student') || pathname.startsWith('/api')) {
-    // Configurar Supabase client para rutas protegidas
+    let response = NextResponse.next({
+      request: {
+        headers: request.headers,
+      },
+    });
+
+    // Configurar Supabase client para rutas protegidas (Edge Runtime compatible)
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
         cookies: {
-          get(name: string) {
-            return request.cookies.get(name)?.value;
+          getAll() {
+            return request.cookies.getAll();
           },
-          set(name: string, value: string, options: any) {
-            request.cookies.set({
-              name,
-              value,
-              ...options,
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
+            response = NextResponse.next({
+              request,
             });
-          },
-          remove(name: string, options: any) {
-            request.cookies.set({
-              name,
-              value: '',
-              ...options,
-            });
+            cookiesToSet.forEach(({ name, value, options }) =>
+              response.cookies.set(name, value, options)
+            );
           },
         },
       }
@@ -67,7 +68,7 @@ export async function middleware(request: NextRequest) {
       }
     }
 
-    return NextResponse.next();
+    return response;
   }
 
   // Para otras rutas (incluyendo /), aplicar internacionalización
