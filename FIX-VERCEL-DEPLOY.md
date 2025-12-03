@@ -67,7 +67,21 @@ Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/n
 - `app/dashboard/inquiries/page.tsx`
 - `components/TestimonialCard.tsx`
 
-### Error 3: Prisma No Necesario
+### Error 3: next-intl Static Rendering
+```
+Error: Usage of next-intl APIs in Server Components currently opts into dynamic rendering.
+Route /es/casas couldn't be rendered statically because it used `headers`.
+```
+
+**Causa:** Páginas con `next-intl` intentan renderizarse estáticamente pero usan `headers()` (dinámico).
+
+**Solución:** ✅ Agregado `export const dynamic = 'force-dynamic'` a las páginas:
+- `app/[locale]/casas/page.tsx`
+- `app/[locale]/contacto/page.tsx`
+- `app/[locale]/eventos/page.tsx`
+- `app/[locale]/listar-propiedad/page.tsx`
+
+### Error 4: Prisma No Necesario
 ```
 Type error: Module '"@prisma/client"' has no exported member 'PrismaClient'.
 ```
@@ -100,10 +114,15 @@ Vercel estaba usando el commit `f1674c2` que es **anterior** a nuestros fixes. L
    - Build pasa linting sin errores
 
 ### Fase 2: Limpieza de Arquitectura
-3. **`[CURRENT]`** - Remove Prisma (not used, project uses Supabase)
+3. **`5faca4e`** - Remove Prisma (not used, project uses Supabase)
    - Eliminado Prisma completamente
    - Removidos scripts innecesarios
    - Arquitectura simplificada: Solo Supabase
+
+### Fase 3: Fix de next-intl
+4. **`d8631b6`** - Force dynamic rendering for i18n pages
+   - Agregado `dynamic = 'force-dynamic'` a páginas con i18n
+   - Resuelve error de static rendering con `headers()`
 
 ---
 
