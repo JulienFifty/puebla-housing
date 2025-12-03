@@ -3,6 +3,8 @@ import PropertyCard from '@/components/PropertyCard';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return {
     title: 'Casas - Puebla Housing',

@@ -2,6 +2,8 @@ import { getTranslations } from 'next-intl/server';
 import EventCard from '@/components/EventCard';
 import { events } from '@/data/events';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return {
     title: 'Eventos - Puebla Housing',
