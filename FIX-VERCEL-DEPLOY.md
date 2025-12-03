@@ -13,6 +13,32 @@
 
 ---
 
+## ⚙️ Configuración Requerida en Vercel
+
+### Variables de Entorno de Supabase
+
+**IMPORTANTE**: Debes configurar estas variables en Vercel antes del deploy:
+
+1. Ve a tu proyecto en Vercel → **Settings** → **Environment Variables**
+2. Agrega estas 3 variables (obtén los valores de tu dashboard de Supabase):
+
+| Variable | Descripción | Dónde Obtenerla |
+|----------|-------------|-----------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | URL de tu proyecto Supabase | Supabase → Settings → API → Project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clave pública de Supabase | Supabase → Settings → API → anon public key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Clave privada de Supabase | Supabase → Settings → API → service_role key |
+
+3. Marca los 3 ambientes: **Production**, **Preview**, **Development**
+4. Haz Redeploy después de agregar las variables
+
+**Error si no están configuradas:**
+```
+Error: Missing Supabase environment variables. Please check NEXT_PUBLIC_SUPABASE_URL 
+and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local
+```
+
+---
+
 ## 🚨 Errores Resueltos (Dic 2025)
 
 ### Error 1: ESLint Opciones Inválidas
@@ -97,7 +123,43 @@ Vercel estaba usando el commit `f1674c2` que es **anterior** a nuestros fixes. L
 **Capacidad de Escalamiento:**
 - 👥 10,000+ usuarios simultáneos
 - 📊 Millones de registros
-- 💰 Costo: $0-25/mes para empezar 
+- 💰 Costo: $0-25/mes para empezar
+
+---
+
+## ✅ Checklist para Deploy Exitoso
+
+Antes de hacer deploy, asegúrate de:
+
+### 1. Variables de Entorno Configuradas en Vercel ⚠️
+- [ ] `NEXT_PUBLIC_SUPABASE_URL`
+- [ ] `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- [ ] `SUPABASE_SERVICE_ROLE_KEY`
+- [ ] Marcadas en los 3 ambientes (Production, Preview, Development)
+
+### 2. Código Actualizado
+- [ ] Commit `5faca4e` o más reciente
+- [ ] Sin Prisma en el proyecto
+- [ ] ESLint 8.57.0 instalado
+- [ ] Comillas escapadas en JSX
+
+### 3. Logs Esperados en Vercel
+
+```bash
+✓ Running "npm install"          # ~15-20 segundos
+✓ Running "npm run build"         # ~30-60 segundos
+✓ Linting and checking validity of types
+✓ Compiled successfully
+✓ Generating static pages
+```
+
+### 4. Si Ves Este Error
+
+```
+Error: Missing Supabase environment variables
+```
+
+👉 **Ve a Vercel → Settings → Environment Variables** y agrega las 3 variables de Supabase. 
 
 ---
 
