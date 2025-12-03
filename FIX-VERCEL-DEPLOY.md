@@ -129,10 +129,13 @@ Vercel estaba usando el commit `f1674c2` que es **anterior** a nuestros fixes. L
    - Agregado `locale` al return en `i18n.ts`
    - Cumple con requisito de next-intl 3.22+
 
-6. **`ec4b501`** - Add root page redirect to default locale
-   - Creado `app/page.tsx` para manejar ruta raíz `/`
-   - Redirección automática a `/es` (locale por defecto)
+6. **`8d56bbe`** - Simplify middleware to fix 500 error
+   - Eliminado `app/page.tsx` (causaba conflicto)
+   - Simplificado middleware: eliminada inicialización innecesaria de Supabase para rutas i18n
+   - Ahora `intlMiddleware` maneja directamente la ruta raíz `/`
    - **RESUELVE ERROR 500 `MIDDLEWARE_INVOCATION_FAILED`** ✅
+   
+**Explicación**: El middleware de next-intl con `localePrefix: 'always'` automáticamente redirige `/` → `/es`
 
 ---
 
