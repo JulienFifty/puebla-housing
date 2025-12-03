@@ -134,11 +134,18 @@ Vercel estaba usando el commit `f1674c2` que es **anterior** a nuestros fixes. L
    - Simplificado middleware para rutas i18n
    - `intlMiddleware` maneja la ruta raíz `/`
 
-8. **`90066b7`** - Fix middleware imports & matcher ✅
-   - Corregido import de `./i18n` (estaba usando i18n-config)
+8. **`90066b7`** - Fix middleware matcher
    - Simplificado `config.matcher` para evitar problemas de regex
-   - Estructura más limpia y robusta
-   - **SOLUCIÓN FINAL** para el error 500 en Edge Runtime
+   
+9. **`6c1b6f7`** - CRITICAL FIX: Import from i18n-config ✅✅✅
+   - **EL FIX REAL**: Cambiado `import from './i18n'` → `'./i18n-config'`
+   - **CAUSA DEL ERROR 500**: `i18n.ts` usa `getRequestConfig` de `next-intl/server`
+   - `next-intl/server` NO funciona en Edge Runtime
+   - `i18n-config.ts` solo tiene constantes → **SÍ funciona en Edge**
+   - **Estrategia de 3 archivos**:
+     - `i18n-config.ts` = constantes (Edge-safe) ✅
+     - `i18n.ts` = configuración de servidor (NO para middleware) ⚠️
+     - `middleware.ts` = solo importa de `i18n-config.ts` ✅
 
 ---
 
