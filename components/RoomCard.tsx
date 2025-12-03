@@ -1,9 +1,9 @@
 'use client';
 
-import { useTranslations } from '@/lib/translations';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useLocale } from '@/lib/translations';
+import { useLocale } from 'next-intl';
 import { useState } from 'react';
 
 interface RoomCardProps {

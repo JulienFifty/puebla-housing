@@ -1,4 +1,4 @@
-import { getTranslations } from '@/lib/translations';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ContactForm from '@/components/ContactForm';
 import Image from 'next/image';
 

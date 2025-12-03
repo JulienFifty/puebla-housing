@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from '@/lib/translations';
+import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { locales } from '@/i18n-config';
 

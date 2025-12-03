@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from '@/lib/translations';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 export default function AboutSection() {

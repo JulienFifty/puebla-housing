@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from '@/lib/translations';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import ContactForm from './ContactForm';
 

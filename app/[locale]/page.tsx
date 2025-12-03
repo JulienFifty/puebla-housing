@@ -1,4 +1,4 @@
-import { getTranslations, setRequestLocale } from '@/lib/translations';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Hero from '@/components/Hero';
 import UniversitiesBanner from '@/components/UniversitiesBanner';
 import AboutSection from '@/components/AboutSection';

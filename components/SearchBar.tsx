@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations, useLocale } from '@/lib/translations';
+import { useTranslations, useLocale } from 'next-intl';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import CustomSelect from './CustomSelect';

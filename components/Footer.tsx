@@ -1,4 +1,4 @@
-import { useTranslations, useLocale } from '@/lib/translations';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 
