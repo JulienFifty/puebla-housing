@@ -9,7 +9,12 @@ Type error: Module '"@prisma/client"' has no exported member 'PrismaClient'.
 
 **Causa:** Vercel no está generando el cliente de Prisma durante el build.
 
-**Solución:** ✅ Agregado script `postinstall` en `package.json`:
+**Solución:** ✅ 
+1. Agregado `prisma` CLI a dependencies:
+```json
+"prisma": "^7.0.1"
+```
+2. Agregado script `postinstall` en `package.json`:
 ```json
 "postinstall": "prisma generate"
 ```
