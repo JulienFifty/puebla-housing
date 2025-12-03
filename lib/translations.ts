@@ -47,3 +47,13 @@ export function useLocale() {
   return 'es';
 }
 
+// Server-side function (no-op for Spanish only)
+export function setRequestLocale(locale: string) {
+  // No-op: we only support Spanish
+}
+
+// Get messages function
+export async function getMessages() {
+  return messages;
+}
+
