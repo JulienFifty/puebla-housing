@@ -127,8 +127,12 @@ Vercel estaba usando el commit `f1674c2` que es **anterior** a nuestros fixes. L
 ### Fase 4: Fix de next-intl (Runtime)
 5. **`98ebd2e`** - Return locale from getRequestConfig
    - Agregado `locale` al return en `i18n.ts`
-   - Resuelve error 500 `MIDDLEWARE_INVOCATION_FAILED`
    - Cumple con requisito de next-intl 3.22+
+
+6. **`ec4b501`** - Add root page redirect to default locale
+   - Creado `app/page.tsx` para manejar ruta raíz `/`
+   - Redirección automática a `/es` (locale por defecto)
+   - **RESUELVE ERROR 500 `MIDDLEWARE_INVOCATION_FAILED`** ✅
 
 ---
 
