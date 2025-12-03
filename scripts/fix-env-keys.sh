@@ -37,3 +37,5 @@ echo "3. Pegarla en .env.local como: SUPABASE_SERVICE_ROLE_KEY=tu_clave_aqui"
 
 
 
+
+

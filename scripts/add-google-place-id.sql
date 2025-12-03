@@ -15,3 +15,5 @@ COMMENT ON COLUMN public.properties.google_place_id IS 'Google Place ID para obt
 -- SET google_place_id = 'ChIJ...' 
 -- WHERE slug = 'mariachi';
 
+
+

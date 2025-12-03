@@ -100,3 +100,5 @@ export default function PropertyPage({ params }: { params: { slug: string; local
   );
 }
 
+
+

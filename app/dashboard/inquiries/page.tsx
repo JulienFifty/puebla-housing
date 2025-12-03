@@ -432,7 +432,7 @@ export default function InquiriesPage() {
                       {/* Message Preview */}
                       {inquiry.message && (
                         <p className="text-sm text-gray-600 line-clamp-2 mb-4">
-                          "{inquiry.message}"
+                          &quot;{inquiry.message}&quot;
                         </p>
                       )}
 

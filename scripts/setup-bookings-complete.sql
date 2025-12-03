@@ -116,3 +116,5 @@ COMMENT ON COLUMN public.bookings.status IS 'Estado: active (ocupada actualmente
 
 
 
+
+

@@ -451,7 +451,7 @@ export default function WelcomePackPage() {
                     ))}
                   </div>
                   <p className="text-lg text-gray-700 italic mb-6 leading-relaxed">
-                    "{testimonials[activeTestimonial].quote}"
+                    &quot;{testimonials[activeTestimonial].quote}&quot;
                   </p>
                   <div>
                     <div className="font-bold text-gray-900">{testimonials[activeTestimonial].name}</div>

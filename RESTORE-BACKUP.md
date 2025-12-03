@@ -100,3 +100,5 @@ Si necesitas restaurar tu archivo `.env.local`:
 - **Estado del proyecto:** Funcionando correctamente en local
 - **Último commit:** f2673d2 - Fix: Remove Prisma/bcrypt dependencies
 
+
+

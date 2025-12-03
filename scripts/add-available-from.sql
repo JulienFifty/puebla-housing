@@ -37,3 +37,5 @@ WHERE table_name = 'rooms' AND column_name = 'available_from';
 -- SET available_from = '2026-01-15'
 -- WHERE id = 'room-id-here';
 
+
+

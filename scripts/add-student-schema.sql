@@ -109,3 +109,5 @@ COMMENT ON COLUMN public.inquiries.documents IS 'Documentos subidos (JSON con UR
 COMMENT ON COLUMN public.inquiries.emergency_contact IS 'Contacto de emergencia (JSON)';
 COMMENT ON COLUMN public.bookings.student_id IS 'ID del estudiante huésped (si está registrado)';
 
+
+

@@ -488,7 +488,7 @@ export default function AvailabilityPage() {
               <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
                 <li>Selecciona las fechas de check-in y check-out</li>
                 <li>Opcionalmente, filtra por propiedad, tipo de habitación o características</li>
-                <li>Haz clic en "Buscar Disponibilidad" para ver las habitaciones libres</li>
+                <li>Haz clic en &quot;Buscar Disponibilidad&quot; para ver las habitaciones libres</li>
                 <li>Puedes reservar directamente desde los resultados</li>
               </ul>
             </div>

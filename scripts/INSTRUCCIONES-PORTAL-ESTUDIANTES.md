@@ -126,3 +126,5 @@ Para agregar más campos al perfil de estudiante:
 - Las solicitudes pueden ser anónimas (sin `student_id`) o vinculadas a un estudiante
 - Las reservas automáticamente se vinculan al email del estudiante
 
+
+

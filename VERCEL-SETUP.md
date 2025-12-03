@@ -122,3 +122,5 @@ Cada vez que hagas push a la rama `main` en GitHub, Vercel automáticamente:
 - [Vercel + Next.js](https://vercel.com/docs/frameworks/nextjs)
 - [Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables)
 
+
+

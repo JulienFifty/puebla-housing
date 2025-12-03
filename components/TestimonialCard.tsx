@@ -45,7 +45,7 @@ export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
         </svg>
       </div>
       <p className="text-gray-600 leading-relaxed text-sm">
-        "{testimonial.text[locale]}"
+        &quot;{testimonial.text[locale]}&quot;
       </p>
     </div>
   );

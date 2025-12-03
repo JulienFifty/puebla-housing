@@ -61,3 +61,5 @@ COMMENT ON POLICY "Owners can view all inquiries" ON public.inquiries IS
 COMMENT ON POLICY "Owners can update all inquiries" ON public.inquiries IS 
   'Los propietarios pueden actualizar el estado y notas de cualquier solicitud';
 
+
+

@@ -41,3 +41,5 @@ HAVING COUNT(*) > 1;
 
 -- Si no hay resultados, significa que no hay duplicados
 
+
+

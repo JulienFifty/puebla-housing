@@ -74,8 +74,11 @@ export default function EditRoomPage() {
 
   useEffect(() => {
     fetchProperties();
-    if (id) {
+    if (id && id !== 'new') {
       fetchRoom();
+    } else if (id === 'new') {
+      // Modo creación: no cargar habitación, solo propiedades
+      setLoading(false);
     }
   }, [id]);
 
@@ -181,9 +184,13 @@ export default function EditRoomPage() {
     setSaving(true);
     setError('');
 
+    const isNewRoom = id === 'new';
+    const url = isNewRoom ? '/api/rooms' : `/api/rooms/${id}`;
+    const method = isNewRoom ? 'POST' : 'PUT';
+
     try {
-      const res = await fetch(`/api/rooms/${id}`, {
-        method: 'PUT',
+      const res = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           propertyId: formData.property_id,
@@ -205,13 +212,13 @@ export default function EditRoomPage() {
 
       if (!res.ok) {
         const errorData = await res.json();
-        throw new Error(errorData.error || 'Failed to update');
+        throw new Error(errorData.error || `Failed to ${isNewRoom ? 'create' : 'update'}`);
       }
 
       router.push('/dashboard/rooms');
     } catch (error: any) {
-      console.error('Error updating room:', error);
-      setError(error.message || 'Error al actualizar la habitación');
+      console.error(`Error ${isNewRoom ? 'creating' : 'updating'} room:`, error);
+      setError(error.message || `Error al ${isNewRoom ? 'crear' : 'actualizar'} la habitación`);
     } finally {
       setSaving(false);
     }
@@ -259,7 +266,10 @@ export default function EditRoomPage() {
     );
   }
 
-  if (!room) {
+  // Si estamos en modo creación (id === 'new'), mostrar el formulario aunque room sea null
+  const isNewRoom = id === 'new';
+  
+  if (!room && !isNewRoom) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
@@ -275,7 +285,9 @@ export default function EditRoomPage() {
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold text-text-main">Editar Habitación</h1>
+        <h1 className="text-4xl font-bold text-text-main">
+          {isNewRoom ? 'Crear Habitación' : 'Editar Habitación'}
+        </h1>
         <Link
           href="/dashboard/rooms"
           className="text-text-secondary hover:text-primary"
@@ -608,7 +620,10 @@ export default function EditRoomPage() {
             disabled={saving}
             className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-hover transition-colors font-semibold disabled:opacity-50"
           >
-            {saving ? 'Guardando...' : 'Guardar Cambios'}
+            {saving 
+              ? (isNewRoom ? 'Creando...' : 'Guardando...') 
+              : (isNewRoom ? 'Crear Habitación' : 'Guardar Cambios')
+            }
           </button>
           <Link
             href="/dashboard/rooms"

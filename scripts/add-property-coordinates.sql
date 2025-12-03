@@ -16,3 +16,5 @@ CREATE INDEX IF NOT EXISTS idx_properties_coordinates ON public.properties(latit
 
 
 
+
+
