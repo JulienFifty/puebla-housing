@@ -119,10 +119,16 @@ Vercel estaba usando el commit `f1674c2` que es **anterior** a nuestros fixes. L
    - Removidos scripts innecesarios
    - Arquitectura simplificada: Solo Supabase
 
-### Fase 3: Fix de next-intl
+### Fase 3: Fix de next-intl (Build Time)
 4. **`d8631b6`** - Force dynamic rendering for i18n pages
    - Agregado `dynamic = 'force-dynamic'` a páginas con i18n
    - Resuelve error de static rendering con `headers()`
+
+### Fase 4: Fix de next-intl (Runtime)
+5. **`98ebd2e`** - Return locale from getRequestConfig
+   - Agregado `locale` al return en `i18n.ts`
+   - Resuelve error 500 `MIDDLEWARE_INVOCATION_FAILED`
+   - Cumple con requisito de next-intl 3.22+
 
 ---
 
