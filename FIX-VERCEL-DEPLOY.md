@@ -6,10 +6,15 @@
 ✅ **Hosting**: Vercel  
 ✅ **Base de Datos**: Supabase PostgreSQL  
 ✅ **Auth**: Supabase Auth  
-✅ **ORM**: Supabase Client (nativo)  
-✅ **Storage**: Cloudinary (imágenes)
+✅ **Traducciones**: Custom lib (sin next-intl)  
+✅ **Storage**: Cloudinary (imágenes)  
+✅ **Mapas**: Mapbox GL  
 
-**Nota**: Prisma fue eliminado porque no se estaba usando. El proyecto usa Supabase directamente para todas las operaciones de base de datos.
+**Eliminado por incompatibilidad con Edge Runtime:**
+- ❌ `next-intl` (causaba `__dirname` error)
+- ❌ `prisma` (no se usaba)
+
+**Ver documentación completa**: `ARQUITECTURA-FINAL.md`
 
 ---
 
