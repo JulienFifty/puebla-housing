@@ -1,34 +1,76 @@
-# 🔧 Solución para el Error de Deploy en Vercel
+# 🔧 Solución para Errores de Deploy en Vercel
 
-## Problema Identificado
+## 🚨 Nuevos Errores Identificados (Dic 2025)
 
-Vercel está usando el commit `f1674c2` que es **anterior** a nuestros fixes. Los commits correctos son:
+### Error 1: Prisma Client No Disponible
+```
+Type error: Module '"@prisma/client"' has no exported member 'PrismaClient'.
+```
+
+**Causa:** Vercel no está generando el cliente de Prisma durante el build.
+
+**Solución:** ✅ Agregado script `postinstall` en `package.json`:
+```json
+"postinstall": "prisma generate"
+```
+
+### Error 2: ESLint Opciones Inválidas
+```
+ESLint: Invalid Options: - Unknown options: useEslintrc, extensions
+```
+
+**Causa:** ESLint 9 tiene cambios incompatibles con Next.js 14.2.
+
+**Solución:** ✅ Downgrade a ESLint 8.57.0 y agregado `eslint-config-next`:
+```json
+"eslint": "^8.57.0",
+"eslint-config-next": "^14.2.33"
+```
+
+---
+
+## Problema Anterior Identificado
+
+Vercel estaba usando el commit `f1674c2` que es **anterior** a nuestros fixes. Los commits correctos son:
 - `fa06ef1` - Fix build errors (incluye ESLint y fix de ContactForm)
 - `f2673d2` - Fix runtime errors
 
-## ✅ Solución: Forzar Nuevo Deploy
+## ✅ Solución: Deploy con los Nuevos Fixes
 
-### Opción 1: Redeploy Manual en Vercel (Recomendado)
+### Paso 1: Instalar las Nuevas Dependencias Localmente
+
+```bash
+cd /Users/julienthibeault/puebla-housing
+npm install
+```
+
+Esto instalará ESLint 8.57.0 y `eslint-config-next`, y ejecutará automáticamente `prisma generate`.
+
+### Paso 2: Commit y Push de los Cambios
+
+```bash
+git add package.json package-lock.json FIX-VERCEL-DEPLOY.md
+git commit -m "Fix Vercel deployment: downgrade ESLint and add Prisma postinstall"
+git push
+```
+
+### Paso 3: Verificar el Deploy en Vercel
+
+Vercel detectará automáticamente el nuevo commit y empezará un nuevo deployment. 
+
+---
+
+## 🔄 Alternativa: Forzar Nuevo Deploy (Si ya hiciste push)
+
+### Opción 1: Redeploy Manual en Vercel
 
 1. Ve a tu proyecto en Vercel: https://vercel.com/dashboard
 2. Click en tu proyecto `puebla-housing`
 3. Ve a la pestaña **"Deployments"**
-4. Encuentra el deployment que falló
+4. Encuentra el deployment más reciente
 5. Click en los **tres puntos** (⋯) → **"Redeploy"**
 6. Selecciona **"Use existing Build Cache"** = **OFF** (para forzar rebuild)
 7. Click en **"Redeploy"**
-
-### Opción 2: Hacer un Push Vacío (Forzar Detección)
-
-Ejecuta este comando para forzar que Vercel detecte el último commit:
-
-```bash
-cd /Users/julienthibeault/puebla-housing
-git commit --allow-empty -m "Trigger Vercel redeploy with latest fixes"
-git push
-```
-
-Esto creará un commit vacío que forzará a Vercel a hacer un nuevo deploy con el último código.
 
 ### Opción 3: Verificar Configuración de Vercel
 
@@ -81,4 +123,6 @@ Si después del redeploy sigue usando el commit antiguo:
    - Ve a: https://github.com/JulienFifty/puebla-housing
    - Verifica que `package.json` tenga `eslint`
    - Verifica que `app/[locale]/casas/[slug]/habitacion/[roomId]/page.tsx` use `type="reservation"` y `propertySlug` (no `propertyName`)
+
+
 
