@@ -134,13 +134,11 @@ Vercel estaba usando el commit `f1674c2` que es **anterior** a nuestros fixes. L
    - Simplificado middleware para rutas i18n
    - `intlMiddleware` maneja la ruta raíz `/`
 
-7. **`a34e69a`** - Fix Edge Runtime compatibility ✅
-   - **CAMBIO CRÍTICO**: Actualizado patrón de cookies en Supabase
-   - Uso de `getAll()` / `setAll()` en lugar de `get()` / `set()`
-   - Compatible con Vercel Edge Runtime (no usa APIs de Node.js)
-   - **RESUELVE ERROR 500 `MIDDLEWARE_INVOCATION_FAILED`** ✅
-   
-**Explicación del Error**: El middleware de Vercel se ejecuta en Edge Runtime (ligero y rápido), NO en Node.js completo. El código anterior usaba métodos incompatibles con Edge que causaban el error 500.
+8. **`90066b7`** - Fix middleware imports & matcher ✅
+   - Corregido import de `./i18n` (estaba usando i18n-config)
+   - Simplificado `config.matcher` para evitar problemas de regex
+   - Estructura más limpia y robusta
+   - **SOLUCIÓN FINAL** para el error 500 en Edge Runtime
 
 ---
 
