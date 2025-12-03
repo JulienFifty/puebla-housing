@@ -18,6 +18,23 @@
 
 ---
 
+## ⚠️ ERROR CRÍTICO VERCEL (Dic 2025)
+
+**Problema**: `MIDDLEWARE_INVOCATION_FAILED` + `__dirname is not defined`
+
+**Causa Real**: Framework Preset en Vercel estaba en **"Other"** en lugar de **"Next.js"**
+
+**Solución**: 
+1. Vercel Dashboard → Settings → General
+2. Framework Preset → Cambiar a **"Next.js"**
+3. Redeploy SIN cache
+
+**Tiempo perdido**: 2 horas 😅
+
+**Lección**: Siempre verificar la configuración básica de Vercel PRIMERO.
+
+---
+
 ## ⚙️ Configuración Requerida en Vercel
 
 ### Variables de Entorno de Supabase
