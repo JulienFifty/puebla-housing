@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations, useLocale } from '@/lib/translations';
 import Image from 'next/image';
 import Link from 'next/link';
 

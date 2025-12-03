@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations } from '@/lib/translations';
 import ContactForm from '@/components/ContactForm';
 import Image from 'next/image';
 

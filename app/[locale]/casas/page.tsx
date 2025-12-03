@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations } from '@/lib/translations';
 import PropertyCard from '@/components/PropertyCard';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';

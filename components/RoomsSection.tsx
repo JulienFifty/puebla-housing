@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/lib/translations';
 import RoomCard from './RoomCard';
 import CustomSelect from './CustomSelect';
-import { useLocale } from 'next-intl';
+import { useLocale } from '@/lib/translations';
 
 export default function RoomsSection() {
   const t = useTranslations('rooms');

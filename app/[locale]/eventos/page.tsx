@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations } from '@/lib/translations';
 import EventCard from '@/components/EventCard';
 import { events } from '@/data/events';
 
