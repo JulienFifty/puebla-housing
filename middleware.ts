@@ -1,8 +1,8 @@
 import createMiddleware from 'next-intl/middleware';
-import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import { locales, defaultLocale } from './i18n-config';
 
+// Middleware de internacionalización
 const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
@@ -12,70 +12,52 @@ const intlMiddleware = createMiddleware({
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // 1. Rutas que NO requieren internacionalización (Dashboard, Student Portal, API)
-  if (pathname.startsWith('/dashboard') || pathname.startsWith('/student') || pathname.startsWith('/api')) {
-    
-    // Crear respuesta base
-    let response = NextResponse.next({
-      request: {
-        headers: request.headers,
-      },
-    });
-
-    // Configurar Supabase (Edge Runtime compatible)
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return request.cookies.getAll();
-          },
-          setAll(cookiesToSet) {
-            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-            response = NextResponse.next({ request });
-            cookiesToSet.forEach(({ name, value, options }) =>
-              response.cookies.set(name, value, options)
-            );
-          },
-        },
-      }
-    );
-
-    // Proteger Dashboard
-    if (pathname.startsWith('/dashboard') && !pathname.startsWith('/dashboard/login')) {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        const url = request.nextUrl.clone();
-        url.pathname = '/dashboard/login';
-        return NextResponse.redirect(url);
-      }
-    }
-
-    // Proteger Student Portal
-    if (pathname.startsWith('/student') && !pathname.startsWith('/student/login') && !pathname.startsWith('/student/register')) {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        const url = request.nextUrl.clone();
-        url.pathname = '/student/login';
-        return NextResponse.redirect(url);
-      }
-    }
-
-    return response;
+  // 1. Rutas de API - pasar directamente sin procesar
+  if (pathname.startsWith('/api')) {
+    return NextResponse.next();
   }
 
-  // 2. Rutas públicas con internacionalización
+  // 2. Rutas del dashboard - redirigir a login si no hay cookie de sesión
+  if (pathname.startsWith('/dashboard') && !pathname.startsWith('/dashboard/login')) {
+    // Verificación simple de cookie (sin inicializar cliente Supabase)
+    const hasAuthCookie = request.cookies.getAll().some(
+      cookie => cookie.name.includes('auth-token') || cookie.name.includes('sb-')
+    );
+    
+    if (!hasAuthCookie) {
+      const url = request.nextUrl.clone();
+      url.pathname = '/dashboard/login';
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.next();
+  }
+
+  // 3. Rutas del portal de estudiantes - redirigir a login si no hay cookie
+  if (pathname.startsWith('/student') && !pathname.startsWith('/student/login') && !pathname.startsWith('/student/register')) {
+    const hasAuthCookie = request.cookies.getAll().some(
+      cookie => cookie.name.includes('auth-token') || cookie.name.includes('sb-')
+    );
+    
+    if (!hasAuthCookie) {
+      const url = request.nextUrl.clone();
+      url.pathname = '/student/login';
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.next();
+  }
+
+  // 4. Dashboard login y student login/register - pasar directamente
+  if (pathname.startsWith('/dashboard/login') || pathname.startsWith('/student/login') || pathname.startsWith('/student/register')) {
+    return NextResponse.next();
+  }
+
+  // 5. Todas las demás rutas - aplicar internacionalización
   return intlMiddleware(request);
 }
 
 export const config = {
   matcher: [
-    // Match all pathnames except for
-    // - … if they start with `/api`, `/_next` or `/_vercel`
-    // - … the ones containing a dot (e.g. `favicon.ico`)
-    '/((?!api|_next|_vercel|.*\\..*).*)',
-    // Match all pathnames within `/users`, optionally with a locale prefix
-    '/([\\w-]+)?/users/(.+)'
+    // Match all pathnames except static files
+    '/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)',
   ]
 };
