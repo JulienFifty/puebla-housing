@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { locales } from '@/i18n';
+import { locales } from '@/i18n-config';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LocaleHtml from '@/components/LocaleHtml';
