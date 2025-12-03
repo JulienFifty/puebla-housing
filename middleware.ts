@@ -12,15 +12,17 @@ const intlMiddleware = createMiddleware({
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Excluir rutas del dashboard, student y API de la internacionalización
+  // 1. Rutas que NO requieren internacionalización (Dashboard, Student Portal, API)
   if (pathname.startsWith('/dashboard') || pathname.startsWith('/student') || pathname.startsWith('/api')) {
+    
+    // Crear respuesta base
     let response = NextResponse.next({
       request: {
         headers: request.headers,
       },
     });
 
-    // Configurar Supabase client para rutas protegidas (Edge Runtime compatible)
+    // Configurar Supabase (Edge Runtime compatible)
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -31,9 +33,7 @@ export async function middleware(request: NextRequest) {
           },
           setAll(cookiesToSet) {
             cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-            response = NextResponse.next({
-              request,
-            });
+            response = NextResponse.next({ request });
             cookiesToSet.forEach(({ name, value, options }) =>
               response.cookies.set(name, value, options)
             );
@@ -42,12 +42,9 @@ export async function middleware(request: NextRequest) {
       }
     );
 
-    // Proteger rutas del dashboard de propietarios
+    // Proteger Dashboard
     if (pathname.startsWith('/dashboard') && !pathname.startsWith('/dashboard/login')) {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
+      const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
         const url = request.nextUrl.clone();
         url.pathname = '/dashboard/login';
@@ -55,12 +52,9 @@ export async function middleware(request: NextRequest) {
       }
     }
 
-    // Proteger rutas del portal de estudiantes
+    // Proteger Student Portal
     if (pathname.startsWith('/student') && !pathname.startsWith('/student/login') && !pathname.startsWith('/student/register')) {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
+      const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
         const url = request.nextUrl.clone();
         url.pathname = '/student/login';
@@ -71,12 +65,17 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  // Para otras rutas (incluyendo /), aplicar internacionalización
+  // 2. Rutas públicas con internacionalización
   return intlMiddleware(request);
 }
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|api|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|mov|webm)$).*)',
-  ],
+    // Match all pathnames except for
+    // - … if they start with `/api`, `/_next` or `/_vercel`
+    // - … the ones containing a dot (e.g. `favicon.ico`)
+    '/((?!api|_next|_vercel|.*\\..*).*)',
+    // Match all pathnames within `/users`, optionally with a locale prefix
+    '/([\\w-]+)?/users/(.+)'
+  ]
 };
