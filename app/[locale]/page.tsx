@@ -5,6 +5,7 @@ import AboutSection from '@/components/AboutSection';
 import PropertyCard from '@/components/PropertyCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import RoomsSection from '@/components/RoomsSection';
+import VideoTestimonials from '@/components/VideoTestimonials';
 import { testimonials } from '@/data/testimonials';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
@@ -141,6 +142,9 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
       {/* About Section */}
       <AboutSection />
+
+      {/* Video Testimonials Section */}
+      <VideoTestimonials />
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white">
