@@ -58,6 +58,7 @@ export default function Header() {
   ];
 
   return (
+    <>
     <header className="fixed top-0 left-0 right-0 z-[100] bg-black/20 backdrop-blur-md border-b border-white/10 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -195,9 +196,10 @@ export default function Header() {
           </button>
         </div>
       </div>
+    </header>
 
       {/* Mobile/Tablet Full-Page Menu */}
-        {mobileMenuOpen && (
+      {mobileMenuOpen && (
           <>
             {/* Overlay */}
             <div 
@@ -296,6 +298,6 @@ export default function Header() {
             </div>
           </>
         )}
-    </header>
+    </>
   );
 }
