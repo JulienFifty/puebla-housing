@@ -185,13 +185,13 @@ export default function Header() {
 
         {/* Mobile/Tablet Menu */}
         {mobileMenuOpen && (
-          <div className="xl:hidden py-6 border-t border-gray-200">
+          <div className="xl:hidden py-6 border-t border-gray-200 bg-white">
             <nav className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-gray-700 hover:text-primary transition-colors font-medium text-sm py-2"
+                  className="text-gray-900 hover:text-primary transition-colors font-medium text-sm py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
