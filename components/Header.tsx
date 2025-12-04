@@ -46,7 +46,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200 relative">
+    <header className="sticky top-0 z-50 bg-transparent backdrop-blur-lg border-b border-white/10 relative transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -68,10 +68,10 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-primary transition-all font-medium text-xs xl:text-sm tracking-wide relative group whitespace-nowrap"
+                className="text-white hover:text-secondary transition-all font-medium text-xs xl:text-sm tracking-wide relative group whitespace-nowrap drop-shadow-lg"
               >
                 {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full"></span>
               </Link>
             ))}
             <div className="ml-2 xl:ml-4 flex-shrink-0">
@@ -81,7 +81,7 @@ export default function Header() {
             {user ? (
               <Link
                 href="/dashboard"
-                className="bg-gray-100 text-gray-700 px-3 xl:px-5 py-2.5 rounded-lg hover:bg-gray-200 transition-all font-semibold text-xs xl:text-sm shadow-sm hover:shadow-md flex items-center gap-1.5 xl:gap-2 whitespace-nowrap"
+                className="bg-white/10 text-white px-3 xl:px-5 py-2.5 rounded-lg hover:bg-white/20 transition-all font-semibold text-xs xl:text-sm shadow-lg hover:shadow-xl flex items-center gap-1.5 xl:gap-2 whitespace-nowrap backdrop-blur-sm border border-white/20"
               >
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -92,7 +92,7 @@ export default function Header() {
               <div className="relative flex-shrink-0">
                 <button
                   onClick={() => setLoginDropdownOpen(!loginDropdownOpen)}
-                  className="bg-gray-100 text-gray-700 px-3 xl:px-5 py-2.5 rounded-lg hover:bg-gray-200 transition-all font-semibold text-xs xl:text-sm shadow-sm hover:shadow-md flex items-center gap-1.5 xl:gap-2 whitespace-nowrap"
+                  className="bg-white/10 text-white px-3 xl:px-5 py-2.5 rounded-lg hover:bg-white/20 transition-all font-semibold text-xs xl:text-sm shadow-lg hover:shadow-xl flex items-center gap-1.5 xl:gap-2 whitespace-nowrap backdrop-blur-sm border border-white/20"
                 >
                   <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -154,7 +154,7 @@ export default function Header() {
 
           {/* Tablet/Mobile Menu Button */}
           <button
-            className="xl:hidden p-2 text-gray-700 hover:text-primary transition-colors flex-shrink-0"
+            className="xl:hidden p-2 text-white hover:text-secondary transition-colors flex-shrink-0 drop-shadow-lg"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
