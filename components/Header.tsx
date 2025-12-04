@@ -250,45 +250,51 @@ export default function Header() {
                 </nav>
 
                 {/* Footer del menú - CTAs */}
-                <div className="p-6 space-y-2.5 border-t border-white/10 animate-slideInRight" style={{ animationDelay: '300ms' }}>
+                <div className="p-6 space-y-4 border-t border-white/10 animate-slideInRight" style={{ animationDelay: '300ms' }}>
                   {user ? (
                     <Link
                       href="/dashboard"
-                      className="w-full bg-white text-primary px-6 py-3.5 rounded-lg hover:bg-gray-100 transition-colors text-center font-bold flex items-center justify-center gap-2"
+                      className="block w-full bg-white text-primary px-6 py-3.5 rounded-lg hover:bg-gray-100 transition-colors text-center font-bold"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                      {t('dashboard')}
+                      <div className="flex items-center justify-center gap-2">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <span>{t('dashboard')}</span>
+                      </div>
                     </Link>
                   ) : (
                     <>
                       <Link
                         href="/dashboard/login"
-                        className="w-full bg-white/10 text-white border-2 border-white/30 px-6 py-3.5 rounded-lg hover:bg-white/20 transition-colors text-center font-bold backdrop-blur-sm flex items-center justify-center gap-2"
+                        className="block w-full bg-white/10 text-white border-2 border-white/30 px-6 py-3.5 rounded-lg hover:bg-white/20 transition-colors text-center font-bold backdrop-blur-sm"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                        </svg>
-                        Portal Propietario
+                        <div className="flex items-center justify-center gap-2">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                          </svg>
+                          <span>Portal Propietario</span>
+                        </div>
                       </Link>
                       <Link
                         href="/student/login"
-                        className="w-full bg-white/10 text-white border-2 border-white/30 px-6 py-3.5 rounded-lg hover:bg-white/20 transition-colors text-center font-bold backdrop-blur-sm flex items-center justify-center gap-2"
+                        className="block w-full bg-white/10 text-white border-2 border-white/30 px-6 py-3.5 rounded-lg hover:bg-white/20 transition-colors text-center font-bold backdrop-blur-sm"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                        Portal Estudiante
+                        <div className="flex items-center justify-center gap-2">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                          </svg>
+                          <span>Portal Estudiante</span>
+                        </div>
                       </Link>
                     </>
                   )}
                   <Link
                     href={`/${locale}/contacto`}
-                    className="w-full bg-secondary text-gray-900 px-6 py-3.5 rounded-lg hover:bg-yellow-300 transition-colors text-center font-bold"
+                    className="block w-full bg-secondary text-gray-900 px-6 py-3.5 rounded-lg hover:bg-yellow-300 transition-colors text-center font-bold"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {t('contact')}
