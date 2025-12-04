@@ -68,7 +68,7 @@ export default function Header() {
               alt="Puebla Housing"
               width={140}
               height={45}
-              className="h-8 sm:h-10 md:h-12 w-auto transition-transform group-hover:scale-105"
+              className="h-6 sm:h-8 md:h-10 w-auto transition-transform group-hover:scale-105"
               style={{ width: 'auto', height: 'auto' }}
               priority
             />
@@ -214,7 +214,7 @@ export default function Header() {
                     alt="Puebla Housing"
                     width={120}
                     height={40}
-                    className="h-8 w-auto brightness-0 invert"
+                    className="h-6 w-auto brightness-0 invert"
                   />
                   <button
                     onClick={() => setMobileMenuOpen(false)}
