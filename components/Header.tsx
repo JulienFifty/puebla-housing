@@ -194,8 +194,9 @@ export default function Header() {
             </svg>
           </button>
         </div>
+      </div>
 
-        {/* Mobile/Tablet Full-Page Menu */}
+      {/* Mobile/Tablet Full-Page Menu */}
         {mobileMenuOpen && (
           <>
             {/* Overlay */}
@@ -295,7 +296,6 @@ export default function Header() {
             </div>
           </>
         )}
-      </div>
     </header>
   );
 }
