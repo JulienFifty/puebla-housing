@@ -14,13 +14,13 @@ export default function WelcomePackPage() {
     {
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
         </svg>
       ),
-      title: locale === 'es' ? 'Kit de Bienvenida' : 'Welcome Kit',
+      title: locale === 'es' ? 'Servicios Incluidos' : 'Included Services',
       description: locale === 'es' 
-        ? 'Recibe un paquete con artículos esenciales para tu llegada: guía de la ciudad, SIM card mexicana, mapa de transporte y productos locales de regalo.'
-        : 'Receive a package with essential items for your arrival: city guide, Mexican SIM card, transport map and local gift products.',
+        ? 'Servicio de recogida (pick-up) en el terminal de autobuses, ropa de cama completa y servicio de limpieza regular.'
+        : 'Pick-up service at the bus terminal, complete bedding and regular cleaning service.',
       color: 'from-primary to-purple-700',
     },
     {
