@@ -57,7 +57,13 @@ export default function RoomsPage() {
       const res = await fetch(url);
       if (!res.ok) throw new Error('Failed to fetch');
       const data = await res.json();
-      setRooms(data || []);
+      // Ordenar por número de habitación (del más pequeño al más grande)
+      const sortedData = (data || []).sort((a: Room, b: Room) => {
+        const numA = parseInt(a.room_number) || 0;
+        const numB = parseInt(b.room_number) || 0;
+        return numA - numB;
+      });
+      setRooms(sortedData);
     } catch (error) {
       console.error('Error fetching rooms:', error);
     } finally {
