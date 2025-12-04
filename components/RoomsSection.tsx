@@ -149,7 +149,7 @@ export default function RoomsSection() {
         {/* Results Count */}
         <div className="mb-6">
           <p className="text-gray-600 font-medium">
-            {filteredRooms.length} {t('resultsCount', { defaultValue: 'habitaciones encontradas', count: filteredRooms.length })}
+            {filteredRooms.length} {locale === 'es' ? 'habitaciones encontradas' : 'rooms found'}
           </p>
         </div>
 
