@@ -230,12 +230,12 @@ export default function Header() {
                 </div>
 
                 {/* Contenido del menú */}
-                <nav className="flex-1 flex flex-col justify-center px-8 py-12 space-y-2">
+                <nav className="flex-1 px-8 py-8 space-y-1 overflow-y-auto">
                   {navItems.map((item, index) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="text-white hover:text-secondary transition-all font-semibold text-2xl py-4 border-b border-white/10 hover:border-secondary/50 hover:pl-4 animate-slideInRight"
+                      className="block text-white hover:text-secondary transition-all font-semibold text-xl py-3 border-b border-white/10 hover:border-secondary/50 hover:pl-4 animate-slideInRight"
                       style={{ animationDelay: `${index * 50}ms` }}
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -244,17 +244,17 @@ export default function Header() {
                   ))}
                   
                   {/* Language Switcher */}
-                  <div className="pt-6 animate-slideInRight" style={{ animationDelay: '250ms' }}>
+                  <div className="pt-6 pb-4 animate-slideInRight" style={{ animationDelay: '250ms' }}>
                     <LanguageSwitcher />
                   </div>
                 </nav>
 
                 {/* Footer del menú - CTAs */}
-                <div className="p-6 space-y-3 border-t border-white/10 animate-slideInRight" style={{ animationDelay: '300ms' }}>
+                <div className="p-6 space-y-2.5 border-t border-white/10 animate-slideInRight" style={{ animationDelay: '300ms' }}>
                   {user ? (
                     <Link
                       href="/dashboard"
-                      className="w-full bg-white text-primary px-6 py-4 rounded-lg hover:bg-gray-100 transition-colors text-center font-bold shadow-lg flex items-center justify-center gap-2"
+                      className="w-full bg-white text-primary px-6 py-3.5 rounded-lg hover:bg-gray-100 transition-colors text-center font-bold flex items-center justify-center gap-2"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -266,7 +266,7 @@ export default function Header() {
                     <>
                       <Link
                         href="/dashboard/login"
-                        className="w-full bg-white/10 text-white border-2 border-white/30 px-6 py-4 rounded-lg hover:bg-white/20 transition-colors text-center font-bold backdrop-blur-sm flex items-center justify-center gap-2"
+                        className="w-full bg-white/10 text-white border-2 border-white/30 px-6 py-3.5 rounded-lg hover:bg-white/20 transition-colors text-center font-bold backdrop-blur-sm flex items-center justify-center gap-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -276,7 +276,7 @@ export default function Header() {
                       </Link>
                       <Link
                         href="/student/login"
-                        className="w-full bg-white/10 text-white border-2 border-white/30 px-6 py-4 rounded-lg hover:bg-white/20 transition-colors text-center font-bold backdrop-blur-sm flex items-center justify-center gap-2"
+                        className="w-full bg-white/10 text-white border-2 border-white/30 px-6 py-3.5 rounded-lg hover:bg-white/20 transition-colors text-center font-bold backdrop-blur-sm flex items-center justify-center gap-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -288,7 +288,7 @@ export default function Header() {
                   )}
                   <Link
                     href={`/${locale}/contacto`}
-                    className="w-full bg-secondary text-gray-900 px-6 py-4 rounded-lg hover:bg-yellow-300 transition-colors text-center font-bold shadow-lg"
+                    className="w-full bg-secondary text-gray-900 px-6 py-3.5 rounded-lg hover:bg-yellow-300 transition-colors text-center font-bold"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {t('contact')}
