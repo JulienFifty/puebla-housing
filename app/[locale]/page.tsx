@@ -5,6 +5,7 @@ import AboutSection from '@/components/AboutSection';
 import PropertyCard from '@/components/PropertyCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import RoomsSection from '@/components/RoomsSection';
+import CommunityGallery from '@/components/CommunityGallery';
 import VideoTestimonials from '@/components/VideoTestimonials';
 import { testimonials } from '@/data/testimonials';
 import { createServerClient } from '@supabase/ssr';
@@ -139,6 +140,9 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
       {/* Rooms Section */}
       <RoomsSection />
+
+      {/* Community Gallery Section */}
+      <CommunityGallery />
 
       {/* About Section */}
       <AboutSection />
