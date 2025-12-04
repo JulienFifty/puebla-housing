@@ -53,7 +53,7 @@ export default function WelcomePackPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185zM9.75 9h.008v.008H9.75V9zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm4.125 4.5h.008v.008h-.008V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
         </svg>
       ),
-      title: locale === 'es' ? 'FiftyFifty Card' : 'FiftyFifty Card',
+      title: locale === 'es' ? 'Descuentos Exclusivos' : 'FiftyFifty Card',
       description: locale === 'es'
         ? 'Tarjeta FiftyFifty Card con 50% de descuento en los mejores restaurantes de CDMX y Puebla.'
         : 'FiftyFifty Card with 50% discount at the best restaurants in CDMX and Puebla.',
@@ -94,30 +94,6 @@ export default function WelcomePackPage() {
         ? 'Evento de bienvenida con otros estudiantes internacionales. ¡Conoce a tu nueva comunidad!'
         : 'Welcome event with other international students. Meet your new community!',
       icon: '🎉',
-    },
-  ];
-
-  const experiences = [
-    {
-      title: locale === 'es' ? 'Clases de Salsa & Bachata' : 'Salsa & Bachata Classes',
-      description: locale === 'es'
-        ? 'Aprende a bailar con instructores profesionales mientras conoces a otros estudiantes. Clases semanales en un ambiente divertido y social.'
-        : 'Learn to dance with professional instructors while meeting other students. Weekly classes in a fun and social environment.',
-      image: 'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=600',
-    },
-    {
-      title: locale === 'es' ? 'Noches de Tacos' : 'Taco Nights',
-      description: locale === 'es'
-        ? 'Tours gastronómicos nocturnos por las mejores taquerías de Puebla. Descubre los auténticos sabores mexicanos.'
-        : 'Night food tours through the best taco spots in Puebla. Discover authentic Mexican flavors.',
-      image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600',
-    },
-    {
-      title: locale === 'es' ? 'Excursión a las Pirámides' : 'Pyramid Excursion',
-      description: locale === 'es'
-        ? 'Visita la Gran Pirámide de Cholula, la más grande del mundo en base. Incluye guía, transporte y almuerzo típico.'
-        : 'Visit the Great Pyramid of Cholula, the largest in the world by base. Includes guide, transportation and typical lunch.',
-      image: 'https://images.unsplash.com/photo-1518638150340-f706e86654de?w=600',
     },
   ];
 
@@ -378,48 +354,6 @@ export default function WelcomePackPage() {
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experiences Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-secondary/20 text-amber-700 rounded-full text-sm font-semibold mb-4">
-              {locale === 'es' ? 'Experiencias incluidas' : 'Included experiences'}
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {locale === 'es' ? 'Sabores, ritmos y aventuras' : 'Flavors, rhythms and adventures'}
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {locale === 'es'
-                ? 'Actividades diseñadas para que vivas México al máximo.'
-                : 'Activities designed for you to experience Mexico to the fullest.'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {experiences.map((exp, index) => (
-              <div
-                key={index}
-                className="group relative rounded-lg overflow-hidden border border-gray-100 hover:border-gray-200 transition-all duration-300"
-              >
-                <div className="aspect-[4/5] relative">
-                  <Image
-                    src={exp.image}
-                    alt={exp.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 className="text-xl font-bold text-white mb-2">{exp.title}</h3>
-                  <p className="text-white/80 text-sm leading-relaxed">{exp.description}</p>
                 </div>
               </div>
             ))}
