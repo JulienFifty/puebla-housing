@@ -53,11 +53,12 @@ export default function WelcomePackPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185zM9.75 9h.008v.008H9.75V9zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm4.125 4.5h.008v.008h-.008V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
         </svg>
       ),
-      title: locale === 'es' ? 'Descuentos Exclusivos' : 'Exclusive Discounts',
+      title: locale === 'es' ? 'FiftyFifty Card' : 'FiftyFifty Card',
       description: locale === 'es'
-        ? 'Tarjeta VIP con descuentos en restaurantes, gimnasios, tiendas y servicios. Ahorra hasta un 30% durante toda tu estancia.'
-        : 'VIP card with discounts at restaurants, gyms, stores and services. Save up to 30% throughout your stay.',
+        ? 'Tarjeta FiftyFifty Card con 50% de descuento en los mejores restaurantes de CDMX y Puebla.'
+        : 'FiftyFifty Card with 50% discount at the best restaurants in CDMX and Puebla.',
       color: 'from-blue-500 to-indigo-600',
+      link: 'https://www.fiftyfiftycard.mx/',
     },
   ];
 
@@ -271,6 +272,19 @@ export default function WelcomePackPage() {
                 
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
+                {(item as any).link && (
+                  <a 
+                    href={(item as any).link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-primary hover:text-primary-hover transition-colors"
+                  >
+                    {locale === 'es' ? 'Más información' : 'Learn more'}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                )}
               </div>
             ))}
           </div>
