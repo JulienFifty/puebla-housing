@@ -66,8 +66,8 @@ export default function AboutPage() {
     {
       title: locale === 'es' ? 'Apoyo en tu Llegada' : 'Arrival Support',
       description: locale === 'es'
-        ? 'Desde la recogida en el aeropuerto hasta la orientación inicial, te acompañamos en cada paso de tu llegada a Puebla.'
-        : 'From airport pickup to initial orientation, we accompany you every step of your arrival in Puebla.',
+        ? 'Te recogemos en el terminal de autobuses a tu llegada en Puebla y te acompañamos hasta tu nuevo hogar.'
+        : 'We pick you up at the bus terminal upon your arrival in Puebla and accompany you to your new home.',
       icon: '✈️',
     },
     {
