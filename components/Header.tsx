@@ -37,6 +37,18 @@ export default function Header() {
     };
   }, []);
 
+  // Bloquear scroll cuando el menú está abierto
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
   const navItems = [
     { href: `/${locale}/welcome-pack`, label: t('welcomePack') },
     { href: `/${locale}/quien-somos`, label: t('about') },
