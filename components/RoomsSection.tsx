@@ -14,8 +14,8 @@ export default function RoomsSection() {
   const [rooms, setRooms] = useState<any[]>([]);
   const [properties, setProperties] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showAll, setShowAll] = useState(false);
-  const INITIAL_DISPLAY_COUNT = 6;
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const ITEMS_PER_SLIDE = 6;
 
   // Fetch properties and rooms
   useEffect(() => {
@@ -81,10 +81,24 @@ export default function RoomsSection() {
     return filtered;
   }, [rooms, selectedProperty, selectedSemester]);
 
-  // Reset showAll cuando cambien los filtros
+  // Reset currentSlide cuando cambien los filtros
   useEffect(() => {
-    setShowAll(false);
+    setCurrentSlide(0);
   }, [selectedProperty, selectedSemester]);
+
+  const totalSlides = Math.ceil(filteredRooms.length / ITEMS_PER_SLIDE);
+  const currentRooms = filteredRooms.slice(
+    currentSlide * ITEMS_PER_SLIDE,
+    (currentSlide + 1) * ITEMS_PER_SLIDE
+  );
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
 
   return (
     <section id="rooms-section" className="py-20 bg-white">
@@ -145,50 +159,62 @@ export default function RoomsSection() {
             <p className="text-gray-600 text-lg">{t('loading', { defaultValue: 'Cargando habitaciones...' })}</p>
           </div>
         ) : filteredRooms.length > 0 ? (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(showAll ? filteredRooms : filteredRooms.slice(0, INITIAL_DISPLAY_COUNT)).map((room) => (
+          <div className="relative">
+            {/* Grid de habitaciones */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {currentRooms.map((room) => (
                 <RoomCard key={room.id} room={room} />
               ))}
             </div>
-            
-            {/* Botón Ver más */}
-            {filteredRooms.length > INITIAL_DISPLAY_COUNT && !showAll && (
-              <div className="mt-12 text-center">
+
+            {/* Navegación del carrusel */}
+            {totalSlides > 1 && (
+              <div className="flex items-center justify-center gap-6 mt-8">
+                {/* Botón Anterior */}
                 <button
-                  onClick={() => setShowAll(true)}
-                  className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary-hover transition-all font-semibold shadow-sm hover:shadow-md"
+                  onClick={prevSlide}
+                  className="p-3 rounded-full bg-white border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Habitaciones anteriores"
                 >
-                  {locale === 'es' ? 'Ver todas las habitaciones' : 'View all rooms'}
-                  <span className="text-sm opacity-80">
-                    ({filteredRooms.length - INITIAL_DISPLAY_COUNT} {locale === 'es' ? 'más' : 'more'})
-                  </span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                {/* Indicadores de página */}
+                <div className="flex items-center gap-3">
+                  {Array.from({ length: totalSlides }, (_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentSlide(i)}
+                      className={`transition-all ${
+                        i === currentSlide
+                          ? 'w-8 h-2 bg-primary rounded-full'
+                          : 'w-2 h-2 bg-gray-300 rounded-full hover:bg-gray-400'
+                      }`}
+                      aria-label={`Ir a página ${i + 1}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Contador */}
+                <div className="text-sm text-gray-600 font-medium min-w-[80px] text-center">
+                  {currentSlide + 1} / {totalSlides}
+                </div>
+
+                {/* Botón Siguiente */}
+                <button
+                  onClick={nextSlide}
+                  className="p-3 rounded-full bg-white border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Siguientes habitaciones"
+                >
+                  <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
               </div>
             )}
-            
-            {/* Botón Ver menos */}
-            {showAll && filteredRooms.length > INITIAL_DISPLAY_COUNT && (
-              <div className="mt-12 text-center">
-                <button
-                  onClick={() => {
-                    setShowAll(false);
-                    // Scroll suave a la sección
-                    document.getElementById('rooms-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }}
-                  className="inline-flex items-center gap-2 px-8 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all font-semibold"
-                >
-                  {locale === 'es' ? 'Ver menos habitaciones' : 'Show less'}
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                  </svg>
-                </button>
-              </div>
-            )}
-          </>
+          </div>
         ) : (
           <div className="text-center py-12">
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
