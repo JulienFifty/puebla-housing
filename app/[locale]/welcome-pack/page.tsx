@@ -81,14 +81,6 @@ export default function WelcomePackPage() {
     },
     {
       step: '03',
-      title: locale === 'es' ? 'Orientación Cultural' : 'Cultural Orientation',
-      description: locale === 'es'
-        ? 'Sesión de orientación sobre la vida en Puebla, transporte, seguridad y tips para estudiantes internacionales.'
-        : 'Orientation session about life in Puebla, transportation, safety and tips for international students.',
-      icon: '📚',
-    },
-    {
-      step: '04',
       title: locale === 'es' ? 'Integración Social' : 'Social Integration',
       description: locale === 'es'
         ? 'Evento de bienvenida con otros estudiantes internacionales. ¡Conoce a tu nueva comunidad!'
