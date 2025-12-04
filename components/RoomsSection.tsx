@@ -160,10 +160,19 @@ export default function RoomsSection() {
           </div>
         ) : filteredRooms.length > 0 ? (
           <div className="relative">
-            {/* Grid de habitaciones */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              {currentRooms.map((room) => (
-                <RoomCard key={room.id} room={room} />
+            {/* Grid de habitaciones con animación */}
+            <div 
+              key={currentSlide}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 animate-fadeIn"
+            >
+              {currentRooms.map((room, index) => (
+                <div
+                  key={room.id}
+                  className="animate-slideUp"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <RoomCard room={room} />
+                </div>
               ))}
             </div>
 
