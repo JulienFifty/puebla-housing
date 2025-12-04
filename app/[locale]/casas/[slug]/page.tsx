@@ -614,6 +614,12 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                             if (bathroomTypeFilter !== 'all' && room.bathroom_type !== bathroomTypeFilter) return false;
                             return true;
                           })
+                          .sort((a: any, b: any) => {
+                            // Ordenar por número de habitación (del más pequeño al más grande)
+                            const numA = parseInt(a.room_number) || 0;
+                            const numB = parseInt(b.room_number) || 0;
+                            return numA - numB;
+                          })
                           .map((room: any) => (
                             <div
                               key={room.id}
