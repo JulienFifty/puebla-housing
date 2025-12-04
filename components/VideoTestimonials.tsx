@@ -118,8 +118,16 @@ export default function VideoTestimonials() {
                       onClick={() => setActiveVideo(testimonial.id)}
                       className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-center justify-center group/play"
                     >
-                      {/* Thumbnail placeholder */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/50 to-purple-900/50"></div>
+                      {/* Vimeo Thumbnail */}
+                      <img
+                        src={`https://vumbnail.com/${testimonial.vimeoId}.jpg`}
+                        alt={testimonial.studentName}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      
+                      {/* Overlay gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                       
                       {/* Play Button */}
                       <div className="relative z-10 w-16 h-16 bg-white rounded-full flex items-center justify-center group-hover/play:scale-110 transition-transform shadow-xl">
