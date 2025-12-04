@@ -157,8 +157,8 @@ export default function AboutPage() {
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
                 {locale === 'es'
-                  ? 'No somos propietarios de las casas, sino una organización que conecta a estudiantes con propiedades verificadas y crea una comunidad de apoyo mutuo.'
-                  : 'We are not property owners, but an organization that connects students with verified properties and creates a community of mutual support.'}
+                  ? 'Somos facilitadores organizando y conectando a estudiantes con locaciones verificadas y creando una gran comunidad.'
+                  : 'We are facilitators organizing and connecting students with verified locations and creating a great community.'}
               </p>
             </div>
 
