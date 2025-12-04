@@ -38,14 +38,13 @@ export default function WelcomePackPage() {
     {
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
         </svg>
       ),
-      title: locale === 'es' ? 'Excursiones Inolvidables' : 'Unforgettable Excursions',
+      title: locale === 'es' ? 'Comodidad Total' : 'Total Comfort',
       description: locale === 'es'
-        ? 'Visita Cholula, las pirámides, Atlixco, Val\'Quirico y más. Conoce la magia de Puebla y sus alrededores con guías expertos.'
-        : 'Visit Cholula, the pyramids, Atlixco, Val\'Quirico and more. Discover the magic of Puebla and its surroundings with expert guides.',
+        ? 'Ropa de cama de calidad incluida y servicio de limpieza regular. Todo listo para que te sientas como en casa desde el primer día.'
+        : 'Quality bedding included and regular cleaning service. Everything ready for you to feel at home from day one.',
       color: 'from-emerald-500 to-teal-600',
     },
     {
