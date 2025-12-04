@@ -46,7 +46,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-[100] bg-black/20 backdrop-blur-md border-b border-white/10 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -188,12 +188,12 @@ export default function Header() {
           <>
             {/* Overlay */}
             <div 
-              className="fixed inset-0 bg-black/50 z-[60] xl:hidden animate-fadeIn"
+              className="fixed inset-0 bg-black/50 z-[110] xl:hidden animate-fadeIn"
               onClick={() => setMobileMenuOpen(false)}
             ></div>
 
             {/* Full-Page Menu */}
-            <div className="fixed inset-0 z-[70] xl:hidden bg-gradient-to-br from-primary via-purple-700 to-indigo-800 animate-slideInRight overflow-y-auto">
+            <div className="fixed inset-0 z-[120] xl:hidden bg-gradient-to-br from-primary via-purple-700 to-indigo-800 animate-slideInRight overflow-y-auto">
               <div className="flex flex-col min-h-full">
                 {/* Header del menú */}
                 <div className="flex justify-between items-center p-6 border-b border-white/10">
