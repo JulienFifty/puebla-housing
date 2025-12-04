@@ -215,9 +215,9 @@ export default function Header() {
                   <Image
                     src="/logo.png"
                     alt="Puebla Housing"
-                    width={120}
-                    height={40}
-                    className="h-6 w-auto brightness-0 invert"
+                    width={140}
+                    height={45}
+                    className="h-10 w-auto brightness-0 invert"
                   />
                   <button
                     onClick={() => setMobileMenuOpen(false)}
