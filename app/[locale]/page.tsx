@@ -3,10 +3,8 @@ import Hero from '@/components/Hero';
 import UniversitiesBanner from '@/components/UniversitiesBanner';
 import AboutSection from '@/components/AboutSection';
 import PropertyCard from '@/components/PropertyCard';
-import EventCard from '@/components/EventCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import RoomsSection from '@/components/RoomsSection';
-import { events } from '@/data/events';
 import { testimonials } from '@/data/testimonials';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
@@ -143,36 +141,6 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
       {/* About Section */}
       <AboutSection />
-
-      {/* Events Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {t('events.title')}
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {t('events.subtitle')}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link
-              href={`/${locale}/eventos`}
-              className="inline-flex items-center gap-2 bg-primary text-white px-8 py-3.5 rounded-lg hover:bg-primary-hover transition-colors font-semibold shadow-sm hover:shadow-md"
-            >
-              {t('events.viewMore')}
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white">
