@@ -103,7 +103,7 @@ export default function Hero() {
         </div>
 
         {/* Premium Search Bar */}
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto hidden md:block">
           <form onSubmit={handleSearch} className="bg-white/95 backdrop-blur-md rounded-full shadow-2xl border border-white/20 p-2 flex items-center">
             <input
               type="text"
