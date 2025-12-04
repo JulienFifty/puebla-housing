@@ -100,16 +100,16 @@ export default function CommunityGallery() {
         </div>
 
         {/* Photo Grid - Masonry Style */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]">
           {images.map((image, index) => (
             <div
               key={image.id}
               className={`group relative overflow-hidden rounded-xl cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-                index % 7 === 0 || index % 7 === 3 ? 'row-span-2' : ''
+                index === 0 || index === 4 ? 'row-span-2' : 'row-span-1'
               }`}
               onClick={() => setSelectedImage(image)}
             >
-              <div className="relative aspect-square">
+              <div className="relative w-full h-full">
                 <Image
                   src={image.src}
                   alt={image.alt}
