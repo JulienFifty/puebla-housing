@@ -19,40 +19,52 @@ export default function CommunityGallery() {
   const images: GalleryImage[] = [
     {
       id: '1',
-      src: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800',
+      src: 'https://res.cloudinary.com/dhqq37qlu/image/upload/v1764889889/IMG_8913_ixjv9o.jpg',
       alt: 'Estudiantes internacionales en Puebla',
       category: 'community',
     },
     {
       id: '2',
-      src: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800',
+      src: 'https://res.cloudinary.com/dhqq37qlu/image/upload/v1764889894/IMG_1396_rm6c7u.jpg',
       alt: 'Evento de bienvenida',
       category: 'event',
     },
     {
       id: '3',
-      src: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800',
+      src: 'https://res.cloudinary.com/dhqq37qlu/image/upload/v1764889889/IMG_7050_fzbeyh.jpg',
       alt: 'Grupo de estudiantes',
       category: 'community',
     },
     {
       id: '4',
-      src: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800',
+      src: 'https://res.cloudinary.com/dhqq37qlu/image/upload/v1764889891/IMG_1746_fzabql.jpg',
       alt: 'Actividad grupal',
       category: 'activity',
     },
     {
       id: '5',
-      src: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800',
+      src: 'https://res.cloudinary.com/dhqq37qlu/image/upload/v1764889889/IMG_7277_pg0cnp.jpg',
       alt: 'Estudiantes en casa',
       category: 'lifestyle',
     },
     {
       id: '6',
-      src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800',
+      src: 'https://res.cloudinary.com/dhqq37qlu/image/upload/v1764889892/IMG_1059_vc3xbl.jpg',
       alt: 'Trabajo en equipo',
       category: 'activity',
     },
+    {
+        id: '7',
+        src: 'https://res.cloudinary.com/dhqq37qlu/image/upload/v1764889893/IMG_1416_o9bx4y.jpg',
+        alt: 'Trabajo en equipo',
+        category: 'activity',
+      },
+      {
+        id: '8',
+        src: 'https://res.cloudinary.com/dhqq37qlu/image/upload/v1764889892/IMG_0422_cpideq.jpg',
+        alt: 'Trabajo en equipo',
+        category: 'activity',
+      },
   ];
 
   return (
