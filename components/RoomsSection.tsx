@@ -14,6 +14,8 @@ export default function RoomsSection() {
   const [rooms, setRooms] = useState<any[]>([]);
   const [properties, setProperties] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showAll, setShowAll] = useState(false);
+  const INITIAL_DISPLAY_COUNT = 6;
 
   // Fetch properties and rooms
   useEffect(() => {
@@ -79,8 +81,13 @@ export default function RoomsSection() {
     return filtered;
   }, [rooms, selectedProperty, selectedSemester]);
 
+  // Reset showAll cuando cambien los filtros
+  useEffect(() => {
+    setShowAll(false);
+  }, [selectedProperty, selectedSemester]);
+
   return (
-    <section className="py-20 bg-white">
+    <section id="rooms-section" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -138,11 +145,50 @@ export default function RoomsSection() {
             <p className="text-gray-600 text-lg">{t('loading', { defaultValue: 'Cargando habitaciones...' })}</p>
           </div>
         ) : filteredRooms.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredRooms.map((room) => (
-              <RoomCard key={room.id} room={room} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {(showAll ? filteredRooms : filteredRooms.slice(0, INITIAL_DISPLAY_COUNT)).map((room) => (
+                <RoomCard key={room.id} room={room} />
+              ))}
+            </div>
+            
+            {/* Botón Ver más */}
+            {filteredRooms.length > INITIAL_DISPLAY_COUNT && !showAll && (
+              <div className="mt-12 text-center">
+                <button
+                  onClick={() => setShowAll(true)}
+                  className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary-hover transition-all font-semibold shadow-sm hover:shadow-md"
+                >
+                  {locale === 'es' ? 'Ver todas las habitaciones' : 'View all rooms'}
+                  <span className="text-sm opacity-80">
+                    ({filteredRooms.length - INITIAL_DISPLAY_COUNT} {locale === 'es' ? 'más' : 'more'})
+                  </span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
+            )}
+            
+            {/* Botón Ver menos */}
+            {showAll && filteredRooms.length > INITIAL_DISPLAY_COUNT && (
+              <div className="mt-12 text-center">
+                <button
+                  onClick={() => {
+                    setShowAll(false);
+                    // Scroll suave a la sección
+                    document.getElementById('rooms-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
+                  className="inline-flex items-center gap-2 px-8 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all font-semibold"
+                >
+                  {locale === 'es' ? 'Ver menos habitaciones' : 'Show less'}
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  </svg>
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <div className="text-center py-12">
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
