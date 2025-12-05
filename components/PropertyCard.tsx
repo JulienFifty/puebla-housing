@@ -11,15 +11,29 @@ interface PropertyCardProps {
 
 export default function PropertyCard({ property }: PropertyCardProps) {
   const t = useTranslations('properties');
-  const locale = useLocale() as 'es' | 'en';
+  const locale = useLocale() as 'es' | 'en' | 'fr';
+  
+  // Helper para obtener el nombre con fallback
+  const getName = () => {
+    if (property.name[locale]) return property.name[locale];
+    // Fallback a español si no hay traducción
+    return property.name.es || property.name.en || '';
+  };
+  
+  // Helper para obtener la descripción con fallback
+  const getDescription = () => {
+    if (property.description[locale]) return property.description[locale];
+    // Fallback a español si no hay traducción
+    return property.description.es || property.description.en || '';
+  };
 
   const getZoneLabel = (zone: string) => {
-    const zones: Record<string, { es: string; en: string }> = {
-      'tres-cruces': { es: 'Tres Cruces', en: 'Tres Cruces' },
-      'centro': { es: 'Centro Histórico', en: 'Historic Center' },
-      'cholula': { es: 'Cholula', en: 'Cholula' },
+    const zones: Record<string, { es: string; en: string; fr: string }> = {
+      'tres-cruces': { es: 'Tres Cruces', en: 'Tres Cruces', fr: 'Tres Cruces' },
+      'centro': { es: 'Centro Histórico', en: 'Historic Center', fr: 'Centre Historique' },
+      'cholula': { es: 'Cholula', en: 'Cholula', fr: 'Cholula' },
     };
-    return zones[zone]?.[locale] || zone;
+    return zones[zone]?.[locale] || zones[zone]?.es || zone;
   };
 
   // Formatear fecha de disponibilidad
@@ -41,7 +55,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
       <div className="relative h-80 overflow-hidden">
         <Image
           src={property.images[0]}
-          alt={property.name[locale]}
+          alt={getName()}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
         />
@@ -59,6 +73,8 @@ export default function PropertyCard({ property }: PropertyCardProps) {
               <span>
                 {locale === 'es' 
                   ? `Habitaciones disponibles a partir del ${availableFromDate}`
+                  : locale === 'fr'
+                  ? `Chambres disponibles à partir du ${availableFromDate}`
                   : `Rooms available from ${availableFromDate}`
                 }
               </span>
@@ -71,7 +87,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
       <div className="p-6">
         {/* Title */}
         <h3 className="text-2xl font-bold text-gray-900 mb-3">
-          {property.name[locale]}
+          {getName()}
         </h3>
 
         {/* Location */}
@@ -85,7 +101,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
 
         {/* Description */}
         <p className="text-gray-600 text-sm mb-5 leading-relaxed line-clamp-3">
-          {property.description[locale]}
+          {getDescription()}
         </p>
 
         {/* Features */}

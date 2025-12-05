@@ -66,11 +66,13 @@ export default async function PropertiesPage({
       name: {
         es: property.name_es,
         en: property.name_en,
+        fr: property.name_fr || property.name_es, // Fallback a español si no hay francés
       },
       slug: property.slug,
       location: {
         es: property.location_es,
         en: property.location_en,
+        fr: property.location_fr || property.location_es, // Fallback a español si no hay francés
       },
       address: property.address,
       rooms: property.total_rooms || property.rooms?.length || 0,
@@ -79,6 +81,7 @@ export default async function PropertiesPage({
       description: {
         es: property.description_es,
         en: property.description_en,
+        fr: property.description_fr || property.description_es, // Fallback a español si no hay francés
       },
       zone: property.zone as 'tres-cruces' | 'centro' | 'cholula',
       university: property.university as 'BUAP' | 'Centro' | 'UDLAP',
