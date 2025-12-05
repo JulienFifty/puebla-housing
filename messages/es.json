@@ -19,10 +19,10 @@
     "title": "Tu hogar en Puebla comienza aquí",
     "subtitle": "Descubre espacios seguros y cómodos diseñados para estudiantes internacionales. Vive la experiencia de estudiar en México con total tranquilidad.",
     "cta": "Empezar mi viaje",
-    "verified": "Propiedades Verificadas",
+    "verified": "Casas Verificadas",
     "support": "Asistencia 24/7",
     "guarantee": "Mejor Precio Garantizado",
-    "searchPlaceholder": "Buscar por ciudad, universidad o propiedad",
+    "searchPlaceholder": "Buscar por ciudad, universidad o casa",
     "search": "Buscar Habitación",
     "zone": "Zona",
     "university": "Universidad",
@@ -104,9 +104,9 @@
     "required": "*"
   },
   "listProperty": {
-    "title": "Lista tu Propiedad",
+    "title": "Lista tu Casa",
     "subtitle": "Únete a nuestra red de alojamientos",
-    "description": "Si tienes una propiedad que quieres alquilar a estudiantes internacionales, contáctanos."
+    "description": "Si tienes una casa que quieres alquilar a estudiantes internacionales, contáctanos."
   },
   "footer": {
     "quickLinks": "Enlaces Rápidos",
@@ -164,7 +164,7 @@
     "viewAllReviews": "Ver todas las reseñas",
     "noReviews": "No se encontraron reseñas",
     "viewOnGoogleMaps": "Ver en Google Maps",
-    "notConfigured": "Las reseñas de Google My Business no están configuradas para esta propiedad",
+    "notConfigured": "Las reseñas de Google My Business no están configuradas para esta casa",
     "reviews": "reseñas",
     "review": "reseña"
   },
@@ -208,7 +208,7 @@
     "valuesTitle": "Lo que nos guía",
     "valuesSubtitle": "Los principios que rigen nuestro trabajo y compromiso con los estudiantes.",
     "safety": "Seguridad",
-    "safetyDesc": "Trabajamos únicamente con propiedades verificadas que cumplen con estándares de seguridad y comodidad para estudiantes internacionales.",
+    "safetyDesc": "Trabajamos únicamente con casas verificadas que cumplen con estándares de seguridad y comodidad para estudiantes internacionales.",
     "community": "Comunidad",
     "communityDesc": "Facilitamos la creación de una red de apoyo entre estudiantes internacionales, organizando eventos y actividades para fortalecer los lazos.",
     "support247": "Soporte 24/7",
@@ -236,11 +236,11 @@
     "ctaTitle": "¿Listo para comenzar tu aventura en Puebla?",
     "ctaSubtitle": "Estamos aquí para ayudarte en cada paso del camino. Contáctanos y descubre cómo podemos facilitar tu llegada a Puebla.",
     "ctaContact": "Contáctanos",
-    "ctaViewProperties": "Ver propiedades"
+    "ctaViewProperties": "Ver casas"
   },
   "property": {
     "availableRooms": "Habitaciones Disponibles",
-    "roomsInProperty": "habitaciones en esta propiedad",
+    "roomsInProperty": "habitaciones en esta casa",
     "showAvailableOnly": "Solo habitaciones disponibles",
     "hideUnavailable": "Ocultar habitaciones no disponibles",
     "roomType": "Tipo de Habitación",
@@ -248,7 +248,7 @@
     "bathroomType": "Tipo de Baño",
     "allBathrooms": "Todos",
     "noRoomsAvailable": "No hay habitaciones disponibles",
-    "noRoomsRegistered": "Esta propiedad aún no tiene habitaciones registradas.",
+    "noRoomsRegistered": "Esta casa aún no tiene habitaciones registradas.",
     "tabs": {
       "overview": "Resumen",
       "rooms": "Habitaciones",
@@ -256,8 +256,8 @@
       "reviews": "Reseñas",
       "policies": "Políticas"
     },
-    "aboutProperty": "Acerca de la Propiedad",
-    "propertyDescription": "Esta propiedad cuenta con {count} habitaciones {types}, perfectas para estudiantes que buscan un ambiente cómodo y seguro. La ubicación estratégica cerca de universidades y servicios esenciales garantiza una experiencia de vida estudiantil completa y conveniente.",
+    "aboutProperty": "Acerca de la Casa",
+    "propertyDescription": "Esta casa cuenta con {count} habitaciones {types}, perfectas para estudiantes que buscan un ambiente cómodo y seguro. La ubicación estratégica cerca de universidades y servicios esenciales garantiza una experiencia de vida estudiantil completa y conveniente.",
     "roomTypes": {
       "privateAndShared": "privadas y compartidas",
       "private": "privadas",
@@ -286,10 +286,10 @@
     "amenities": "Comodidades",
     "commonAmenities": "Comodidades Comunes",
     "viewAllAmenities": "Ver todas las comodidades ({count})",
-    "recentBookings": "{count} estudiantes reservaron esta propiedad recientemente",
+    "recentBookings": "{count} estudiantes reservaron esta casa recientemente",
     "instantBooking": "Reserva Instantánea",
     "bestPriceGuaranteed": "Mejor Precio Garantizado",
-    "verifiedProperties": "Propiedades Verificadas",
+    "verifiedProperties": "Casas Verificadas",
     "personalAssistance": "Asistencia Personal 24/7",
     "reviewsCount": "24+ Reseñas",
     "requestInformation": "Solicitar Información",
@@ -311,7 +311,7 @@
     "houseRules": "Reglas de la Casa",
     "houseRulesList": {
       "noParties": "No se permiten fiestas o eventos",
-      "noSmoking": "No fumar dentro de la propiedad",
+      "noSmoking": "No fumar dentro de la casa",
       "quietHours": "Respetar el horario de silencio después de las 22:00",
       "cleanCommonAreas": "Mantener las áreas comunes limpias",
       "noPets": "No se permiten mascotas"
@@ -343,7 +343,7 @@
     "highlightedText": "servicio integral que conecta a los estudiantes con opciones de alojamiento verificadas seguras y cómodas",
     "imageAlt": "Experiencia cultural en Puebla",
     "badge": "Sobre Nosotros",
-    "verifiedProperties": "Propiedades Verificadas",
+    "verifiedProperties": "Casas Verificadas",
     "internationalCommunity": "Comunidad Internacional",
     "support247": "Soporte 24/7",
     "learnMore": "Conocer más"
@@ -352,7 +352,7 @@
     "title": "Lo que dicen nuestros estudiantes",
     "subtitle": "Experiencias reales de estudiantes internacionales",
     "badge": "Testimonios",
-    "subtitleVideo": "Escucha las experiencias reales de estudiantes internacionales que han vivido en nuestras propiedades",
+    "subtitleVideo": "Escucha las experiencias reales de estudiantes internacionales que han vivido en nuestras casas",
     "ctaQuestion": "¿Listo para vivir tu propia experiencia en Puebla?",
     "ctaButton": "Contáctanos ahora"
   },

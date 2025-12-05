@@ -378,12 +378,12 @@ export default function NearbyLocationsMap({
             <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg px-3 py-2 text-xs text-gray-600 z-10">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <span>Propiedad actual</span>
+                <span>Casa actual</span>
               </div>
               {otherProperties.length > 0 && (
                 <div className="flex items-center gap-2 mt-1">
                   <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                  <span>Otras propiedades</span>
+                  <span>Otras casas</span>
                 </div>
               )}
               <div className="flex items-center gap-2 mt-1">

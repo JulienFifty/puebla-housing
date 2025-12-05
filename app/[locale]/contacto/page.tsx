@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   return {
     title: 'Contacto - Puebla Housing',
-    description: 'Contáctanos para más información sobre nuestras propiedades',
+    description: 'Contáctanos para más información sobre nuestras casas',
   };
 }
 

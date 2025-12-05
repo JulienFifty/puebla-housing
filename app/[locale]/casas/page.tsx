@@ -112,7 +112,7 @@ export default async function PropertiesPage({
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-text-main mb-4">{t('title')}</h1>
           <p className="text-lg text-text-secondary">
-            {filteredProperties.length} {t('found', { defaultValue: 'propiedades encontradas' })}
+            {filteredProperties.length} {t('found', { defaultValue: 'casas encontradas' })}
           </p>
         </div>
 
@@ -125,7 +125,7 @@ export default async function PropertiesPage({
         ) : (
           <div className="text-center py-16">
             <p className="text-xl text-text-secondary">
-              {t('noResults', { defaultValue: 'No se encontraron propiedades con estos filtros.' })}
+              {t('noResults', { defaultValue: 'No se encontraron casas con estos filtros.' })}
             </p>
           </div>
         )}
