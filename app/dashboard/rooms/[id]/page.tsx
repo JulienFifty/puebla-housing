@@ -333,18 +333,69 @@ export default function EditRoomPage() {
   }
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold text-text-main">
-          {isNewRoom ? 'Crear Habitación' : 'Editar Habitación'}
-        </h1>
-        <Link
-          href="/dashboard/rooms"
-          className="text-text-secondary hover:text-primary"
-        >
-          ← Volver
-        </Link>
-      </div>
+    <div className="flex gap-6">
+      {/* Sidebar con otras habitaciones - Solo visible en desktop */}
+      {!isNewRoom && room && otherRooms.length > 0 && (
+        <aside className="hidden lg:block w-64 flex-shrink-0">
+          <div className="sticky top-24 bg-white rounded-xl shadow-lg border border-gray-200 p-4">
+            <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+              Otras Habitaciones
+            </h3>
+            <div className="space-y-2 max-h-[calc(100vh-200px)] overflow-y-auto">
+              {loadingOtherRooms ? (
+                <div className="text-sm text-gray-500 text-center py-4">Cargando...</div>
+              ) : (
+                otherRooms.map((otherRoom) => (
+                  <Link
+                    key={otherRoom.id}
+                    href={`/dashboard/rooms/${otherRoom.id}`}
+                    className={`block p-3 rounded-lg border transition-all ${
+                      otherRoom.id === id
+                        ? 'border-primary bg-primary/5'
+                        : 'border-gray-200 hover:border-primary hover:bg-gray-50'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium text-sm text-gray-900">
+                          Habitación {otherRoom.room_number}
+                        </div>
+                        <div className="text-xs text-gray-500 mt-1">
+                          {otherRoom.type === 'private' ? 'Privada' : 'Compartida'} •{' '}
+                          {otherRoom.bathroom_type === 'private' ? 'Baño privado' : 'Baño compartido'}
+                        </div>
+                      </div>
+                      <div className={`w-2 h-2 rounded-full ${
+                        otherRoom.available ? 'bg-green-500' : 'bg-red-500'
+                      }`} title={otherRoom.available ? 'Disponible' : 'No disponible'} />
+                    </div>
+                  </Link>
+                ))
+              )}
+            </div>
+            <Link
+              href="/dashboard/rooms"
+              className="mt-4 block text-center text-sm text-primary hover:text-primary-hover font-medium"
+            >
+              Ver todas las habitaciones →
+            </Link>
+          </div>
+        </aside>
+      )}
+
+      {/* Contenido principal */}
+      <div className="flex-1 min-w-0">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold text-text-main">
+            {isNewRoom ? 'Crear Habitación' : 'Editar Habitación'}
+          </h1>
+          <Link
+            href="/dashboard/rooms"
+            className="text-text-secondary hover:text-primary"
+          >
+            ← Volver
+          </Link>
+        </div>
 
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
@@ -700,6 +751,7 @@ export default function EditRoomPage() {
           </Link>
         </div>
       </form>
+      </div>
     </div>
   );
 }
