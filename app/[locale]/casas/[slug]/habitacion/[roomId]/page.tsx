@@ -45,6 +45,7 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
   const [showAllImages, setShowAllImages] = useState(false);
   const [otherRooms, setOtherRooms] = useState<Room[]>([]);
   const [loadingOtherRooms, setLoadingOtherRooms] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
