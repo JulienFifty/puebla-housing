@@ -651,6 +651,44 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
           </div>
         </div>
       </div>
+
+      {/* Modal de Contacto */}
+      {showContactModal && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto"
+          onClick={() => setShowContactModal(false)}
+        >
+          <div 
+            className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto my-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between rounded-t-2xl z-10">
+              <h2 className="text-2xl font-bold text-gray-900">
+                {locale === 'es' ? 'Solicitar Información' : locale === 'fr' ? 'Demander des informations' : 'Request Information'}
+              </h2>
+              <button
+                onClick={() => setShowContactModal(false)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                aria-label={locale === 'es' ? 'Cerrar' : locale === 'fr' ? 'Fermer' : 'Close'}
+              >
+                <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6">
+              <ContactForm 
+                type="reservation"
+                propertySlug={property?.slug}
+                roomId={room.id}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
