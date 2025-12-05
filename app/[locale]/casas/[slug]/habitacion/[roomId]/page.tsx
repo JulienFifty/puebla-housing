@@ -37,12 +37,14 @@ interface Property {
 
 export default function RoomPage({ params }: { params: { slug: string; roomId: string; locale: string } }) {
   const t = useTranslations();
-  const locale = useLocale() as 'es' | 'en';
+  const locale = useLocale() as 'es' | 'en' | 'fr';
   const [room, setRoom] = useState<Room | null>(null);
   const [property, setProperty] = useState<Property | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [showAllImages, setShowAllImages] = useState(false);
+  const [otherRooms, setOtherRooms] = useState<Room[]>([]);
+  const [loadingOtherRooms, setLoadingOtherRooms] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,6 +66,11 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
             setProperty(propData);
           }
         }
+
+        // Cargar las demás habitaciones de la misma propiedad
+        if (roomData.property_id) {
+          fetchOtherRooms(roomData.property_id, roomData.id);
+        }
       } catch (error) {
         console.error('Error fetching room:', error);
       } finally {
@@ -83,6 +90,29 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
       month: 'long',
       year: 'numeric',
     });
+  };
+
+  // Fetch otras habitaciones de la misma propiedad
+  const fetchOtherRooms = async (propertyId: string, currentRoomId: string) => {
+    setLoadingOtherRooms(true);
+    try {
+      const res = await fetch(`/api/rooms?propertyId=${propertyId}`);
+      if (!res.ok) throw new Error('Failed to fetch');
+      const data = await res.json();
+      // Filtrar la habitación actual y ordenar por número
+      const filtered = (data || [])
+        .filter((r: Room) => r.id !== currentRoomId && r.available)
+        .sort((a: Room, b: Room) => {
+          const numA = parseInt(a.room_number) || 0;
+          const numB = parseInt(b.room_number) || 0;
+          return numA - numB;
+        });
+      setOtherRooms(filtered);
+    } catch (error) {
+      console.error('Error fetching other rooms:', error);
+    } finally {
+      setLoadingOtherRooms(false);
+    }
   };
 
   // Get amenity icon
@@ -193,9 +223,112 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Images and Details */}
-          <div className="lg:col-span-2 space-y-6">
+        <div className="flex gap-6">
+          {/* Sidebar con otras habitaciones - Solo visible en desktop */}
+          {room && property && (otherRooms.length > 0 || loadingOtherRooms) && (
+            <aside className="hidden xl:block w-72 flex-shrink-0">
+              <div className="sticky top-28 bg-white rounded-2xl shadow-lg border border-gray-200 p-5">
+                <h3 className="text-sm font-semibold text-gray-700 mb-4 uppercase tracking-wide">
+                  {locale === 'es' 
+                    ? 'Otras Habitaciones' 
+                    : locale === 'fr'
+                    ? 'Autres Chambres'
+                    : 'Other Rooms'}
+                </h3>
+                <div className="space-y-3 max-h-[calc(100vh-250px)] overflow-y-auto">
+                  {loadingOtherRooms ? (
+                    <div className="text-sm text-gray-500 text-center py-4">
+                      {locale === 'es' ? 'Cargando...' : locale === 'fr' ? 'Chargement...' : 'Loading...'}
+                    </div>
+                  ) : otherRooms.length > 0 ? (
+                    otherRooms.map((otherRoom) => (
+                      <Link
+                        key={otherRoom.id}
+                        href={`/${locale}/casas/${property.slug}/habitacion/${otherRoom.id}`}
+                        className={`block p-4 rounded-xl border transition-all ${
+                          otherRoom.id === params.roomId
+                            ? 'border-primary bg-primary/5 shadow-md'
+                            : 'border-gray-200 hover:border-primary hover:bg-gray-50 hover:shadow-md'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex-1 min-w-0">
+                            <div className="font-semibold text-base text-gray-900 mb-1">
+                              {locale === 'es' ? 'Habitación' : locale === 'fr' ? 'Chambre' : 'Room'} {otherRoom.room_number}
+                            </div>
+                            <div className="flex flex-wrap gap-2 mt-2">
+                              <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${
+                                otherRoom.type === 'private'
+                                  ? 'bg-primary/10 text-primary'
+                                  : 'bg-blue-100 text-blue-700'
+                              }`}>
+                                {otherRoom.type === 'private'
+                                  ? (locale === 'es' ? 'Privada' : locale === 'fr' ? 'Privée' : 'Private')
+                                  : (locale === 'es' ? 'Compartida' : locale === 'fr' ? 'Partagée' : 'Shared')
+                                }
+                              </span>
+                              <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${
+                                otherRoom.bathroom_type === 'private'
+                                  ? 'bg-emerald-100 text-emerald-700'
+                                  : 'bg-amber-100 text-amber-700'
+                              }`}>
+                                {otherRoom.bathroom_type === 'private'
+                                  ? (locale === 'es' ? 'Baño privado' : locale === 'fr' ? 'Salle de bain privée' : 'Private bath')
+                                  : (locale === 'es' ? 'Baño compartido' : locale === 'fr' ? 'Salle de bain partagée' : 'Shared bath')
+                                }
+                              </span>
+                            </div>
+                            {otherRoom.available_from && (
+                              <div className="text-xs text-gray-500 mt-2">
+                                {locale === 'es' 
+                                  ? `Disponible desde ${formatDate(otherRoom.available_from)}`
+                                  : locale === 'fr'
+                                  ? `Disponible à partir du ${formatDate(otherRoom.available_from)}`
+                                  : `Available from ${formatDate(otherRoom.available_from)}`
+                                }
+                              </div>
+                            )}
+                          </div>
+                          <div className={`w-3 h-3 rounded-full flex-shrink-0 mt-1 ${
+                            otherRoom.available ? 'bg-green-500' : 'bg-red-500'
+                          }`} title={otherRoom.available 
+                            ? (locale === 'es' ? 'Disponible' : locale === 'fr' ? 'Disponible' : 'Available')
+                            : (locale === 'es' ? 'No disponible' : locale === 'fr' ? 'Non disponible' : 'Not available')
+                          } />
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    <div className="text-sm text-gray-500 text-center py-4">
+                      {locale === 'es' 
+                        ? 'No hay otras habitaciones disponibles'
+                        : locale === 'fr'
+                        ? 'Aucune autre chambre disponible'
+                        : 'No other rooms available'
+                      }
+                    </div>
+                  )}
+                </div>
+                <Link
+                  href={`/${locale}/casas/${property.slug}`}
+                  className="mt-4 block text-center text-sm text-primary hover:text-primary-hover font-medium"
+                >
+                  {locale === 'es' 
+                    ? 'Ver todas las habitaciones →'
+                    : locale === 'fr'
+                    ? 'Voir toutes les chambres →'
+                    : 'View all rooms →'
+                  }
+                </Link>
+              </div>
+            </aside>
+          )}
+
+          {/* Contenido principal */}
+          <div className="flex-1 min-w-0">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Left Column - Images and Details */}
+              <div className="lg:col-span-2 space-y-6">
             {/* Image Gallery */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200">
               {/* Main Image */}
@@ -460,6 +593,8 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
             </div>
           </div>
         </div>
