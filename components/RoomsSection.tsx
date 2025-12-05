@@ -44,25 +44,25 @@ export default function RoomsSection() {
   // Get unique property names
   const propertyOptions = useMemo(() => {
     const allProperties = [
-      { value: 'all', label: { es: 'Todas las casas', en: 'All properties' } },
+      { value: 'all', label: t('allProperties') },
       ...properties.map((prop) => ({
         value: prop.id,
-        label: { es: prop.name_es, en: prop.name_en },
+        label: locale === 'es' ? prop.name_es : prop.name_en,
       })),
     ];
     return allProperties;
-  }, [properties]);
+  }, [properties, locale, t]);
 
   // Semester options
   const semesterOptions = [
-    { value: 'all', label: { es: 'Todos los semestres', en: 'All semesters' } },
+    { value: 'all', label: t('allSemesters') },
     {
       value: 'enero-junio-2026',
-      label: { es: 'Enero - Junio 2026', en: 'January - June 2026' },
+      label: t('semester1'),
     },
     {
       value: 'junio-diciembre-2026',
-      label: { es: 'Junio - Diciembre 2026', en: 'June - December 2026' },
+      label: t('semester2'),
     },
   ];
 
@@ -122,7 +122,7 @@ export default function RoomsSection() {
                 label={t('filterProperty')}
                 options={propertyOptions.map((opt) => ({
                   value: opt.value,
-                  label: opt.label[locale as 'es' | 'en'],
+                  label: typeof opt.label === 'string' ? opt.label : opt.label[locale as 'es' | 'en'],
                 }))}
                 value={selectedProperty}
                 onChange={setSelectedProperty}
@@ -136,7 +136,7 @@ export default function RoomsSection() {
                 label={t('filterSemester')}
                 options={semesterOptions.map((opt) => ({
                   value: opt.value,
-                  label: opt.label[locale as 'es' | 'en'],
+                  label: typeof opt.label === 'string' ? opt.label : opt.label[locale as 'es' | 'en'],
                 }))}
                 value={selectedSemester}
                 onChange={setSelectedSemester}

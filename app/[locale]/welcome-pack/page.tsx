@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 export default function WelcomePackPage() {
-  const t = useTranslations();
+  const t = useTranslations('welcomePack');
   const locale = useLocale();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
@@ -17,10 +17,8 @@ export default function WelcomePackPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
         </svg>
       ),
-      title: locale === 'es' ? 'Servicios Incluidos' : 'Included Services',
-      description: locale === 'es' 
-        ? 'Servicio de recogida (pick-up) en el terminal de autobuses, ropa de cama completa y servicio de limpieza regular.'
-        : 'Pick-up service at the bus terminal, complete bedding and regular cleaning service.',
+      title: t('includedServices'),
+      description: t('includedServicesDesc'),
       color: 'from-primary to-purple-700',
     },
     {
@@ -29,10 +27,8 @@ export default function WelcomePackPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
         </svg>
       ),
-      title: locale === 'es' ? 'Clases de Salsa' : 'Salsa Classes',
-      description: locale === 'es'
-        ? '4 clases de salsa para aprender a bailar ritmos latinos y conocer a otros estudiantes en un ambiente divertido.'
-        : '4 salsa classes to learn Latin rhythms and meet other students in a fun environment.',
+      title: t('salsaClasses'),
+      description: t('salsaClassesDesc'),
       color: 'from-pink-500 to-rose-600',
     },
     {
@@ -41,10 +37,8 @@ export default function WelcomePackPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513m-3-4.87v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.38a48.474 48.474 0 00-6-.37c-2.032 0-4.034.125-6 .37m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.17c0 .62-.504 1.124-1.125 1.124H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12M12.265 3.11a.375.375 0 11-.53 0L12 2.845l.265.265zm-3 0a.375.375 0 11-.53 0L9 2.845l.265.265zm6 0a.375.375 0 11-.53 0L15 2.845l.265.265z" />
         </svg>
       ),
-      title: locale === 'es' ? 'Clase Gastronómica Mexicana' : 'Mexican Cooking Class',
-      description: locale === 'es'
-        ? 'Aprende a cocinar platillos tradicionales mexicanos con un chef local. Una experiencia culinaria auténtica.'
-        : 'Learn to cook traditional Mexican dishes with a local chef. An authentic culinary experience.',
+      title: t('cookingClass'),
+      description: t('cookingClassDesc'),
       color: 'from-amber-500 to-orange-600',
     },
     {
@@ -53,10 +47,8 @@ export default function WelcomePackPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
         </svg>
       ),
-      title: locale === 'es' ? 'Comodidad Total' : 'Total Comfort',
-      description: locale === 'es'
-        ? 'Ropa de cama de calidad incluida y servicio de limpieza regular. Todo listo para que te sientas como en casa desde el primer día.'
-        : 'Quality bedding included and regular cleaning service. Everything ready for you to feel at home from day one.',
+      title: t('totalComfort'),
+      description: t('totalComfortDesc'),
       color: 'from-emerald-500 to-teal-600',
     },
     {
@@ -65,10 +57,8 @@ export default function WelcomePackPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185zM9.75 9h.008v.008H9.75V9zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm4.125 4.5h.008v.008h-.008V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
         </svg>
       ),
-      title: locale === 'es' ? 'Descuentos Exclusivos' : 'FiftyFifty Card',
-      description: locale === 'es'
-        ? 'Tarjeta FiftyFifty Card con 50% de descuento en los mejores restaurantes de CDMX y Puebla.'
-        : 'FiftyFifty Card with 50% discount at the best restaurants in CDMX and Puebla.',
+      title: t('exclusiveDiscounts'),
+      description: t('exclusiveDiscountsDesc'),
       color: 'from-blue-500 to-indigo-600',
       link: 'https://www.fiftyfiftycard.mx/',
     },
@@ -77,26 +67,20 @@ export default function WelcomePackPage() {
   const journeySteps = [
     {
       step: '01',
-      title: locale === 'es' ? 'Recogida en el Aeropuerto' : 'Airport Pickup',
-      description: locale === 'es'
-        ? 'Te recogemos en el aeropuerto de Puebla o CDMX con un servicio de transporte privado y cómodo.'
-        : 'We pick you up at Puebla or CDMX airport with a private and comfortable transportation service.',
+      title: t('step1Title'),
+      description: t('step1Desc'),
       icon: '✈️',
     },
     {
       step: '02',
-      title: locale === 'es' ? 'Check-in en tu Casa' : 'Check-in at Your Home',
-      description: locale === 'es'
-        ? 'Te acompañamos a tu nuevo hogar, te presentamos a tus roommates y te damos el tour de la casa.'
-        : 'We accompany you to your new home, introduce you to your roommates and give you a house tour.',
+      title: t('step2Title'),
+      description: t('step2Desc'),
       icon: '🏠',
     },
     {
       step: '03',
-      title: locale === 'es' ? 'Integración Social' : 'Social Integration',
-      description: locale === 'es'
-        ? 'Evento de bienvenida con otros estudiantes internacionales. ¡Conoce a tu nueva comunidad!'
-        : 'Welcome event with other international students. Meet your new community!',
+      title: t('step3Title'),
+      description: t('step3Desc'),
       icon: '🎉',
     },
   ];
@@ -151,31 +135,15 @@ export default function WelcomePackPage() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6 border border-white/20">
             <span className="text-sm">🇲🇽</span>
-            <span className="text-white text-xs font-light tracking-wide uppercase">Mexican Welcome Pack</span>
+            <span className="text-white text-xs font-light tracking-wide uppercase">{t('badge')}</span>
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            {locale === 'es' ? (
-              <>
-                Bienvenido a tu<br />
-                <span className="text-secondary">
-                  nueva aventura
-                </span>
-              </>
-            ) : (
-              <>
-                Welcome to your<br />
-                <span className="text-secondary">
-                  new adventure
-                </span>
-              </>
-            )}
+            {t('heroTitle')}
           </h1>
           
           <p className="text-lg text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
-            {locale === 'es'
-              ? 'Descubre Puebla desde el primer día. Con nuestro Welcome Pack, tu llegada será inolvidable y llena de experiencias únicas.'
-              : 'Discover Puebla from day one. With our Welcome Pack, your arrival will be unforgettable and full of unique experiences.'}
+            {t('heroSubtitle')}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -226,7 +194,7 @@ export default function WelcomePackPage() {
               {locale === 'es' ? 'Todo incluido' : 'All inclusive'}
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {locale === 'es' ? '¿Qué incluye el Welcome Pack?' : "What's in the Welcome Pack?"}
+              {t('whatIncludes')}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               {locale === 'es'
@@ -370,10 +338,10 @@ export default function WelcomePackPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-              {locale === 'es' ? 'Testimonios' : 'Testimonials'}
+              {t('testimonialsTitle')}
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {locale === 'es' ? 'Lo que dicen nuestros estudiantes' : 'What our students say'}
+              {t('testimonialsSubtitle')}
             </h2>
           </div>
 
@@ -437,9 +405,7 @@ export default function WelcomePackPage() {
             {locale === 'es' ? '¿Listo para tu aventura mexicana?' : 'Ready for your Mexican adventure?'}
           </h2>
           <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
-            {locale === 'es'
-              ? 'Reserva tu Welcome Pack hoy y empieza a vivir México desde el momento en que aterrices.'
-              : 'Book your Welcome Pack today and start living Mexico from the moment you land.'}
+            {t('ctaTitle')} {t('ctaSubtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

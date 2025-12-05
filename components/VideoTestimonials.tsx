@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface VideoTestimonial {
   id: string;
@@ -14,6 +14,7 @@ interface VideoTestimonial {
 
 export default function VideoTestimonials() {
   const locale = useLocale();
+  const t = useTranslations('testimonials');
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -78,15 +79,13 @@ export default function VideoTestimonials() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold mb-6 border border-white/20">
-            {locale === 'es' ? 'Testimonios' : 'Testimonials'}
+            {t('badge')}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-            {locale === 'es' ? 'Lo que dicen nuestros estudiantes' : 'What our students say'}
+            {t('title')}
           </h2>
           <p className="text-lg text-white/90 max-w-2xl mx-auto">
-            {locale === 'es' 
-              ? 'Escucha las experiencias reales de estudiantes internacionales que han vivido en nuestras propiedades'
-              : 'Hear real experiences from international students who have lived in our properties'}
+            {t('subtitleVideo')}
           </p>
         </div>
 
@@ -229,15 +228,13 @@ export default function VideoTestimonials() {
         {/* CTA */}
         <div className="text-center mt-16">
           <p className="text-white/90 text-lg mb-6">
-            {locale === 'es' 
-              ? '¿Listo para vivir tu propia experiencia en Puebla?' 
-              : 'Ready to live your own experience in Puebla?'}
+            {t('ctaQuestion')}
           </p>
           <a
             href={`/${locale}/contacto`}
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary rounded-lg hover:bg-gray-100 transition-all font-semibold shadow-lg hover:shadow-xl"
           >
-            {locale === 'es' ? 'Contáctanos ahora' : 'Contact us now'}
+            {t('ctaButton')}
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

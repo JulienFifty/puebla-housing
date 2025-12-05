@@ -46,6 +46,7 @@ interface ReviewsData {
 
 export default function PropertyPage({ params }: { params: { slug: string; locale: string } }) {
   const t = useTranslations();
+  const tProperty = useTranslations('property');
   const locale = useLocale() as 'es' | 'en';
   const [property, setProperty] = useState<Property | null>(null);
   const [loading, setLoading] = useState(true);
@@ -532,9 +533,9 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                   <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
                     <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-1">Habitaciones Disponibles</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-1">{tProperty('availableRooms')}</h2>
                         <p className="text-sm text-gray-600">
-                          {property.rooms?.length || 0} habitaciones en esta propiedad
+                          {property.rooms?.length || 0} {tProperty('roomsInProperty')}
                         </p>
                       </div>
                     </div>
@@ -550,8 +551,8 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                             </svg>
                           </div>
                           <div>
-                            <p className="font-semibold text-gray-900 text-sm">Solo habitaciones disponibles</p>
-                            <p className="text-xs text-gray-500">Ocultar habitaciones no disponibles</p>
+                            <p className="font-semibold text-gray-900 text-sm">{tProperty('showAvailableOnly')}</p>
+                            <p className="text-xs text-gray-500">{tProperty('hideUnavailable')}</p>
                           </div>
                         </div>
                         <label className="relative inline-flex items-center cursor-pointer">
@@ -570,30 +571,30 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                         {/* Filtro Tipo de Habitación */}
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Tipo de Habitación
+                            {tProperty('roomType')}
                           </label>
                           <select
                             value={roomTypeFilter}
                             onChange={(e) => setRoomTypeFilter(e.target.value as any)}
                             className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
                           >
-                            <option value="all">Todas</option>
-                            <option value="private">Privada</option>
-                            <option value="shared">Compartida</option>
+                            <option value="all">{tProperty('allTypes')}</option>
+                            <option value="private">{t('rooms.private')}</option>
+                            <option value="shared">{t('rooms.shared')}</option>
                           </select>
                         </div>
 
                         {/* Filtro Tipo de Baño */}
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Tipo de Baño
+                            {tProperty('bathroomType')}
                           </label>
                           <select
                             value={bathroomTypeFilter}
                             onChange={(e) => setBathroomTypeFilter(e.target.value as any)}
                             className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
                           >
-                            <option value="all">Todos</option>
+                            <option value="all">{tProperty('allBathrooms')}</option>
                             <option value="private">Privado</option>
                             <option value="shared">Compartido</option>
                           </select>
@@ -751,7 +752,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                         <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                         </svg>
-                        <p className="text-gray-600 text-lg mb-2">No hay habitaciones disponibles</p>
+                        <p className="text-gray-600 text-lg mb-2">{tProperty('noRoomsAvailable')}</p>
                         <p className="text-gray-500 text-sm">Esta propiedad aún no tiene habitaciones registradas.</p>
                       </div>
                     )}

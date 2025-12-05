@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 interface GalleryImage {
@@ -13,6 +13,7 @@ interface GalleryImage {
 
 export default function CommunityGallery() {
   const locale = useLocale();
+  const t = useTranslations('community');
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
   // Aquí puedes agregar tus fotos - usa URLs de Cloudinary, Unsplash o rutas locales
@@ -77,25 +78,15 @@ export default function CommunityGallery() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-6">
-            {locale === 'es' ? 'Nuestra Comunidad' : 'Our Community'}
+            {t('badge')}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            {locale === 'es' ? (
-              <>
-                Vive la experiencia{' '}
-                <span className="text-primary">Puebla Housing</span>
-              </>
-            ) : (
-              <>
-                Live the{' '}
-                <span className="text-primary">Puebla Housing</span> experience
-              </>
-            )}
+            {t('title')}{' '}
+            <span className="text-primary">{t('titleHighlight')}</span>
+            {locale === 'en' && ` ${t('titleSuffix')}`}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            {locale === 'es'
-              ? 'Conoce a nuestra comunidad internacional de estudiantes. Eventos, actividades y momentos especiales que hacen de Puebla tu segundo hogar.'
-              : 'Meet our international student community. Events, activities and special moments that make Puebla your second home.'}
+            {t('subtitle')}
           </p>
         </div>
 
@@ -124,10 +115,10 @@ export default function CommunityGallery() {
                       {/* Category badge */}
                       {image.category && (
                         <span className="px-2 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-full">
-                          {image.category === 'event' && (locale === 'es' ? '🎉 Evento' : '🎉 Event')}
-                          {image.category === 'community' && (locale === 'es' ? '👥 Comunidad' : '👥 Community')}
-                          {image.category === 'activity' && (locale === 'es' ? '🎯 Actividad' : '🎯 Activity')}
-                          {image.category === 'lifestyle' && (locale === 'es' ? '🏠 Vida' : '🏠 Lifestyle')}
+                          {image.category === 'event' && t('event')}
+                          {image.category === 'community' && t('communityLabel')}
+                          {image.category === 'activity' && t('activity')}
+                          {image.category === 'lifestyle' && t('lifestyle')}
                         </span>
                       )}
                     </div>
@@ -141,15 +132,13 @@ export default function CommunityGallery() {
         {/* CTA */}
         <div className="text-center mt-16">
           <p className="text-gray-600 mb-6 text-lg">
-            {locale === 'es'
-              ? '¿Quieres ser parte de nuestra comunidad?'
-              : 'Want to be part of our community?'}
+            {t('ctaQuestion')}
           </p>
           <a
             href={`/${locale}/contacto`}
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-hover transition-all font-semibold shadow-md hover:shadow-xl"
           >
-            {locale === 'es' ? 'Únete ahora' : 'Join now'}
+            {t('ctaButton')}
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
