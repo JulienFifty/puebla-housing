@@ -338,7 +338,7 @@ export default function EditRoomPage() {
   return (
     <div className="flex gap-6">
       {/* Sidebar con otras habitaciones - Solo visible en desktop */}
-      {!isNewRoom && room && formData.property_id && (
+      {!isNewRoom && room && (room.property_id || formData.property_id) && (
         <aside className="hidden lg:block w-64 flex-shrink-0">
           <div className="sticky top-24 bg-white rounded-xl shadow-lg border border-gray-200 p-4">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
