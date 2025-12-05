@@ -8,11 +8,12 @@ interface Option {
 }
 
 interface CustomSelectProps {
-  label: string;
+  label?: string;
   options: Option[];
   value: string;
   onChange: (value: string) => void;
   placeholder: string;
+  required?: boolean;
 }
 
 export default function CustomSelect({
@@ -21,6 +22,7 @@ export default function CustomSelect({
   value,
   onChange,
   placeholder,
+  required = false,
 }: CustomSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
@@ -41,14 +43,18 @@ export default function CustomSelect({
 
   return (
     <div ref={selectRef} className="relative">
-      <label className="block text-sm font-medium text-text-secondary mb-2">
-        {label}
-      </label>
+      {label && (
+        <label className="block text-sm font-medium text-text-secondary mb-2">
+          {label}
+        </label>
+      )}
       <div className="relative">
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-left text-text-main focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center justify-between"
+          className={`w-full px-4 py-2.5 border border-gray-200 rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center justify-between ${
+            value ? 'bg-white text-gray-900' : 'bg-white text-gray-500'
+          }`}
         >
           <span className={value ? 'text-text-main' : 'text-text-secondary'}>
             {displayText}

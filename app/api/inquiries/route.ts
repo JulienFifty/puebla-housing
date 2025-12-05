@@ -139,6 +139,13 @@ export async function POST(request: NextRequest) {
       moveInDate,
       moveOutDate,
       studentId,
+      instagram,
+      career,
+      house,
+      room,
+      arrivingDate,
+      departureDate,
+      howDidYouHear,
     } = body;
 
     // Validar campos requeridos
@@ -149,9 +156,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Si se proporciona propertySlug pero no propertyId, buscar el propertyId
-    let finalPropertyId = propertyId || null;
-    if (propertySlug && !propertyId) {
+    // Si se proporciona house, usarlo como propertyId
+    let finalPropertyId = propertyId || house || null;
+    if (propertySlug && !finalPropertyId) {
       const { data: propertyData } = await supabase
         .from('properties')
         .select('id')
@@ -183,7 +190,18 @@ export async function POST(request: NextRequest) {
     if (semester) insertData.semester = semester;
     if (moveInDate) insertData.move_in_date = moveInDate;
     if (moveOutDate) insertData.move_out_date = moveOutDate;
+    if (arrivingDate) insertData.arriving_date = arrivingDate;
+    if (departureDate) insertData.departure_date = departureDate;
     if (studentId) insertData.student_id = studentId;
+    // Nuevos campos adicionales (se guardarán en notes o en campos personalizados si existen)
+    const additionalInfo: string[] = [];
+    if (instagram) additionalInfo.push(`Instagram: ${instagram}`);
+    if (career) additionalInfo.push(`Carrera: ${career}`);
+    if (room) additionalInfo.push(`Habitación: ${room}`);
+    if (howDidYouHear) additionalInfo.push(`Referencia: ${howDidYouHear}`);
+    if (additionalInfo.length > 0) {
+      insertData.notes = (insertData.notes || insertData.message || '') + '\n\n' + additionalInfo.join('\n');
+    }
 
     const { data, error } = await supabase
       .from('inquiries')

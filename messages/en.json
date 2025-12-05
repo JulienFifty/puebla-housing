@@ -68,10 +68,10 @@
   "contact": {
     "title": "Contact Us",
     "subtitle": "We're here to help",
-    "name": "Name",
+    "name": "Full name",
     "email": "Email",
     "phone": "Phone (optional)",
-    "message": "Message",
+    "message": "Your Message",
     "send": "Send",
     "whatsapp": "Contact via WhatsApp",
     "whatsappNote": "Quick response, usually within minutes",
@@ -79,7 +79,28 @@
     "sendMessage": "Send us a message",
     "map": "Location",
     "mapPlaceholder": "Map - Coming soon",
-    "emailTitle": "Email"
+    "emailTitle": "Email",
+    "instagram": "Instagram",
+    "career": "Career",
+    "country": "Country",
+    "university": "University",
+    "house": "House",
+    "room": "Room",
+    "arrivingDate": "Arriving Date",
+    "departureDate": "Departure Date",
+    "howDidYouHear": "How did you hear about us?",
+    "howDidYouHearOptions": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "friend": "Friend/Known",
+      "university": "University",
+      "google": "Google",
+      "other": "Other"
+    },
+    "selectPlaceholder": "-Select-",
+    "messageSent": "Message sent! We'll contact you soon.",
+    "sending": "Sending...",
+    "required": "*"
   },
   "listProperty": {
     "title": "List Your Property",
