@@ -54,6 +54,7 @@ export default function EditRoomPage() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [error, setError] = useState('');
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const [newAmenity, setNewAmenity] = useState('');
 
   const [formData, setFormData] = useState({
     property_id: '',
@@ -242,12 +243,20 @@ export default function EditRoomPage() {
   };
 
   const handleAddAmenity = () => {
-    const amenity = prompt('Ingresa una amenidad:');
+    const amenity = newAmenity.trim();
     if (amenity) {
       setFormData({
         ...formData,
         amenities: [...formData.amenities, amenity],
       });
+      setNewAmenity(''); // Limpiar el input después de agregar
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddAmenity();
     }
   };
 
@@ -604,13 +613,24 @@ export default function EditRoomPage() {
                 </button>
               </div>
             ))}
-            <button
-              type="button"
-              onClick={handleAddAmenity}
-              className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-sm"
-            >
-              + Agregar Amenidad
-            </button>
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={newAmenity}
+                onChange={(e) => setNewAmenity(e.target.value)}
+                onKeyPress={handleKeyPress}
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Escribe una amenidad y presiona Enter o haz clic en Agregar"
+              />
+              <button
+                type="button"
+                onClick={handleAddAmenity}
+                disabled={!newAmenity.trim()}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                + Agregar Amenidad
+              </button>
+            </div>
           </div>
         </div>
 
