@@ -79,7 +79,8 @@
     "addresses": "Direcciones",
     "sendMessage": "Envíanos un mensaje",
     "map": "Ubicación",
-    "mapPlaceholder": "Mapa - Próximamente"
+    "mapPlaceholder": "Mapa - Próximamente",
+    "emailTitle": "Email"
   },
   "listProperty": {
     "title": "Lista tu Propiedad",

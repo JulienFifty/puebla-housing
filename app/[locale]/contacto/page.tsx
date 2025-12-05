@@ -57,7 +57,7 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
 
             {/* Email */}
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-text-main mb-4">Email</h2>
+              <h2 className="text-2xl font-bold text-text-main mb-4">{t('emailTitle')}</h2>
               <a
                 href="mailto:contacto@pueblahousing.com"
                 className="text-primary hover:text-primary-hover text-lg"

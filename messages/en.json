@@ -78,7 +78,8 @@
     "addresses": "Addresses",
     "sendMessage": "Send us a message",
     "map": "Location",
-    "mapPlaceholder": "Map - Coming soon"
+    "mapPlaceholder": "Map - Coming soon",
+    "emailTitle": "Email"
   },
   "listProperty": {
     "title": "List Your Property",
