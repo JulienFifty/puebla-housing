@@ -149,7 +149,8 @@
   },
   "welcomePack": {
     "badge": "Welcome Pack",
-    "heroTitle": "Découvrez Puebla dès le premier jour",
+    "heroTitle": "Découvrez Puebla",
+    "heroTitleHighlight": "dès le premier jour",
     "heroSubtitle": "Avec notre Welcome Pack, votre arrivée sera inoubliable et pleine d'expériences uniques.",
     "whatIncludes": "Que contient le Welcome Pack ?",
     "includedServices": "Services inclus",

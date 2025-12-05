@@ -139,7 +139,8 @@ export default function WelcomePackPage() {
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            {t('heroTitle')}
+            {t('heroTitle')}{' '}
+            <span className="text-secondary">{t('heroTitleHighlight')}</span>
           </h1>
           
           <p className="text-lg text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
