@@ -274,7 +274,26 @@
     "bathroomPrivate": "Private",
     "bathroomShared": "Shared",
     "viewAllPhotos": "View all photos",
-    "viewRooms": "View Rooms"
+    "viewRooms": "View Rooms",
+    "available": "available",
+    "availableLabel": "Available",
+    "availableFrom": "Available from",
+    "studyAreas": "Study and rest areas available",
+    "cancellationPolicy": "Cancellation Policy",
+    "cancellationPolicyDesc": "Free cancellation up to 30 days before check-in. After that, a 50% cancellation fee will apply.",
+    "houseRules": "House Rules",
+    "houseRulesList": {
+      "noParties": "No parties or events allowed",
+      "noSmoking": "No smoking inside the property",
+      "quietHours": "Respect quiet hours after 22:00",
+      "cleanCommonAreas": "Keep common areas clean",
+      "noPets": "No pets allowed"
+    },
+    "checkInOut": "Check-in and Check-out",
+    "checkIn": "Check-in",
+    "checkInTime": "After 3:00 PM",
+    "checkOut": "Check-out",
+    "checkOutTime": "Before 11:00 AM"
   },
   "community": {
     "badge": "Our Community",

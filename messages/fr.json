@@ -274,7 +274,26 @@
     "bathroomPrivate": "Privé",
     "bathroomShared": "Partagé",
     "viewAllPhotos": "Voir toutes les photos",
-    "viewRooms": "Voir les chambres"
+    "viewRooms": "Voir les chambres",
+    "available": "disponibles",
+    "availableLabel": "Disponible",
+    "availableFrom": "Disponible à partir du",
+    "studyAreas": "Espaces d'étude et de repos disponibles",
+    "cancellationPolicy": "Politique d'annulation",
+    "cancellationPolicyDesc": "Annulation gratuite jusqu'à 30 jours avant l'arrivée. Après cela, des frais d'annulation de 50% s'appliqueront.",
+    "houseRules": "Règles de la maison",
+    "houseRulesList": {
+      "noParties": "Pas de fêtes ou d'événements autorisés",
+      "noSmoking": "Pas de tabagisme à l'intérieur de la propriété",
+      "quietHours": "Respecter les heures de silence après 22h00",
+      "cleanCommonAreas": "Maintenir les espaces communs propres",
+      "noPets": "Pas d'animaux de compagnie autorisés"
+    },
+    "checkInOut": "Arrivée et départ",
+    "checkIn": "Arrivée",
+    "checkInTime": "Après 15h00",
+    "checkOut": "Départ",
+    "checkOutTime": "Avant 11h00"
   },
   "community": {
     "badge": "Notre communauté",
