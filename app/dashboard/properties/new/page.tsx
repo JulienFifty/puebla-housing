@@ -23,6 +23,7 @@ export default function NewPropertyPage() {
     images: [] as string[],
     available: true,
     google_place_id: '',
+    common_areas: [] as string[],
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,6 +49,7 @@ export default function NewPropertyPage() {
           images: formData.images,
           available: formData.available,
           googlePlaceId: formData.google_place_id || null,
+          commonAreas: formData.common_areas,
         }),
       });
 
@@ -334,6 +336,51 @@ export default function NewPropertyPage() {
             />
             Disponible
           </label>
+        </div>
+
+        {/* Áreas Comunes */}
+        <div>
+          <label className="block text-sm font-medium text-text-main mb-2">
+            Áreas Comunes
+          </label>
+          <p className="text-xs text-gray-500 mb-2">
+            Ingresa las áreas comunes separadas por comas (ej: Terraza, Patio, Jardín, Roof garden, Asador, Salas, Cocinas, Zona de ejercicio)
+          </p>
+          <input
+            type="text"
+            value={formData.common_areas.join(', ')}
+            onChange={(e) => {
+              const areas = e.target.value
+                .split(',')
+                .map(area => area.trim())
+                .filter(area => area.length > 0);
+              setFormData({ ...formData, common_areas: areas });
+            }}
+            placeholder="Terraza, Patio, Jardín, Roof garden..."
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+          />
+          {formData.common_areas.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-2">
+              {formData.common_areas.map((area, index) => (
+                <span
+                  key={index}
+                  className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                >
+                  {area}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const newAreas = formData.common_areas.filter((_, i) => i !== index);
+                      setFormData({ ...formData, common_areas: newAreas });
+                    }}
+                    className="text-primary hover:text-primary-hover"
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex gap-4 pt-4">

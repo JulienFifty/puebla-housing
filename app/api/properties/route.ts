@@ -126,6 +126,7 @@ export async function POST(request: NextRequest) {
         available: available ?? true,
         owner_id: user.id,
         google_place_id: googlePlaceId || null,
+        common_areas: commonAreas || [],
       })
       .select()
       .single();

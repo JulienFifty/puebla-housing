@@ -26,6 +26,7 @@ interface Property {
   latitude?: number;
   longitude?: number;
   google_place_id?: string;
+  common_areas?: string[];
 }
 
 interface GoogleReview {
@@ -490,36 +491,22 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                       </div>
                     </div>
 
-                    {/* Guest Access Block */}
-                    <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                      <h2 className="text-2xl font-bold text-gray-900 mb-5">Acceso de Huéspedes</h2>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div className="flex items-center gap-3">
-                          <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span className="text-gray-700 text-sm">{tProperty('fullAccess')}</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span className="text-gray-700 text-sm">WiFi de alta velocidad en toda la casa</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span className="text-gray-700 text-sm">{tProperty('studyAreas')}</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span className="text-gray-700 text-sm">Seguridad 24/7 y control de acceso</span>
+                    {/* Common Areas Block */}
+                    {property.common_areas && property.common_areas.length > 0 && (
+                      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-5">{tProperty('commonAreas')}</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {property.common_areas.map((area, index) => (
+                            <div key={index} className="flex items-center gap-3">
+                              <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              <span className="text-gray-700 text-sm">{area}</span>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
 

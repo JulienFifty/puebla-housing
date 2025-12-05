@@ -48,6 +48,7 @@ export default function EditPropertyPage() {
     available: true,
     available_from: '',
     google_place_id: '',
+    common_areas: [] as string[],
   });
 
   useEffect(() => {
@@ -77,6 +78,7 @@ export default function EditPropertyPage() {
         available: data.available ?? true,
         available_from: data.available_from || '',
         google_place_id: data.google_place_id || '',
+        common_areas: data.common_areas || [],
       });
     } catch (error) {
       console.error('Error fetching property:', error);
@@ -110,6 +112,7 @@ export default function EditPropertyPage() {
           available: formData.available,
           availableFrom: formData.available_from || null,
           googlePlaceId: formData.google_place_id || null,
+          commonAreas: formData.common_areas,
         }),
       });
 

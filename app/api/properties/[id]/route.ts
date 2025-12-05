@@ -101,6 +101,7 @@ export async function PUT(
       available,
       availableFrom,
       googlePlaceId,
+      commonAreas,
     } = body;
 
     const updateData: any = {
@@ -126,6 +127,10 @@ export async function PUT(
     }
 
     if (images) updateData.images = images;
+
+    if (commonAreas !== undefined) {
+      updateData.common_areas = commonAreas || [];
+    }
 
     // Verificar que el usuario es el dueño de la propiedad antes de actualizar
     const { data: existingProperty } = await supabaseServer

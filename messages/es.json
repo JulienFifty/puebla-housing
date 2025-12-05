@@ -259,6 +259,7 @@
       "policies": "Políticas"
     },
     "aboutProperty": "Acerca de la Casa",
+    "commonAreas": "Áreas Comunes",
     "propertyDescription": "Esta casa cuenta con {count} habitaciones {types}, perfectas para estudiantes que buscan un ambiente cómodo y seguro. La ubicación estratégica cerca de universidades y servicios esenciales garantiza una experiencia de vida estudiantil completa y conveniente.",
     "roomTypes": {
       "privateAndShared": "privadas y compartidas",
