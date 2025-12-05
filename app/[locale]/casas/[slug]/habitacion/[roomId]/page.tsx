@@ -85,7 +85,12 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
   const formatDate = (dateString: string | null | undefined) => {
     if (!dateString) return null;
     const date = new Date(dateString);
-    return date.toLocaleDateString(locale === 'es' ? 'es-MX' : 'en-US', {
+    const localeMap: Record<string, string> = {
+      'es': 'es-MX',
+      'en': 'en-US',
+      'fr': 'fr-FR'
+    };
+    return date.toLocaleDateString(localeMap[locale] || 'es-MX', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
