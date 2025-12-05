@@ -69,7 +69,7 @@ export default function Header() {
               alt="Puebla Housing"
               width={140}
               height={45}
-              className="h-5 sm:h-6 md:h-8 w-auto transition-transform group-hover:scale-105"
+              className="h-7 sm:h-8 md:h-10 w-auto transition-transform group-hover:scale-105 drop-shadow-lg"
               style={{ width: 'auto', height: 'auto' }}
               priority
             />
@@ -81,7 +81,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-white hover:text-secondary transition-all font-medium text-xs xl:text-sm tracking-wide relative group whitespace-nowrap drop-shadow-lg"
+                className="text-white hover:text-secondary transition-all font-semibold text-sm xl:text-base tracking-wide relative group whitespace-nowrap drop-shadow-lg"
               >
                 {item.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full"></span>
