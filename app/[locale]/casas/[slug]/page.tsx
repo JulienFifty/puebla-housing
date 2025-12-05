@@ -441,18 +441,6 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                         <p className="text-gray-700 leading-relaxed text-base whitespace-pre-line">
                           {propertyDescription}
                         </p>
-                        {property.rooms && property.rooms.length > 0 && (
-                          <p className="text-gray-700 leading-relaxed text-base">
-                            {tProperty('propertyDescription', {
-                              count: totalRooms,
-                              types: roomTypes.includes('private') && roomTypes.includes('shared') 
-                                ? tProperty('roomTypes.privateAndShared')
-                                : roomTypes.includes('private') 
-                                ? tProperty('roomTypes.private')
-                                : tProperty('roomTypes.shared')
-                            })}
-                          </p>
-                        )}
                         <button 
                           onClick={() => handleTabClick('amenities')}
                           className="text-primary font-medium hover:underline mt-3 flex items-center gap-1 text-sm"
