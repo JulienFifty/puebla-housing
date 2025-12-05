@@ -56,6 +56,8 @@ export default function EditRoomPage() {
   const [success, setSuccess] = useState('');
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [newAmenity, setNewAmenity] = useState('');
+  const [otherRooms, setOtherRooms] = useState<Room[]>([]);
+  const [loadingOtherRooms, setLoadingOtherRooms] = useState(false);
 
   const [formData, setFormData] = useState({
     property_id: '',
@@ -173,6 +175,11 @@ export default function EditRoomPage() {
         has_private_kitchen: data.has_private_kitchen ?? false,
         is_entire_place: data.is_entire_place ?? false,
       });
+
+      // Cargar las demás habitaciones de la misma propiedad
+      if (data.property_id) {
+        fetchOtherRooms(data.property_id, data.id);
+      }
     } catch (error) {
       console.error('Error fetching room:', error);
       setError('Error al cargar la habitación');
@@ -269,6 +276,28 @@ export default function EditRoomPage() {
     if (e.key === 'Enter') {
       e.preventDefault();
       handleAddAmenity();
+    }
+  };
+
+  const fetchOtherRooms = async (propertyId: string, currentRoomId: string) => {
+    setLoadingOtherRooms(true);
+    try {
+      const res = await fetch(`/api/rooms?propertyId=${propertyId}`);
+      if (!res.ok) throw new Error('Failed to fetch');
+      const data = await res.json();
+      // Filtrar la habitación actual y ordenar por número
+      const filtered = (data || [])
+        .filter((r: Room) => r.id !== currentRoomId)
+        .sort((a: Room, b: Room) => {
+          const numA = parseInt(a.room_number) || 0;
+          const numB = parseInt(b.room_number) || 0;
+          return numA - numB;
+        });
+      setOtherRooms(filtered);
+    } catch (error) {
+      console.error('Error fetching other rooms:', error);
+    } finally {
+      setLoadingOtherRooms(false);
     }
   };
 
