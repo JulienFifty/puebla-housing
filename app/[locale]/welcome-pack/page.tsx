@@ -415,7 +415,7 @@ export default function WelcomePackPage() {
               {locale === 'es' ? 'Reservar ahora' : 'Book now'}
             </Link>
             <a
-              href="https://wa.me/522222123456"
+              href="https://wa.me/522215774552"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 text-white px-8 py-3.5 rounded-lg hover:bg-green-600 transition-all font-semibold shadow-sm hover:shadow-md flex items-center justify-center gap-2"

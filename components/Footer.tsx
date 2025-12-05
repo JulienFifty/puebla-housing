@@ -6,7 +6,7 @@ export default function Footer() {
   const t = useTranslations('footer');
   const locale = useLocale();
 
-  const whatsappNumber = '5212221234567'; // Replace with actual WhatsApp Business number
+  const whatsappNumber = '522215774552';
   const whatsappMessage = encodeURIComponent('Hola, estoy interesado en reservar una habitación');
 
   return (

@@ -191,7 +191,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
   const totalRooms = property.total_rooms || property.rooms?.length || 0;
   const roomTypes = property.room_types || [];
 
-  const whatsappNumber = '5212221234567';
+  const whatsappNumber = '522215774552';
   const whatsappMessage = encodeURIComponent(
     `Hola, estoy interesado en reservar una habitación en ${propertyName}`
   );

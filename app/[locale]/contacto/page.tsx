@@ -15,7 +15,7 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
   const t = await getTranslations('contact');
   const localeKey = locale as 'es' | 'en';
 
-  const whatsappNumber = '5212221234567'; // Replace with actual WhatsApp Business number
+  const whatsappNumber = '522215774552';
   const whatsappMessage = encodeURIComponent('Hola, estoy interesado en reservar una habitación');
 
   return (
