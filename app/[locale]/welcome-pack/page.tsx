@@ -251,8 +251,10 @@ export default function WelcomePackPage() {
               </h2>
               <p className="text-lg text-white/80 mb-8 leading-relaxed">
                 {locale === 'es'
-                  ? 'En Puebla Housing nos dedicamos a facilitar la integración de estudiantes internacionales. Nuestro objetivo es crear experiencias únicas que conecten a los recién llegados con la cultura local desde el primer día.'
-                  : 'At Puebla Housing we are dedicated to facilitating the integration of international students. Our goal is to create unique experiences that connect newcomers with the local culture from day one.'}
+                  ? 'En Puebla Housing no solo ofrecemos alojamiento, creamos experiencias. Somos la puerta de entrada a tu nueva vida en México, conectando a estudiantes internacionales con hogares cómodos, comunidades reales y la cultura local desde el primer día.'
+                  : locale === 'fr'
+                  ? 'Chez Puebla Housing, nous ne proposons pas seulement un hébergement, nous créons des expériences. Nous sommes la porte d\'entrée vers votre nouvelle vie au Mexique, connectant les étudiants internationaux avec des foyers confortables, de vraies communautés et la culture locale dès le premier jour.'
+                  : 'At Puebla Housing we don\'t just offer accommodation, we create experiences. We are the gateway to your new life in Mexico, connecting international students with comfortable homes, real communities and local culture from day one.'}
               </p>
               
               <div className="space-y-4">
