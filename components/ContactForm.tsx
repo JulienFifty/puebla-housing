@@ -78,7 +78,6 @@ export default function ContactForm({
     { value: 'UDLAP', label: 'UDLAP' },
     { value: 'IBERO', label: 'IBERO' },
     { value: 'UPAEP', label: 'UPAEP' },
-    { value: 'Centro', label: 'Centro' },
     { value: 'other', label: 'Otra' },
   ];
 
