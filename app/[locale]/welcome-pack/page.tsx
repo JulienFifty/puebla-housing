@@ -280,7 +280,7 @@ export default function WelcomePackPage() {
             <div className="relative">
               <div className="relative z-10 rounded-lg overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800"
+                  src="https://res.cloudinary.com/dhqq37qlu/image/upload/v1764889892/IMG_1059_vc3xbl.jpg"
                   alt="Students together"
                   width={600}
                   height={400}
