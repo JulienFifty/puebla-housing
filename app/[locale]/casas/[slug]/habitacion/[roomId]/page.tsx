@@ -46,6 +46,7 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
   const [otherRooms, setOtherRooms] = useState<Room[]>([]);
   const [loadingOtherRooms, setLoadingOtherRooms] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -227,32 +228,31 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-0">
-          {/* Sidebar con otras habitaciones - Solo visible en desktop */}
-          {room && property && (otherRooms.length > 0 || loadingOtherRooms) && (
-            <>
-              {/* Botón para abrir/cerrar sidebar */}
-              <button
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="hidden xl:flex fixed left-4 top-1/2 -translate-y-1/2 z-40 bg-white border-2 border-gray-200 rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:border-primary"
-                aria-label={sidebarOpen ? (locale === 'es' ? 'Cerrar sidebar' : locale === 'fr' ? 'Fermer la barre latérale' : 'Close sidebar') : (locale === 'es' ? 'Abrir sidebar' : locale === 'fr' ? 'Ouvrir la barre latérale' : 'Open sidebar')}
-              >
-                <svg 
-                  className={`w-5 h-5 text-gray-700 transition-transform ${sidebarOpen ? '' : 'rotate-180'}`}
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
+      {/* Sidebar con otras habitaciones - Overlay fijo a la izquierda */}
+      {room && property && (otherRooms.length > 0 || loadingOtherRooms) && (
+        <>
+          {/* Botón para abrir/cerrar sidebar */}
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="hidden xl:flex fixed left-4 top-1/2 -translate-y-1/2 z-50 bg-white border-2 border-gray-200 rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:border-primary"
+            aria-label={sidebarOpen ? (locale === 'es' ? 'Cerrar sidebar' : locale === 'fr' ? 'Fermer la barre latérale' : 'Close sidebar') : (locale === 'es' ? 'Abrir sidebar' : locale === 'fr' ? 'Ouvrir la barre latérale' : 'Open sidebar')}
+          >
+            <svg 
+              className={`w-5 h-5 text-gray-700 transition-transform ${sidebarOpen ? '' : 'rotate-180'}`}
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
 
-              <aside className={`hidden xl:block transition-all duration-300 ease-in-out ${
-                sidebarOpen ? 'w-80' : 'w-0'
-              } flex-shrink-0 overflow-hidden`}>
-                <div className="sticky top-28 bg-white rounded-2xl shadow-lg border border-gray-200 p-5 ml-4">
+          {/* Sidebar Overlay */}
+          <aside className={`hidden xl:block fixed left-0 top-0 h-full z-40 transition-transform duration-300 ease-in-out ${
+            sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}>
+            <div className="h-full w-80 bg-white shadow-2xl border-r border-gray-200 overflow-y-auto">
+              <div className="p-5">
                   <h3 className="text-sm font-semibold text-gray-700 mb-4 uppercase tracking-wide">
                     {locale === 'es' 
                       ? 'Otras Habitaciones' 
@@ -367,13 +367,15 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
                     }
                   </Link>
                 </div>
-              </aside>
-            </>
-          )}
+              </div>
+            </div>
+          </aside>
+        </>
+      )}
 
-          {/* Contenido principal */}
-          <div className="flex-1 min-w-0">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Left Column - Images and Details */}
               <div className="lg:col-span-2 space-y-6">
             {/* Image Gallery */}
@@ -587,25 +589,28 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
             )}
           </div>
 
-          {/* Right Column - Contact Form */}
+          {/* Right Column - Contact Button */}
           <div className="lg:col-span-1">
             <div className="sticky top-28">
               <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900 mb-2">
-                  {locale === 'es' ? 'Reservar esta habitación' : 'Book this room'}
+                  {locale === 'es' ? 'Reservar esta habitación' : locale === 'fr' ? 'Réserver cette chambre' : 'Book this room'}
                 </h2>
                 <p className="text-gray-600 text-sm mb-6">
                   {locale === 'es' 
                     ? 'Completa el formulario y nos pondremos en contacto contigo.' 
+                    : locale === 'fr'
+                    ? 'Remplissez le formulaire et nous vous contacterons.'
                     : 'Fill out the form and we will contact you.'
                   }
                 </p>
                 
-                <ContactForm 
-                  type="reservation"
-                  propertySlug={property?.slug}
-                  roomId={room.id}
-                />
+                <button
+                  onClick={() => setShowContactModal(true)}
+                  className="w-full bg-primary text-white px-6 py-3.5 rounded-lg hover:bg-primary-hover transition-all font-semibold text-center shadow-sm hover:shadow-md"
+                >
+                  {locale === 'es' ? 'Solicitar Información' : locale === 'fr' ? 'Demander des informations' : 'Request Information'}
+                </button>
               </div>
 
               {/* Quick Info */}
