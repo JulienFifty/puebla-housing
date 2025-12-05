@@ -453,7 +453,10 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                             })}
                           </p>
                         )}
-                        <button className="text-primary font-medium hover:underline mt-3 flex items-center gap-1 text-sm">
+                        <button 
+                          onClick={() => handleTabClick('amenities')}
+                          className="text-primary font-medium hover:underline mt-3 flex items-center gap-1 text-sm"
+                        >
                           {tProperty('viewMore')} <span>&gt;</span>
                         </button>
                       </div>
