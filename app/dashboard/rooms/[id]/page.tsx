@@ -184,6 +184,7 @@ export default function EditRoomPage() {
     e.preventDefault();
     setSaving(true);
     setError('');
+    setSuccess('');
 
     const isNewRoom = id === 'new';
     const url = isNewRoom ? '/api/rooms' : `/api/rooms/${id}`;
@@ -216,7 +217,17 @@ export default function EditRoomPage() {
         throw new Error(errorData.error || `Failed to ${isNewRoom ? 'create' : 'update'}`);
       }
 
-      router.push('/dashboard/rooms');
+      // Si es una nueva habitación, redirigir a la lista
+      // Si es edición, quedarse en la página y recargar los datos
+      if (isNewRoom) {
+        router.push('/dashboard/rooms');
+      } else {
+        // Recargar los datos de la habitación para mostrar los cambios guardados
+        await fetchRoom();
+        setSuccess('Cambios guardados exitosamente');
+        // Limpiar el mensaje de éxito después de 3 segundos
+        setTimeout(() => setSuccess(''), 3000);
+      }
     } catch (error: any) {
       console.error(`Error ${isNewRoom ? 'creating' : 'updating'} room:`, error);
       setError(error.message || `Error al ${isNewRoom ? 'crear' : 'actualizar'} la habitación`);
