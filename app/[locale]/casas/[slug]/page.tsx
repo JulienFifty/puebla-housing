@@ -298,7 +298,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  Ver todas las fotos
+                  {tProperty('viewAllPhotos')}
                 </button>
               )}
             </div>
@@ -363,7 +363,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                 <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                 </svg>
-                <span className="text-sm font-medium text-gray-700">{totalRooms} {locale === 'es' ? 'habitaciones' : 'rooms'}</span>
+                <span className="text-sm font-medium text-gray-700">{totalRooms} {tProperty('rooms')}</span>
               </div>
               {property.rooms && property.rooms.length > 0 && (
                 <div className="flex items-center gap-2 bg-green-50 border-2 border-green-200 px-4 py-2 rounded-full shadow-sm">
@@ -404,11 +404,11 @@ export default function PropertyPage({ params }: { params: { slug: string; local
               >
                 <div className="flex gap-8 overflow-x-auto py-4">
                   {[
-                    { id: 'overview', label: 'Resumen' },
-                    { id: 'rooms', label: 'Habitaciones' },
-                    { id: 'amenities', label: 'Comodidades' },
-                    { id: 'reviews', label: 'Reseñas' },
-                    { id: 'policies', label: 'Políticas' },
+                    { id: 'overview', label: tProperty('tabs.overview') },
+                    { id: 'rooms', label: tProperty('tabs.rooms') },
+                    { id: 'amenities', label: tProperty('tabs.amenities') },
+                    { id: 'reviews', label: tProperty('tabs.reviews') },
+                    { id: 'policies', label: tProperty('tabs.policies') },
                   ].map((tab) => (
                     <button
                       key={tab.id}
@@ -435,29 +435,33 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                   <div className="space-y-8">
                     {/* About the Property Block */}
                     <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                      <h2 className="text-2xl font-bold text-gray-900 mb-4">Acerca de la Propiedad</h2>
+                      <h2 className="text-2xl font-bold text-gray-900 mb-4">{tProperty('aboutProperty')}</h2>
                       <div className="space-y-3">
                         <p className="text-gray-700 leading-relaxed text-base whitespace-pre-line">
                           {propertyDescription}
                         </p>
                         {property.rooms && property.rooms.length > 0 && (
                           <p className="text-gray-700 leading-relaxed text-base">
-                            Esta propiedad cuenta con {totalRooms} habitaciones {roomTypes.includes('private') && roomTypes.includes('shared') 
-                              ? 'privadas y compartidas' 
-                              : roomTypes.includes('private') 
-                              ? 'privadas' 
-                              : 'compartidas'}, perfectas para estudiantes que buscan un ambiente cómodo y seguro. La ubicación estratégica cerca de universidades y servicios esenciales garantiza una experiencia de vida estudiantil completa y conveniente.
+                            {tProperty('propertyDescription')
+                              .replace('{count}', totalRooms.toString())
+                              .replace('{types}', 
+                                roomTypes.includes('private') && roomTypes.includes('shared') 
+                                  ? tProperty('roomTypes.privateAndShared')
+                                  : roomTypes.includes('private') 
+                                  ? tProperty('roomTypes.private')
+                                  : tProperty('roomTypes.shared')
+                              )}
                           </p>
                         )}
                         <button className="text-primary font-medium hover:underline mt-3 flex items-center gap-1 text-sm">
-                          Ver más <span>&gt;</span>
+                          {tProperty('viewMore')} <span>&gt;</span>
                         </button>
                       </div>
                     </div>
 
                     {/* The Space Block */}
                     <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                      <h2 className="text-2xl font-bold text-gray-900 mb-5">El Espacio</h2>
+                      <h2 className="text-2xl font-bold text-gray-900 mb-5">{tProperty('theSpace')}</h2>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                         <div className="flex items-start gap-3">
                           <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -466,8 +470,8 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                             </svg>
                           </div>
                           <div>
-                            <p className="font-semibold text-gray-900 text-base mb-1">Habitaciones Cómodas</p>
-                            <p className="text-gray-600 text-sm">Espacios amplios y bien iluminados</p>
+                            <p className="font-semibold text-gray-900 text-base mb-1">{tProperty('comfortableRooms')}</p>
+                            <p className="text-gray-600 text-sm">{tProperty('comfortableRoomsDesc')}</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -477,8 +481,8 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                             </svg>
                           </div>
                           <div>
-                            <p className="font-semibold text-gray-900 text-base mb-1">Baños {roomTypes.includes('private') ? 'Privados' : 'Compartidos'}</p>
-                            <p className="text-gray-600 text-sm">Mantenidos y limpios regularmente</p>
+                            <p className="font-semibold text-gray-900 text-base mb-1">{tProperty('bathrooms')} {roomTypes.includes('private') ? tProperty('bathroomsPrivate') : tProperty('bathroomsShared')}</p>
+                            <p className="text-gray-600 text-sm">{tProperty('bathroomsDesc')}</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -488,8 +492,8 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                             </svg>
                           </div>
                           <div>
-                            <p className="font-semibold text-gray-900 text-base mb-1">Ubicación Céntrica</p>
-                            <p className="text-gray-600 text-sm">Cerca de universidades y servicios</p>
+                            <p className="font-semibold text-gray-900 text-base mb-1">{tProperty('centralLocation')}</p>
+                            <p className="text-gray-600 text-sm">{tProperty('centralLocationDesc')}</p>
                           </div>
                         </div>
                       </div>
@@ -503,7 +507,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                           <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
-                          <span className="text-gray-700 text-sm">Acceso completo a todas las áreas comunes</span>
+                          <span className="text-gray-700 text-sm">{tProperty('fullAccess')}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -595,8 +599,8 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                             className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
                           >
                             <option value="all">{tProperty('allBathrooms')}</option>
-                            <option value="private">Privado</option>
-                            <option value="shared">Compartido</option>
+                            <option value="private">{tProperty('bathroomPrivate')}</option>
+                            <option value="shared">{tProperty('bathroomShared')}</option>
                           </select>
                         </div>
                       </div>
@@ -635,7 +639,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                                 {room.images && room.images.length > 0 ? (
                                   <Image
                                     src={room.images[0]}
-                                    alt={`Habitación ${room.room_number}`}
+                                    alt={`${tProperty('room')} ${room.room_number}`}
                                     fill
                                     className="object-cover"
                                   />
@@ -669,7 +673,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                                 {/* Badge Tipo */}
                                 <div className="absolute top-3 left-3">
                                   <span className="px-3 py-1 bg-white/90 text-gray-700 text-xs font-semibold rounded-full shadow-md">
-                                    {room.type === 'private' ? 'Privada' : 'Compartida'}
+                                    {room.type === 'private' ? tProperty('private') : tProperty('shared')}
                                   </span>
                                 </div>
                               </div>
@@ -678,7 +682,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                               <div className="p-4">
                                 <div className="flex items-center justify-between mb-2">
                                   <h3 className="text-lg font-bold text-gray-900">
-                                    Habitación #{room.room_number}
+                                    {tProperty('room')} #{room.room_number}
                                   </h3>
                                 </div>
 
@@ -692,7 +696,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                                     <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
-                                    <span>Baño {room.bathroom_type === 'private' ? 'Privado' : 'Compartido'}</span>
+                                    <span>{tProperty('bathrooms')} {room.bathroom_type === 'private' ? tProperty('bathroomPrivate') : tProperty('bathroomShared')}</span>
                                   </div>
                                   {room.semester && (
                                     <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -707,7 +711,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                                       <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                       </svg>
-                                      <span>{room.amenities.length} amenidades</span>
+                                      <span>{tProperty('amenitiesCount').replace('{count}', room.amenities.length.toString())}</span>
                                     </div>
                                   )}
                                 </div>
@@ -718,7 +722,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                                     href={`/${locale}/casas/${property?.slug}/habitacion/${room.id}`}
                                     className="block w-full py-2.5 rounded-lg font-semibold text-sm transition-colors bg-primary text-white hover:bg-primary-hover shadow-sm hover:shadow-md text-center"
                                   >
-                                    {locale === 'es' ? 'Ver Detalles' : 'View Details'}
+                                    {tProperty('viewDetails')}
                                   </Link>
                                   <button
                                     onClick={() => {
@@ -736,10 +740,10 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                                     }`}
                                   >
                                     {room.available 
-                                      ? (locale === 'es' ? 'Solicitar Info' : 'Request Info')
+                                      ? tProperty('requestInfo')
                                       : room.available_from 
-                                        ? (locale === 'es' ? 'Reservar' : 'Book')
-                                        : (locale === 'es' ? 'No Disponible' : 'Not Available')
+                                        ? tProperty('book')
+                                        : tProperty('notAvailable')
                                     }
                                   </button>
                                 </div>
@@ -753,14 +757,14 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                         </svg>
                         <p className="text-gray-600 text-lg mb-2">{tProperty('noRoomsAvailable')}</p>
-                        <p className="text-gray-500 text-sm">Esta propiedad aún no tiene habitaciones registradas.</p>
+                        <p className="text-gray-500 text-sm">{tProperty('noRoomsRegistered')}</p>
                       </div>
                     )}
 
                     {/* Contador de resultados */}
                     {property.rooms && property.rooms.length > 0 && (
                       <div className="mt-6 text-center text-sm text-gray-600">
-                        Mostrando{' '}
+                        {tProperty('showing')}{' '}
                         <span className="font-semibold text-gray-900">
                           {
                             property.rooms.filter((room: any) => {
@@ -771,7 +775,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                             }).length
                           }
                         </span>{' '}
-                        de {property.rooms.length} habitaciones
+                        {tProperty('of')} {property.rooms.length} {tProperty('rooms')}
                       </div>
                     )}
                   </div>
@@ -780,8 +784,8 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                 {/* Amenities Section */}
                 <div id="amenities" className="scroll-mt-24">
                   <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Comodidades</h2>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-5">Comodidades Comunes</h3>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">{tProperty('amenities')}</h2>
+                    <h3 className="text-lg font-semibold text-gray-700 mb-5">{tProperty('commonAmenities')}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {amenities.map((amenity, index) => (
                         <div key={index} className="flex items-center gap-3">
@@ -793,7 +797,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                       ))}
                     </div>
                     <button className="text-primary font-medium hover:underline mt-5 flex items-center gap-1 text-sm">
-                      Ver todas las comodidades ({amenities.length}) <span>&gt;</span>
+                      {tProperty('viewAllAmenities').replace('{count}', amenities.length.toString())} <span>&gt;</span>
                     </button>
                   </div>
                 </div>
@@ -977,7 +981,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                     onClick={() => handleTabClick('rooms')}
                     className="block w-full bg-primary text-white py-4 rounded-xl font-bold text-center hover:bg-primary-hover transition-colors shadow-md hover:shadow-lg"
                   >
-                    Ver Habitaciones
+                    {tProperty('viewRooms')}
                   </button>
                   <button
                     onClick={() => {
@@ -1002,7 +1006,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                       </svg>
                     </div>
                     <p className="text-sm text-blue-800 font-medium">
-                      <span className="font-semibold">3 estudiantes</span> reservaron esta propiedad recientemente
+                      <span className="font-semibold">{tProperty('recentBookings').replace('{count}', '3')}</span>
                     </p>
                   </div>
                 </div>
@@ -1016,7 +1020,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <span className="text-sm font-semibold text-gray-900">Reserva Instantánea</span>
+                      <span className="text-sm font-semibold text-gray-900">{tProperty('instantBooking')}</span>
                     </div>
                     <svg className="w-4 h-4 text-gray-400 group-hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -1030,7 +1034,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <span className="text-sm font-semibold text-gray-900">Mejor Precio Garantizado</span>
+                      <span className="text-sm font-semibold text-gray-900">{tProperty('bestPriceGuaranteed')}</span>
                     </div>
                     <svg className="w-4 h-4 text-gray-400 group-hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -1044,7 +1048,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                       </div>
-                      <span className="text-sm font-semibold text-gray-900">Propiedades Verificadas</span>
+                      <span className="text-sm font-semibold text-gray-900">{tProperty('verifiedProperties')}</span>
                     </div>
                     <svg className="w-4 h-4 text-gray-400 group-hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -1058,7 +1062,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
                       </div>
-                      <span className="text-sm font-semibold text-gray-900">Asistencia Personal 24/7</span>
+                      <span className="text-sm font-semibold text-gray-900">{tProperty('personalAssistance')}</span>
                     </div>
                     <svg className="w-4 h-4 text-gray-400 group-hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -1072,7 +1076,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       </div>
-                      <span className="text-sm font-semibold text-gray-900">24+ Reseñas</span>
+                      <span className="text-sm font-semibold text-gray-900">{tProperty('reviewsCount')}</span>
                     </div>
                     <svg className="w-4 h-4 text-gray-400 group-hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -1083,10 +1087,10 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                 {/* Contact Form Section */}
                 <div id="contact-form" className="pt-6 border-t border-gray-200">
                   <h3 className="text-lg font-bold text-gray-900 mb-4">
-                    Solicitar Información
+                    {tProperty('requestInformation')}
                   </h3>
                   <p className="text-sm text-gray-600 mb-4">
-                    Completa el formulario y te contactaremos pronto para ayudarte con tu reserva.
+                    {tProperty('contactFormDesc')}
                   </p>
                   
                   <div className="space-y-4">
@@ -1096,7 +1100,7 @@ export default function PropertyPage({ params }: { params: { slug: string; local
                       rel="noopener noreferrer"
                       className="block w-full bg-emerald-500 text-white py-3 rounded-xl font-semibold text-center hover:bg-emerald-600 transition-colors shadow-sm hover:shadow-md"
                     >
-                      💬 Contactar por WhatsApp
+                      {tProperty('contactWhatsApp')}
                     </a>
                     
                     <ContactForm

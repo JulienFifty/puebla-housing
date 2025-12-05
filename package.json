@@ -9,7 +9,8 @@
     "lint": "next lint",
     "create-admin": "tsx scripts/create-admin-simple.ts",
     "create-admin-supabase": "tsx scripts/create-admin-supabase.ts",
-    "import-webflow": "tsx scripts/import-webflow.ts"
+    "import-webflow": "tsx scripts/import-webflow.ts",
+    "translate:auto": "tsx scripts/auto-translate.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.8.0",
