@@ -69,8 +69,7 @@ export default function Header() {
               alt="Puebla Housing"
               width={140}
               height={45}
-              className="h-5 sm:h-6 md:h-7 w-auto transition-transform group-hover:scale-105 drop-shadow-lg"
-              style={{ width: 'auto', height: 'auto' }}
+              className="h-4 sm:h-5 md:h-7 w-auto transition-transform group-hover:scale-105 drop-shadow-lg"
               priority
             />
           </Link>
