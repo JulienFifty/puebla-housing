@@ -53,6 +53,7 @@ export default function EditRoomPage() {
   const [room, setRoom] = useState<Room | null>(null);
   const [properties, setProperties] = useState<Property[]>([]);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [newAmenity, setNewAmenity] = useState('');
 
