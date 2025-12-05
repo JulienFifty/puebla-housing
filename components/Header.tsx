@@ -80,7 +80,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-white hover:text-secondary transition-all font-semibold text-sm xl:text-base tracking-wide relative group whitespace-nowrap drop-shadow-lg"
+                className="text-white hover:text-secondary transition-all font-medium text-xs xl:text-sm tracking-wide relative group whitespace-nowrap drop-shadow-lg"
               >
                 {item.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full"></span>
