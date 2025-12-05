@@ -178,7 +178,10 @@ export default function EditRoomPage() {
 
       // Cargar las demás habitaciones de la misma propiedad
       if (data.property_id) {
-        fetchOtherRooms(data.property_id, data.id);
+        // Usar setTimeout para asegurar que el estado se actualice correctamente
+        setTimeout(() => {
+          fetchOtherRooms(data.property_id, data.id);
+        }, 100);
       }
     } catch (error) {
       console.error('Error fetching room:', error);
@@ -335,7 +338,7 @@ export default function EditRoomPage() {
   return (
     <div className="flex gap-6">
       {/* Sidebar con otras habitaciones - Solo visible en desktop */}
-      {!isNewRoom && room && otherRooms.length > 0 && (
+      {!isNewRoom && room && formData.property_id && (
         <aside className="hidden lg:block w-64 flex-shrink-0">
           <div className="sticky top-24 bg-white rounded-xl shadow-lg border border-gray-200 p-4">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
@@ -344,7 +347,7 @@ export default function EditRoomPage() {
             <div className="space-y-2 max-h-[calc(100vh-200px)] overflow-y-auto">
               {loadingOtherRooms ? (
                 <div className="text-sm text-gray-500 text-center py-4">Cargando...</div>
-              ) : (
+              ) : otherRooms.length > 0 ? (
                 otherRooms.map((otherRoom) => (
                   <Link
                     key={otherRoom.id}
@@ -371,6 +374,10 @@ export default function EditRoomPage() {
                     </div>
                   </Link>
                 ))
+              ) : (
+                <div className="text-sm text-gray-500 text-center py-4">
+                  No hay otras habitaciones en esta propiedad
+                </div>
               )}
             </div>
             <Link
