@@ -229,105 +229,146 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-6">
+        <div className="flex gap-0">
           {/* Sidebar con otras habitaciones - Solo visible en desktop */}
           {room && property && (otherRooms.length > 0 || loadingOtherRooms) && (
-            <aside className="hidden xl:block w-72 flex-shrink-0">
-              <div className="sticky top-28 bg-white rounded-2xl shadow-lg border border-gray-200 p-5">
-                <h3 className="text-sm font-semibold text-gray-700 mb-4 uppercase tracking-wide">
-                  {locale === 'es' 
-                    ? 'Otras Habitaciones' 
-                    : locale === 'fr'
-                    ? 'Autres Chambres'
-                    : 'Other Rooms'}
-                </h3>
-                <div className="space-y-3 max-h-[calc(100vh-250px)] overflow-y-auto">
-                  {loadingOtherRooms ? (
-                    <div className="text-sm text-gray-500 text-center py-4">
-                      {locale === 'es' ? 'Cargando...' : locale === 'fr' ? 'Chargement...' : 'Loading...'}
-                    </div>
-                  ) : otherRooms.length > 0 ? (
-                    otherRooms.map((otherRoom) => (
-                      <Link
-                        key={otherRoom.id}
-                        href={`/${locale}/casas/${property.slug}/habitacion/${otherRoom.id}`}
-                        className={`block p-4 rounded-xl border transition-all ${
-                          otherRoom.id === params.roomId
-                            ? 'border-primary bg-primary/5 shadow-md'
-                            : 'border-gray-200 hover:border-primary hover:bg-gray-50 hover:shadow-md'
-                        }`}
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex-1 min-w-0">
-                            <div className="font-semibold text-base text-gray-900 mb-1">
-                              {locale === 'es' ? 'Habitación' : locale === 'fr' ? 'Chambre' : 'Room'} {otherRoom.room_number}
-                            </div>
-                            <div className="flex flex-wrap gap-2 mt-2">
-                              <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${
-                                otherRoom.type === 'private'
-                                  ? 'bg-primary/10 text-primary'
-                                  : 'bg-blue-100 text-blue-700'
-                              }`}>
-                                {otherRoom.type === 'private'
-                                  ? (locale === 'es' ? 'Privada' : locale === 'fr' ? 'Privée' : 'Private')
-                                  : (locale === 'es' ? 'Compartida' : locale === 'fr' ? 'Partagée' : 'Shared')
-                                }
-                              </span>
-                              <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${
-                                otherRoom.bathroom_type === 'private'
-                                  ? 'bg-emerald-100 text-emerald-700'
-                                  : 'bg-amber-100 text-amber-700'
-                              }`}>
-                                {otherRoom.bathroom_type === 'private'
-                                  ? (locale === 'es' ? 'Baño privado' : locale === 'fr' ? 'Salle de bain privée' : 'Private bath')
-                                  : (locale === 'es' ? 'Baño compartido' : locale === 'fr' ? 'Salle de bain partagée' : 'Shared bath')
-                                }
-                              </span>
-                            </div>
-                            {otherRoom.available_from && (
-                              <div className="text-xs text-gray-500 mt-2">
-                                {locale === 'es' 
-                                  ? `Disponible desde ${formatDate(otherRoom.available_from)}`
-                                  : locale === 'fr'
-                                  ? `Disponible à partir du ${formatDate(otherRoom.available_from)}`
-                                  : `Available from ${formatDate(otherRoom.available_from)}`
-                                }
-                              </div>
-                            )}
-                          </div>
-                          <div className={`w-3 h-3 rounded-full flex-shrink-0 mt-1 ${
-                            otherRoom.available ? 'bg-green-500' : 'bg-red-500'
-                          }`} title={otherRoom.available 
-                            ? (locale === 'es' ? 'Disponible' : locale === 'fr' ? 'Disponible' : 'Available')
-                            : (locale === 'es' ? 'No disponible' : locale === 'fr' ? 'Non disponible' : 'Not available')
-                          } />
-                        </div>
-                      </Link>
-                    ))
-                  ) : (
-                    <div className="text-sm text-gray-500 text-center py-4">
-                      {locale === 'es' 
-                        ? 'No hay otras habitaciones disponibles'
-                        : locale === 'fr'
-                        ? 'Aucune autre chambre disponible'
-                        : 'No other rooms available'
-                      }
-                    </div>
-                  )}
-                </div>
-                <Link
-                  href={`/${locale}/casas/${property.slug}`}
-                  className="mt-4 block text-center text-sm text-primary hover:text-primary-hover font-medium"
+            <>
+              {/* Botón para abrir/cerrar sidebar */}
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="hidden xl:flex fixed left-4 top-1/2 -translate-y-1/2 z-40 bg-white border-2 border-gray-200 rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:border-primary"
+                aria-label={sidebarOpen ? (locale === 'es' ? 'Cerrar sidebar' : locale === 'fr' ? 'Fermer la barre latérale' : 'Close sidebar') : (locale === 'es' ? 'Abrir sidebar' : locale === 'fr' ? 'Ouvrir la barre latérale' : 'Open sidebar')}
+              >
+                <svg 
+                  className={`w-5 h-5 text-gray-700 transition-transform ${sidebarOpen ? '' : 'rotate-180'}`}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
                 >
-                  {locale === 'es' 
-                    ? 'Ver todas las habitaciones →'
-                    : locale === 'fr'
-                    ? 'Voir toutes les chambres →'
-                    : 'View all rooms →'
-                  }
-                </Link>
-              </div>
-            </aside>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <aside className={`hidden xl:block transition-all duration-300 ease-in-out ${
+                sidebarOpen ? 'w-80' : 'w-0'
+              } flex-shrink-0 overflow-hidden`}>
+                <div className="sticky top-28 bg-white rounded-2xl shadow-lg border border-gray-200 p-5 ml-4">
+                  <h3 className="text-sm font-semibold text-gray-700 mb-4 uppercase tracking-wide">
+                    {locale === 'es' 
+                      ? 'Otras Habitaciones' 
+                      : locale === 'fr'
+                      ? 'Autres Chambres'
+                      : 'Other Rooms'}
+                  </h3>
+                  <div className="space-y-3 max-h-[calc(100vh-250px)] overflow-y-auto">
+                    {loadingOtherRooms ? (
+                      <div className="text-sm text-gray-500 text-center py-4">
+                        {locale === 'es' ? 'Cargando...' : locale === 'fr' ? 'Chargement...' : 'Loading...'}
+                      </div>
+                    ) : otherRooms.length > 0 ? (
+                      otherRooms.map((otherRoom) => {
+                        const roomImages = (otherRoom.images || []).filter((img: string) => img && img.trim() !== '');
+                        const roomImage = roomImages.length > 0 
+                          ? roomImages[0] 
+                          : (property.images && property.images.length > 0 
+                            ? property.images[0] 
+                            : 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800');
+                        
+                        return (
+                          <Link
+                            key={otherRoom.id}
+                            href={`/${locale}/casas/${property.slug}/habitacion/${otherRoom.id}`}
+                            className={`block rounded-xl border transition-all overflow-hidden ${
+                              otherRoom.id === params.roomId
+                                ? 'border-primary bg-primary/5 shadow-md'
+                                : 'border-gray-200 hover:border-primary hover:bg-gray-50 hover:shadow-md'
+                            }`}
+                          >
+                            {/* Imagen de la habitación */}
+                            <div className="relative w-full h-40 bg-gray-200">
+                              <Image
+                                src={roomImage}
+                                alt={`${locale === 'es' ? 'Habitación' : locale === 'fr' ? 'Chambre' : 'Room'} ${otherRoom.room_number}`}
+                                fill
+                                className="object-cover"
+                              />
+                              {/* Badge de disponibilidad */}
+                              <div className="absolute top-2 right-2">
+                                <div className={`w-3 h-3 rounded-full ${
+                                  otherRoom.available ? 'bg-green-500' : 'bg-red-500'
+                                }`} title={otherRoom.available 
+                                  ? (locale === 'es' ? 'Disponible' : locale === 'fr' ? 'Disponible' : 'Available')
+                                  : (locale === 'es' ? 'No disponible' : locale === 'fr' ? 'Non disponible' : 'Not available')
+                                } />
+                              </div>
+                            </div>
+                            
+                            {/* Información de la habitación */}
+                            <div className="p-4">
+                              <div className="font-semibold text-base text-gray-900 mb-2">
+                                {locale === 'es' ? 'Habitación' : locale === 'fr' ? 'Chambre' : 'Room'} {otherRoom.room_number}
+                              </div>
+                              <div className="flex flex-wrap gap-2 mb-2">
+                                <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${
+                                  otherRoom.type === 'private'
+                                    ? 'bg-primary/10 text-primary'
+                                    : 'bg-blue-100 text-blue-700'
+                                }`}>
+                                  {otherRoom.type === 'private'
+                                    ? (locale === 'es' ? 'Privada' : locale === 'fr' ? 'Privée' : 'Private')
+                                    : (locale === 'es' ? 'Compartida' : locale === 'fr' ? 'Partagée' : 'Shared')
+                                  }
+                                </span>
+                                <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${
+                                  otherRoom.bathroom_type === 'private'
+                                    ? 'bg-emerald-100 text-emerald-700'
+                                    : 'bg-amber-100 text-amber-700'
+                                }`}>
+                                  {otherRoom.bathroom_type === 'private'
+                                    ? (locale === 'es' ? 'Baño privado' : locale === 'fr' ? 'Salle de bain privée' : 'Private bath')
+                                    : (locale === 'es' ? 'Baño compartido' : locale === 'fr' ? 'Salle de bain partagée' : 'Shared bath')
+                                  }
+                                </span>
+                              </div>
+                              {otherRoom.available_from && (
+                                <div className="text-xs text-gray-500">
+                                  {locale === 'es' 
+                                    ? `Disponible desde ${formatDate(otherRoom.available_from)}`
+                                    : locale === 'fr'
+                                    ? `Disponible à partir du ${formatDate(otherRoom.available_from)}`
+                                    : `Available from ${formatDate(otherRoom.available_from)}`
+                                  }
+                                </div>
+                              )}
+                            </div>
+                          </Link>
+                        );
+                      })
+                    ) : (
+                      <div className="text-sm text-gray-500 text-center py-4">
+                        {locale === 'es' 
+                          ? 'No hay otras habitaciones disponibles'
+                          : locale === 'fr'
+                          ? 'Aucune autre chambre disponible'
+                          : 'No other rooms available'
+                        }
+                      </div>
+                    )}
+                  </div>
+                  <Link
+                    href={`/${locale}/casas/${property.slug}`}
+                    className="mt-4 block text-center text-sm text-primary hover:text-primary-hover font-medium"
+                  >
+                    {locale === 'es' 
+                      ? 'Ver todas las habitaciones →'
+                      : locale === 'fr'
+                      ? 'Voir toutes les chambres →'
+                      : 'View all rooms →'
+                    }
+                  </Link>
+                </div>
+              </aside>
+            </>
           )}
 
           {/* Contenido principal */}
