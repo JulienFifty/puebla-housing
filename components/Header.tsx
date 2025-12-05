@@ -63,7 +63,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href={`/${locale}`} className="flex items-center group flex-shrink-0">
+          <Link href={`/${locale}`} className="flex items-center group flex-shrink-0 mr-8 xl:mr-12">
             <Image
               src="/logo.png"
               alt="Puebla Housing"
@@ -75,7 +75,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center gap-4 2xl:gap-8">
+          <nav className="hidden xl:flex items-center gap-4 2xl:gap-8 flex-1 justify-center">
             {navItems.map((item) => (
               <Link
                 key={item.href}
