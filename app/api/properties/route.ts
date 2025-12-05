@@ -106,6 +106,7 @@ export async function POST(request: NextRequest) {
       bathroomTypes,
       available,
       googlePlaceId,
+      commonAreas,
     } = body;
 
     const { data, error } = await supabaseServer
