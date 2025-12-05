@@ -15,16 +15,20 @@ export default function PropertyCard({ property }: PropertyCardProps) {
   
   // Helper para obtener el nombre con fallback
   const getName = () => {
-    if (property.name[locale]) return property.name[locale];
+    const name = property.name as { es: string; en: string; fr?: string };
+    if (locale === 'fr' && name.fr) return name.fr;
+    if (locale === 'en' && name.en) return name.en;
     // Fallback a español si no hay traducción
-    return property.name.es || property.name.en || '';
+    return name.es || name.en || '';
   };
   
   // Helper para obtener la descripción con fallback
   const getDescription = () => {
-    if (property.description[locale]) return property.description[locale];
+    const description = property.description as { es: string; en: string; fr?: string };
+    if (locale === 'fr' && description.fr) return description.fr;
+    if (locale === 'en' && description.en) return description.en;
     // Fallback a español si no hay traducción
-    return property.description.es || property.description.en || '';
+    return description.es || description.en || '';
   };
 
   const getZoneLabel = (zone: string) => {
