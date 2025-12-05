@@ -30,7 +30,7 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
           {/* Contact Form */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-text-main mb-6">
-              {t('sendMessage', { defaultValue: 'Envíanos un mensaje' })}
+              {t('sendMessage')}
             </h2>
             <ContactForm />
           </div>
@@ -51,9 +51,7 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
                 💬 {t('whatsapp')}
               </a>
               <p className="text-text-secondary text-sm mt-4 text-center">
-                {t('whatsappNote', {
-                  defaultValue: 'Responde rápido, generalmente en minutos',
-                })}
+                {t('whatsappNote')}
               </p>
             </div>
 
@@ -86,11 +84,11 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
             {/* Map Placeholder */}
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h2 className="text-2xl font-bold text-text-main mb-4">
-                {t('map', { defaultValue: 'Ubicación' })}
+                {t('map')}
               </h2>
               <div className="bg-background-gray rounded-lg h-64 flex items-center justify-center">
                 <p className="text-text-secondary">
-                  {t('map.placeholder', { defaultValue: 'Mapa - Próximamente' })}
+                  {t('mapPlaceholder')}
                 </p>
               </div>
             </div>

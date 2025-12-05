@@ -75,7 +75,11 @@
     "message": "Mensaje",
     "send": "Enviar",
     "whatsapp": "Contactar por WhatsApp",
-    "addresses": "Direcciones"
+    "whatsappNote": "Responde rápido, generalmente en minutos",
+    "addresses": "Direcciones",
+    "sendMessage": "Envíanos un mensaje",
+    "map": "Ubicación",
+    "mapPlaceholder": "Mapa - Próximamente"
   },
   "listProperty": {
     "title": "Lista tu Propiedad",
