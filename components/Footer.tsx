@@ -29,7 +29,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://instagram.com/pueblahousing"
+                href="https://www.instagram.com/pueblahom/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-all"
@@ -40,7 +40,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://facebook.com/pueblahousing"
+                href="https://www.facebook.com/PueblaHousing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-all"
