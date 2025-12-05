@@ -189,7 +189,7 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-secondary/20 text-amber-700 rounded-full text-sm font-semibold mb-4">
+            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
               {t('servicesBadge')}
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
