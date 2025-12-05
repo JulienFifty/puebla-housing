@@ -190,9 +190,6 @@ export default function WelcomePackPage() {
       <section id="que-incluye" className="py-20 bg-white scroll-mt-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-              {locale === 'es' ? 'Todo incluido' : 'All inclusive'}
-            </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {t('whatIncludes')}
             </h2>
