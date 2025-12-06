@@ -502,11 +502,13 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
 
             {/* Modal Content */}
             <div className="p-6">
-              <ContactForm 
-                type="reservation"
-                propertySlug={property?.slug}
-                roomId={room.id}
-              />
+              {room && (
+                <ContactForm 
+                  type="reservation"
+                  propertySlug={property?.slug}
+                  roomId={room.id}
+                />
+              )}
             </div>
           </div>
         </div>
