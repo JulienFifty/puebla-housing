@@ -37,12 +37,13 @@ interface Property {
 
 export default function RoomPage({ params }: { params: { slug: string; roomId: string; locale: string } }) {
   const t = useTranslations();
-  const locale = useLocale() as 'es' | 'en';
+  const locale = useLocale() as 'es' | 'en' | 'fr';
   const [room, setRoom] = useState<Room | null>(null);
   const [property, setProperty] = useState<Property | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [showAllImages, setShowAllImages] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,7 +79,12 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
   const formatDate = (dateString: string | null | undefined) => {
     if (!dateString) return null;
     const date = new Date(dateString);
-    return date.toLocaleDateString(locale === 'es' ? 'es-MX' : 'en-US', {
+    const localeMap: Record<string, string> = {
+      'es': 'es-MX',
+      'en': 'en-US',
+      'fr': 'fr-FR'
+    };
+    return date.toLocaleDateString(localeMap[locale] || 'es-MX', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
