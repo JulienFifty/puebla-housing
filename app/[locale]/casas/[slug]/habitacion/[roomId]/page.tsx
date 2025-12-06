@@ -206,13 +206,15 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200">
               {/* Main Image */}
               <div className="relative aspect-[16/10] bg-gray-200">
-                <Image
-                  src={roomImages[selectedImageIndex]}
-                  alt={`${propertyName} - Habitación ${room.room_number}`}
-                  fill
-                  className="object-cover"
-                  priority
-                />
+                {roomImages.length > 0 && (
+                  <Image
+                    src={roomImages[selectedImageIndex] || roomImages[0]}
+                    alt={`${propertyName} - Habitación ${room.room_number}`}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                )}
                 
                 {/* Availability Badge */}
                 <div className="absolute top-4 left-4">
@@ -502,13 +504,11 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
 
             {/* Modal Content */}
             <div className="p-6">
-              {room && (
-                <ContactForm 
-                  type="reservation"
-                  propertySlug={property?.slug}
-                  roomId={room.id}
-                />
-              )}
+              <ContactForm 
+                type="reservation"
+                propertySlug={property?.slug}
+                roomId={room?.id}
+              />
             </div>
           </div>
         </div>
