@@ -155,7 +155,7 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
   }
 
   // Filtrar imágenes válidas (no vacías, no null)
-  const validRoomImages = (room.images || []).filter((img: string) => img && img.trim() !== '');
+  const validRoomImages = (room?.images || []).filter((img: string) => img && img.trim() !== '');
   const validPropertyImages = (property?.images || []).filter((img: string) => img && img.trim() !== '');
   
   const roomImages = validRoomImages.length > 0 
@@ -165,8 +165,8 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
       : ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800'];
 
   const propertyName = property ? (locale === 'es' ? property.name_es : property.name_en) : '';
-  const roomDescription = locale === 'es' ? room.description_es : (room.description_en || room.description_es);
-  const availableFromDate = formatDate(room.available_from);
+  const roomDescription = locale === 'es' ? (room?.description_es || '') : (room?.description_en || room?.description_es || '');
+  const availableFromDate = formatDate(room?.available_from);
 
   return (
     <div className="min-h-screen bg-gray-50">
