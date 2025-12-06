@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@supabase/ssr": "^0.8.0",
-    "@supabase/supabase-js": "^2.86.0",
+    "@supabase/supabase-js": "^2.86.2",
     "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
     "mapbox-gl": "^3.16.0",
