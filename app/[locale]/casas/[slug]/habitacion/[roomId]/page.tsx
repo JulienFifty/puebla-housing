@@ -37,30 +37,12 @@ interface Property {
 
 export default function RoomPage({ params }: { params: { slug: string; roomId: string; locale: string } }) {
   const t = useTranslations();
-  const locale = useLocale() as 'es' | 'en' | 'fr';
+  const locale = useLocale() as 'es' | 'en';
   const [room, setRoom] = useState<Room | null>(null);
   const [property, setProperty] = useState<Property | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [showAllImages, setShowAllImages] = useState(false);
-  const [showContactModal, setShowContactModal] = useState(false);
-
-  // Format date
-  const formatDate = (dateString: string | null | undefined) => {
-    if (!dateString) return null;
-    const date = new Date(dateString);
-    const localeMap: Record<string, string> = {
-      'es': 'es-MX',
-      'en': 'en-US',
-      'fr': 'fr-FR'
-    };
-    return date.toLocaleDateString(localeMap[locale] || 'es-MX', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
-  };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,7 +64,6 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
             setProperty(propData);
           }
         }
-
       } catch (error) {
         console.error('Error fetching room:', error);
       } finally {
@@ -91,8 +72,18 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
     };
 
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.roomId]);
+
+  // Format date
+  const formatDate = (dateString: string | null | undefined) => {
+    if (!dateString) return null;
+    const date = new Date(dateString);
+    return date.toLocaleDateString(locale === 'es' ? 'es-MX' : 'en-US', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  };
 
   // Get amenity icon
   const getAmenityIcon = (amenity: string) => {
@@ -158,7 +149,7 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
   }
 
   // Filtrar imágenes válidas (no vacías, no null)
-  const validRoomImages = (room?.images || []).filter((img: string) => img && img.trim() !== '');
+  const validRoomImages = (room.images || []).filter((img: string) => img && img.trim() !== '');
   const validPropertyImages = (property?.images || []).filter((img: string) => img && img.trim() !== '');
   
   const roomImages = validRoomImages.length > 0 
@@ -168,8 +159,8 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
       : ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800'];
 
   const propertyName = property ? (locale === 'es' ? property.name_es : property.name_en) : '';
-  const roomDescription = locale === 'es' ? (room?.description_es || '') : (room?.description_en || room?.description_es || '');
-  const availableFromDate = formatDate(room?.available_from);
+  const roomDescription = locale === 'es' ? room.description_es : (room.description_en || room.description_es);
+  const availableFromDate = formatDate(room.available_from);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -472,8 +463,6 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
             </div>
           </div>
         </div>
