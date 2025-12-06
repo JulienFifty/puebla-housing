@@ -43,10 +43,24 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [showAllImages, setShowAllImages] = useState(false);
-  const [otherRooms, setOtherRooms] = useState<Room[]>([]);
-  const [loadingOtherRooms, setLoadingOtherRooms] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showContactModal, setShowContactModal] = useState(false);
+
+  // Format date
+  const formatDate = (dateString: string | null | undefined) => {
+    if (!dateString) return null;
+    const date = new Date(dateString);
+    const localeMap: Record<string, string> = {
+      'es': 'es-MX',
+      'en': 'en-US',
+      'fr': 'fr-FR'
+    };
+    return date.toLocaleDateString(localeMap[locale] || 'es-MX', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  };
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,10 +83,6 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
           }
         }
 
-        // Cargar las demás habitaciones de la misma propiedad
-        if (roomData.property_id) {
-          fetchOtherRooms(roomData.property_id, roomData.id);
-        }
       } catch (error) {
         console.error('Error fetching room:', error);
       } finally {
@@ -81,46 +91,8 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.roomId]);
-
-  // Format date
-  const formatDate = (dateString: string | null | undefined) => {
-    if (!dateString) return null;
-    const date = new Date(dateString);
-    const localeMap: Record<string, string> = {
-      'es': 'es-MX',
-      'en': 'en-US',
-      'fr': 'fr-FR'
-    };
-    return date.toLocaleDateString(localeMap[locale] || 'es-MX', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
-  };
-
-  // Fetch otras habitaciones de la misma propiedad
-  const fetchOtherRooms = async (propertyId: string, currentRoomId: string) => {
-    setLoadingOtherRooms(true);
-    try {
-      const res = await fetch(`/api/rooms?propertyId=${propertyId}`);
-      if (!res.ok) throw new Error('Failed to fetch');
-      const data = await res.json();
-      // Filtrar la habitación actual y ordenar por número
-      const filtered = (data || [])
-        .filter((r: Room) => r.id !== currentRoomId && r.available)
-        .sort((a: Room, b: Room) => {
-          const numA = parseInt(a.room_number) || 0;
-          const numB = parseInt(b.room_number) || 0;
-          return numA - numB;
-        });
-      setOtherRooms(filtered);
-    } catch (error) {
-      console.error('Error fetching other rooms:', error);
-    } finally {
-      setLoadingOtherRooms(false);
-    }
-  };
 
   // Get amenity icon
   const getAmenityIcon = (amenity: string) => {
@@ -186,7 +158,7 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
   }
 
   // Filtrar imágenes válidas (no vacías, no null)
-  const validRoomImages = (room.images || []).filter((img: string) => img && img.trim() !== '');
+  const validRoomImages = (room?.images || []).filter((img: string) => img && img.trim() !== '');
   const validPropertyImages = (property?.images || []).filter((img: string) => img && img.trim() !== '');
   
   const roomImages = validRoomImages.length > 0 
@@ -196,8 +168,8 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
       : ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800'];
 
   const propertyName = property ? (locale === 'es' ? property.name_es : property.name_en) : '';
-  const roomDescription = locale === 'es' ? room.description_es : (room.description_en || room.description_es);
-  const availableFromDate = formatDate(room.available_from);
+  const roomDescription = locale === 'es' ? (room?.description_es || '') : (room?.description_en || room?.description_es || '');
+  const availableFromDate = formatDate(room?.available_from);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -228,156 +200,11 @@ export default function RoomPage({ params }: { params: { slug: string; roomId: s
         </div>
       </div>
 
-      {/* Sidebar con otras habitaciones - Overlay fijo a la izquierda */}
-      {room && property && (otherRooms.length > 0 || loadingOtherRooms) && (
-        <>
-          {/* Botón para abrir/cerrar sidebar */}
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="hidden xl:flex fixed left-4 top-1/2 -translate-y-1/2 z-50 bg-white border-2 border-gray-200 rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:border-primary"
-            aria-label={sidebarOpen ? (locale === 'es' ? 'Cerrar sidebar' : locale === 'fr' ? 'Fermer la barre latérale' : 'Close sidebar') : (locale === 'es' ? 'Abrir sidebar' : locale === 'fr' ? 'Ouvrir la barre latérale' : 'Open sidebar')}
-          >
-            <svg 
-              className={`w-5 h-5 text-gray-700 transition-transform ${sidebarOpen ? '' : 'rotate-180'}`}
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          {/* Sidebar Overlay */}
-          <aside className={`hidden xl:block fixed left-0 top-0 h-full z-40 transition-transform duration-300 ease-in-out ${
-            sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}>
-            <div className="h-full w-80 bg-white shadow-2xl border-r border-gray-200 overflow-y-auto">
-              <div className="p-5">
-                  <h3 className="text-sm font-semibold text-gray-700 mb-4 uppercase tracking-wide">
-                    {locale === 'es' 
-                      ? 'Otras Habitaciones' 
-                      : locale === 'fr'
-                      ? 'Autres Chambres'
-                      : 'Other Rooms'}
-                  </h3>
-                  <div className="space-y-3 max-h-[calc(100vh-250px)] overflow-y-auto">
-                    {loadingOtherRooms ? (
-                      <div className="text-sm text-gray-500 text-center py-4">
-                        {locale === 'es' ? 'Cargando...' : locale === 'fr' ? 'Chargement...' : 'Loading...'}
-                      </div>
-                    ) : otherRooms.length > 0 ? (
-                      otherRooms.map((otherRoom) => {
-                        const roomImages = (otherRoom.images || []).filter((img: string) => img && img.trim() !== '');
-                        const roomImage = roomImages.length > 0 
-                          ? roomImages[0] 
-                          : (property.images && property.images.length > 0 
-                            ? property.images[0] 
-                            : 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800');
-                        
-                        return (
-                          <Link
-                            key={otherRoom.id}
-                            href={`/${locale}/casas/${property.slug}/habitacion/${otherRoom.id}`}
-                            className={`block rounded-xl border transition-all overflow-hidden ${
-                              otherRoom.id === params.roomId
-                                ? 'border-primary bg-primary/5 shadow-md'
-                                : 'border-gray-200 hover:border-primary hover:bg-gray-50 hover:shadow-md'
-                            }`}
-                          >
-                            {/* Imagen de la habitación */}
-                            <div className="relative w-full h-40 bg-gray-200">
-                              <Image
-                                src={roomImage}
-                                alt={`${locale === 'es' ? 'Habitación' : locale === 'fr' ? 'Chambre' : 'Room'} ${otherRoom.room_number}`}
-                                fill
-                                className="object-cover"
-                              />
-                              {/* Badge de disponibilidad */}
-                              <div className="absolute top-2 right-2">
-                                <div className={`w-3 h-3 rounded-full ${
-                                  otherRoom.available ? 'bg-green-500' : 'bg-red-500'
-                                }`} title={otherRoom.available 
-                                  ? (locale === 'es' ? 'Disponible' : locale === 'fr' ? 'Disponible' : 'Available')
-                                  : (locale === 'es' ? 'No disponible' : locale === 'fr' ? 'Non disponible' : 'Not available')
-                                } />
-                              </div>
-                            </div>
-                            
-                            {/* Información de la habitación */}
-                            <div className="p-4">
-                              <div className="font-semibold text-base text-gray-900 mb-2">
-                                {locale === 'es' ? 'Habitación' : locale === 'fr' ? 'Chambre' : 'Room'} {otherRoom.room_number}
-                              </div>
-                              <div className="flex flex-wrap gap-2 mb-2">
-                                <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${
-                                  otherRoom.type === 'private'
-                                    ? 'bg-primary/10 text-primary'
-                                    : 'bg-blue-100 text-blue-700'
-                                }`}>
-                                  {otherRoom.type === 'private'
-                                    ? (locale === 'es' ? 'Privada' : locale === 'fr' ? 'Privée' : 'Private')
-                                    : (locale === 'es' ? 'Compartida' : locale === 'fr' ? 'Partagée' : 'Shared')
-                                  }
-                                </span>
-                                <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${
-                                  otherRoom.bathroom_type === 'private'
-                                    ? 'bg-emerald-100 text-emerald-700'
-                                    : 'bg-amber-100 text-amber-700'
-                                }`}>
-                                  {otherRoom.bathroom_type === 'private'
-                                    ? (locale === 'es' ? 'Baño privado' : locale === 'fr' ? 'Salle de bain privée' : 'Private bath')
-                                    : (locale === 'es' ? 'Baño compartido' : locale === 'fr' ? 'Salle de bain partagée' : 'Shared bath')
-                                  }
-                                </span>
-                              </div>
-                              {otherRoom.available_from && (
-                                <div className="text-xs text-gray-500">
-                                  {locale === 'es' 
-                                    ? `Disponible desde ${formatDate(otherRoom.available_from)}`
-                                    : locale === 'fr'
-                                    ? `Disponible à partir du ${formatDate(otherRoom.available_from)}`
-                                    : `Available from ${formatDate(otherRoom.available_from)}`
-                                  }
-                                </div>
-                              )}
-                            </div>
-                          </Link>
-                        );
-                      })
-                    ) : (
-                      <div className="text-sm text-gray-500 text-center py-4">
-                        {locale === 'es' 
-                          ? 'No hay otras habitaciones disponibles'
-                          : locale === 'fr'
-                          ? 'Aucune autre chambre disponible'
-                          : 'No other rooms available'
-                        }
-                      </div>
-                    )}
-                  </div>
-                  <Link
-                    href={`/${locale}/casas/${property.slug}`}
-                    className="mt-4 block text-center text-sm text-primary hover:text-primary-hover font-medium"
-                  >
-                    {locale === 'es' 
-                      ? 'Ver todas las habitaciones →'
-                      : locale === 'fr'
-                      ? 'Voir toutes les chambres →'
-                      : 'View all rooms →'
-                    }
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </>
-      )}
-
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Left Column - Images and Details */}
-              <div className="lg:col-span-2 space-y-6">
+          {/* Left Column - Images and Details */}
+          <div className="lg:col-span-2 space-y-6">
             {/* Image Gallery */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200">
               {/* Main Image */}
